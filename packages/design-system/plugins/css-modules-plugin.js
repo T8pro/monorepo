@@ -1,4 +1,4 @@
-import { writeFileSync, mkdirSync } from 'fs';
+import { writeFileSync } from 'fs';
 import { dirname, basename } from 'path';
 import sass from 'sass';
 import postcss from 'postcss';
@@ -9,6 +9,7 @@ export function cssModulesPlugin() {
     name: 'css-modules',
     setup(build) {
       const cssModulesMap = new Map();
+      const allCssFiles = [];
 
       build.onLoad({ filter: /\.module\.scss$/ }, async args => {
         try {
@@ -35,13 +36,10 @@ export function cssModulesPlugin() {
             to: args.path.replace('.scss', '.css'),
           });
 
-          // Write CSS file to dist
-          const cssFileName = args.path
-            .replace('src/', 'dist/')
-            .replace('.scss', '.css');
-          const cssDir = dirname(cssFileName);
-          mkdirSync(cssDir, { recursive: true });
-          writeFileSync(cssFileName, result.css);
+          allCssFiles.push({
+            path: args.path,
+            content: result.css,
+          });
 
           // Return the CSS modules mapping as JS
           const json = cssModulesMap.get(args.path) || {};
@@ -57,6 +55,17 @@ export function cssModulesPlugin() {
             contents: 'export default {};',
             resolveDir: dirname(args.path),
           };
+        }
+      });
+
+      build.onEnd(() => {
+        if (allCssFiles.length > 0) {
+          const consolidatedCss = allCssFiles
+            .map(file => `/* ${file.path} */\n${file.content}`)
+            .join('\n\n');
+
+          writeFileSync('dist/styles.css', consolidatedCss);
+          console.log('✅ Consolidated CSS file generated: dist/styles.css');
         }
       });
     },

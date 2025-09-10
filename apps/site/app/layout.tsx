@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist_Mono, Montserrat } from 'next/font/google';
-import './globals.css';
+import '@t8pro/design-system/styles';
 import { TargetCursor } from '@/components/gsap/target-cursor';
 
 const geistSans = Montserrat({

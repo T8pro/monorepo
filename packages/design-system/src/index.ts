@@ -1,3 +1,6 @@
+// Global styles
+import './globals.css';
+
 // Components
 export { Button } from './components/button/index.js';
 export type {
