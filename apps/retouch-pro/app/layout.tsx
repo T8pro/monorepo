@@ -1,9 +1,15 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Geist_Mono, Montserrat } from 'next/font/google';
 import '@t8pro/design-system/styles';
 
-const inter = Inter({
+const montserrat = Montserrat({
   variable: '--font-inter',
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+});
+
+const geistMono = Geist_Mono({
+  variable: '--font-geist-mono',
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
 });
@@ -32,7 +38,9 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
         />
       </head>
-      <body className={inter.variable}>{children}</body>
+      <body className={montserrat.variable + ' ' + geistMono.variable}>
+        {children}
+      </body>
     </html>
   );
 }

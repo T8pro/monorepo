@@ -10,7 +10,7 @@ export const menuItems = [
 ];
 
 export const socialItems = [
-  { label: 'Instagram', link: 'https://instagram.com/t8pro' },
-  { label: 'LinkedIn', link: 'https://linkedin.com/in/t8pro' },
-  { label: 'GitHub', link: 'https://github.com/t8pro' },
+  { label: 'Instagram', link: 'https://instagram.com/t8.pro' },
+  { label: 'LinkedIn', link: 'https://linkedin.com/in/t8.pro' },
+  { label: 'GitHub', link: 'https://github.com/t8.pro' },
 ];
