@@ -1,0 +1,49 @@
+// Card component styles - mobile first
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  
+  // Tablet and up
+  @media (min-width: 768px) {
+    padding: 24px;
+  }
+  
+  // Desktop and up
+  @media (min-width: 1024px) {
+    padding: 32px;
+  }
+}
+
+// Variants
+.default {
+  // Default card styles
+}
+
+.service {
+  background: rgba(103, 154, 88, 0.1);
+  border: 1px solid rgba(103, 154, 88, 0.3);
+  
+  &:hover {
+    background: rgba(103, 154, 88, 0.15);
+    border-color: rgba(103, 154, 88, 0.4);
+  }
+}
+
+.process {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+}

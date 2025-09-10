@@ -1,0 +1,35 @@
+// Logo component styles - mobile first
+.logo {
+  display: block;
+  
+  &:hover {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+  }
+}
+
+// Variants
+.header {
+  // Default header logo styles
+}
+
+.footer {
+  // Default footer logo styles
+}
+
+.symbol {
+  // Symbol variant styles
+}
+
+// Sizes are handled by the component dimensions
+.small {
+  // Handled by component
+}
+
+.medium {
+  // Handled by component
+}
+
+.large {
+  // Handled by component
+}

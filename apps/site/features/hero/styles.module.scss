@@ -1,0 +1,118 @@
+// Hero feature styles - mobile first
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: #cbd4c6;
+  background: #0c0f0c;
+}
+
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    padding: 0 40px;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 60px;
+  }
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  padding: 80px 0 80px;
+
+  @media (min-width: 768px) {
+    padding: 60px 0 100px;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 80px 0 120px;
+  }
+}
+
+.content .container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1.4fr 1fr;
+    gap: 80px;
+  }
+}
+
+.textContent {
+  max-width: 100%;
+
+  @media (min-width: 1024px) {
+    max-width: 1400px;
+  }
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  @media (min-width: 768px) {
+    font-size: 32px;
+    margin-bottom: 28px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 40px;
+    margin-bottom: 32px;
+  }
+}
+
+.creative {
+  color: #cbd4c6;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.highlight {
+  color: #679a58;
+}
+
+.lead {
+  font-size: 14px;
+  line-height: 1.7;
+  opacity: 0.9;
+  margin-bottom: 24px;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+    margin-bottom: 28px;
+  }
+  @media (min-width: 1024px) {
+    font-size: 18px;
+    margin-bottom: 32px;
+  }
+}
+
+.symbol {
+  width: 720;
+  height: 720;
+  object-fit: contain;
+  position: absolute;
+  left: 60vw;
+  top: 40;
+  z-index: -1;
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}
