@@ -44,7 +44,7 @@ export const Logo = ({
   return (
     <Image
       src={getLogoSrc()}
-      alt="T8 Pro"
+      alt='T8 Pro'
       width={width}
       height={height}
       className={classes}

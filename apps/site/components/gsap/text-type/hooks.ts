@@ -46,8 +46,8 @@ export const useTextType = ({
     if (!startOnVisible || !containerRef.current) return;
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             setIsVisible(true);
           }
@@ -98,12 +98,12 @@ export const useTextType = ({
             );
           }
 
-          setCurrentTextIndex((prev) => (prev + 1) % textArray.length);
+          setCurrentTextIndex(prev => (prev + 1) % textArray.length);
           setCurrentCharIndex(0);
           timeout = setTimeout(() => {}, pauseDuration);
         } else {
           timeout = setTimeout(() => {
-            setDisplayedText((prev) => prev.slice(0, -1));
+            setDisplayedText(prev => prev.slice(0, -1));
           }, deletingSpeed);
         }
       } else {
@@ -111,9 +111,9 @@ export const useTextType = ({
           timeout = setTimeout(
             () => {
               setDisplayedText(
-                (prev) => prev + processedText?.[currentCharIndex],
+                prev => prev + processedText?.[currentCharIndex],
               );
-              setCurrentCharIndex((prev) => prev + 1);
+              setCurrentCharIndex(prev => prev + 1);
             },
             variableSpeed ? getRandomSpeed() : typingSpeed,
           );

@@ -92,7 +92,7 @@ export const useStaggeredMenu = ({
       panel.querySelectorAll('.sm-socials-link'),
     ) as HTMLElement[];
 
-    const layerStates = layers.map((el) => ({
+    const layerStates = layers.map(el => ({
       el,
       start: Number(gsap.getProperty(el, 'xPercent')),
     }));

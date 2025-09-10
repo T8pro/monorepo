@@ -31,8 +31,8 @@ export const Hero = () => {
 
         <Image
           className={styles.symbol}
-          src="/symbol.svg"
-          alt="Symbol"
+          src='/symbol.svg'
+          alt='Symbol'
           width={500}
           height={500}
         />

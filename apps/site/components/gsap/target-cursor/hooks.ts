@@ -164,7 +164,7 @@ export const useTargetCursor = (props: TargetCursorProps) => {
 
       activeTarget = target;
       const corners = Array.from(cornersRef.current);
-      corners.forEach((corner) => {
+      corners.forEach(corner => {
         gsap.killTweensOf(corner);
       });
       gsap.killTweensOf(cursorRef.current, 'rotation');
