@@ -1,0 +1,54 @@
+.upload {
+  background: white;
+  padding: 4rem 0;
+}
+
+.container {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #111827;
+}
+
+.uploadArea {
+  border: 2px dashed #d1d5db;
+  border-radius: 0.5rem;
+  padding: 3rem;
+  text-align: center;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: #6b8e23;
+  }
+
+  i {
+    font-size: 4rem;
+    color: #9ca3af;
+    margin-bottom: 1rem;
+  }
+}
+
+.uploadTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #111827;
+}
+
+.uploadDescription {
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
+.uploadInfo {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 1rem;
+}

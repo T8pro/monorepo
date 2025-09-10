@@ -1,4 +1,4 @@
-import { Card } from '@/components/card';
+import { Card } from '@t8pro/design-system';
 import { ADDITIONAL_SERVICES, SERVICES } from './constants';
 import styles from './styles.module.scss';
 

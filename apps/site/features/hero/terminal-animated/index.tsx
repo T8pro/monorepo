@@ -1,5 +1,5 @@
 import { RiGeminiFill } from 'react-icons/ri';
-import { Button } from '@/components/button';
+import { Button } from '@t8pro/design-system';
 import { TextType } from '@/components/gsap/text-type';
 import styles from './styles.module.scss';
 

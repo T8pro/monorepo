@@ -1,5 +1,4 @@
-import { Footer } from '@/components/footer';
-import { Header } from '@/components/header';
+import { Footer, Header } from '@t8pro/design-system';
 import { Hero } from '@/features/hero';
 import { Process } from '@/features/process';
 import { Services } from '@/features/services';
