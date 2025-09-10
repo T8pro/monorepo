@@ -16,5 +16,5 @@ export default defineConfig({
     };
   },
   onSuccess:
-    'cp src/globals.css dist/ && cat src/globals.css dist/styles.css > dist/styles-combined.css && mv dist/styles-combined.css dist/styles.css',
+    'cp src/tokens.css dist/ && cp src/globals.css dist/ && cat src/tokens.css src/globals.css dist/styles.css > dist/styles-combined.css && mv dist/styles-combined.css dist/styles.css',
 });

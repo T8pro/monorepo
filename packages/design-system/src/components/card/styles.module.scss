@@ -1,49 +1,46 @@
 // Card component styles - mobile first
 .card {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 20px;
-  transition: all 0.3s ease;
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-500);
+  transition: all var(--transition-slow);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: var(--border-1) solid var(--color-gray-200);
+  box-shadow: var(--shadow-base);
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-xl);
   }
 
   // Tablet and up
   @media (min-width: 768px) {
-    padding: 24px;
+    padding: var(--spacing-600);
   }
 
   // Desktop and up
   @media (min-width: 1024px) {
-    padding: 32px;
+    padding: var(--spacing-800);
   }
 }
 
-// Variants
-.default {
-  // Default card styles
-}
-
 .service {
-  background: rgba(103, 154, 88, 0.1);
-  border: 1px solid rgba(103, 154, 88, 0.3);
+  background: var(--color-primary);
+  border: var(--border-1) solid var(--color-primary);
+  color: var(--color-secondary);
 
   &:hover {
-    background: rgba(103, 154, 88, 0.15);
-    border-color: rgba(103, 154, 88, 0.4);
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
   }
 }
 
 .process {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--color-gray-50);
+  border: var(--border-1) solid var(--color-gray-200);
 
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: var(--color-gray-100);
+    border-color: var(--color-gray-300);
   }
 }

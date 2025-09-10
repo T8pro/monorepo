@@ -1,3 +1,6 @@
+// Design tokens
+import './tokens.css';
+
 // Global styles
 import './globals.css';
 

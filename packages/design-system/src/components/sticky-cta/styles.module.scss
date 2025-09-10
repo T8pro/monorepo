@@ -1,8 +1,8 @@
 .stickyCta {
   position: fixed;
-  bottom: 1.25rem;
-  right: 1.25rem;
-  z-index: 50;
+  bottom: var(--spacing-300);
+  right: var(--spacing-300);
+  z-index: var(--z-50);
 
   @media print {
     display: none;
