@@ -15,13 +15,13 @@ export const TerminalAnimated = () => {
         typingSpeed={75}
         pauseDuration={3000}
         showCursor={true}
-        cursorCharacter='|'
+        cursorCharacter="|"
       />
 
       <Button
         iconLeft={<RiGeminiFill />}
-        variant='secondary'
-        size='large'
+        variant="secondary"
+        size="large"
         className={styles.cta}
       >
         GENERATE RESULTS

@@ -8,23 +8,23 @@ export const TargetCursor = (props: TargetCursorProps) => {
   const { cursorRef, dotRef } = useTargetCursor(props);
 
   return (
-    <div ref={cursorRef} className='targetCursorWrapper'>
-      <div ref={dotRef} className='targetCursorDot' />
+    <div ref={cursorRef} className="targetCursorWrapper">
+      <div ref={dotRef} className="targetCursorDot" />
       <div
-        className='targetCursorCorner cornerTl'
-        data-selector='targetCursorCorner'
+        className="targetCursorCorner cornerTl"
+        data-selector="targetCursorCorner"
       />
       <div
-        className='targetCursorCorner cornerTr'
-        data-selector='targetCursorCorner'
+        className="targetCursorCorner cornerTr"
+        data-selector="targetCursorCorner"
       />
       <div
-        className='targetCursorCorner cornerBr'
-        data-selector='targetCursorCorner'
+        className="targetCursorCorner cornerBr"
+        data-selector="targetCursorCorner"
       />
       <div
-        className='targetCursorCorner cornerBl'
-        data-selector='targetCursorCorner'
+        className="targetCursorCorner cornerBl"
+        data-selector="targetCursorCorner"
       />
     </div>
   );

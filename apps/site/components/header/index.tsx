@@ -13,10 +13,10 @@ export const Header = ({ ctaLabel = 'BE PRO', onCtaClick }: HeaderProps) => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <Logo variant='header' size='medium' />
+        <Logo variant="header" size="medium" />
 
         <div className={styles.secondary}>
-          <Button size='large' onClick={onCtaClick} iconLeft={<GrTechnology />}>
+          <Button size="large" onClick={onCtaClick} iconLeft={<GrTechnology />}>
             {ctaLabel}
           </Button>
 

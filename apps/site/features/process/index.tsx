@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 
 export const Process = () => {
   return (
-    <section id='how-we-work' className={styles.process}>
+    <section id="how-we-work" className={styles.process}>
       <div className={styles.container}>
         <div className={styles.content}>
           <header className={styles.header}>
@@ -26,8 +26,8 @@ export const Process = () => {
 
         <div className={styles.imageContainer}>
           <Image
-            src='/how-we-work.jpg'
-            alt=''
+            src="/how-we-work.jpg"
+            alt=""
             width={600}
             height={800}
             className={styles.processImage}

@@ -6,7 +6,7 @@ import { Services } from '@/features/services';
 
 export default function Home() {
   return (
-    <main id='home'>
+    <main id="home">
       <Header />
       <Hero />
       <Services />

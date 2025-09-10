@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 
 export const Services = () => {
   return (
-    <section id='what-we-do' className={styles.services}>
+    <section id="what-we-do" className={styles.services}>
       <div className={styles.container}>
         <header className={styles.header}>
           <h2 className={styles.title}>WHAT WE DO</h2>
@@ -17,7 +17,7 @@ export const Services = () => {
             return (
               <Card
                 key={index}
-                variant='service'
+                variant="service"
                 className={styles.serviceCard}
               >
                 <div className={styles.serviceIcon}>{<Icon />}</div>
