@@ -1,5 +1,5 @@
 {
-  "name": "site",
+  "name": "@t8pro/site",
   "version": "0.1.0",
   "type": "module",
   "private": true,
@@ -20,8 +20,8 @@
     "sass": "^1.92.1"
   },
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
+    "@t8pro/eslint-config": "*",
+    "@t8pro/typescript-config": "*",
     "@types/node": "^22.15.3",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",

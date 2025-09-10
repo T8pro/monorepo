@@ -1,14 +1,6 @@
-# Turborepo starter
+# Monorepo
 
-This Turborepo starter is maintained by the Turborepo core team.
-
-## Using this example
-
-Run the following command:
-
-```sh
-npx create-turbo@latest
-```
+A modern monorepo built with Turborepo, featuring Next.js apps, shared packages, and comprehensive tooling.
 
 ## What's inside?
 
@@ -16,11 +8,12 @@ This Turborepo includes the following packages/apps:
 
 ### Apps and Packages
 
-- `docs`: a [Next.js](https://nextjs.org/) app
+- `site`: a [Next.js](https://nextjs.org/) app with GSAP animations and modern UI
+- `docs`: a [Next.js](https://nextjs.org/) documentation app
 - `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+- `@t8pro/ui`: a React component library shared across applications
+- `@t8pro/eslint-config`: comprehensive ESLint configurations with TypeScript, React, and Next.js support
+- `@t8pro/typescript-config`: shared TypeScript configurations
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
@@ -29,22 +22,25 @@ Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 This Turborepo has some additional tools already setup for you:
 
 - [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
+- [ESLint](https://eslint.org/) for code linting with comprehensive configurations
 - [Prettier](https://prettier.io) for code formatting
+- [GSAP](https://greensock.com/gsap/) for animations in the site app
+- [Sass](https://sass-lang.com/) for enhanced CSS styling
+- [React Icons](https://react-icons.github.io/react-icons/) for icon components
 
 ### Build
 
 To build all apps and packages, run the following command:
 
 ```
-cd my-turborepo
+cd monorepo
 
 # With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
 turbo build
 
 # Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+yarn build
 npx turbo build
-yarn dlx turbo build
 pnpm exec turbo build
 ```
 

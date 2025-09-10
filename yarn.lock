@@ -634,9 +634,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@repo/eslint-config@npm:*, @repo/eslint-config@workspace:packages/eslint-config":
+"@rtsao/scc@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@rtsao/scc@npm:1.1.0"
+  checksum: 10c0/b5bcfb0d87f7d1c1c7c0f7693f53b07866ed9fec4c34a97a8c948fb9a7c0082e416ce4d3b60beb4f5e167cbe04cdeefbf6771320f3ede059b9ce91188c409a5b
+  languageName: node
+  linkType: hard
+
+"@swc/helpers@npm:0.5.15":
+  version: 0.5.15
+  resolution: "@swc/helpers@npm:0.5.15"
+  dependencies:
+    tslib: "npm:^2.8.0"
+  checksum: 10c0/33002f74f6f885f04c132960835fdfc474186983ea567606db62e86acd0680ca82f34647e8e610f4e1e422d1c16fce729dde22cd3b797ab1fd9061a825dabca4
+  languageName: node
+  linkType: hard
+
+"@t8pro/eslint-config@npm:*, @t8pro/eslint-config@workspace:packages/eslint-config":
   version: 0.0.0-use.local
-  resolution: "@repo/eslint-config@workspace:packages/eslint-config"
+  resolution: "@t8pro/eslint-config@workspace:packages/eslint-config"
   dependencies:
     "@eslint/eslintrc": "npm:^3.2.0"
     "@eslint/js": "npm:^9.34.0"
@@ -656,27 +672,32 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@repo/typescript-config@npm:*, @repo/typescript-config@workspace:packages/typescript-config":
+"@t8pro/site@workspace:apps/site":
   version: 0.0.0-use.local
-  resolution: "@repo/typescript-config@workspace:packages/typescript-config"
+  resolution: "@t8pro/site@workspace:apps/site"
+  dependencies:
+    "@t8pro/eslint-config": "npm:*"
+    "@t8pro/typescript-config": "npm:*"
+    "@types/node": "npm:^22.15.3"
+    "@types/react": "npm:19.1.0"
+    "@types/react-dom": "npm:19.1.1"
+    clsx: "npm:^2.1.1"
+    eslint: "npm:^9.34.0"
+    gsap: "npm:^3.13.0"
+    next: "npm:^15.5.0"
+    react: "npm:^19.1.0"
+    react-dom: "npm:^19.1.0"
+    react-icons: "npm:^5.5.0"
+    sass: "npm:^1.92.1"
+    typescript: "npm:5.9.2"
   languageName: unknown
   linkType: soft
 
-"@rtsao/scc@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@rtsao/scc@npm:1.1.0"
-  checksum: 10c0/b5bcfb0d87f7d1c1c7c0f7693f53b07866ed9fec4c34a97a8c948fb9a7c0082e416ce4d3b60beb4f5e167cbe04cdeefbf6771320f3ede059b9ce91188c409a5b
-  languageName: node
-  linkType: hard
-
-"@swc/helpers@npm:0.5.15":
-  version: 0.5.15
-  resolution: "@swc/helpers@npm:0.5.15"
-  dependencies:
-    tslib: "npm:^2.8.0"
-  checksum: 10c0/33002f74f6f885f04c132960835fdfc474186983ea567606db62e86acd0680ca82f34647e8e610f4e1e422d1c16fce729dde22cd3b797ab1fd9061a825dabca4
-  languageName: node
-  linkType: hard
+"@t8pro/typescript-config@npm:*, @t8pro/typescript-config@workspace:packages/typescript-config":
+  version: 0.0.0-use.local
+  resolution: "@t8pro/typescript-config@workspace:packages/typescript-config"
+  languageName: unknown
+  linkType: soft
 
 "@types/estree@npm:^1.0.6":
   version: 1.0.8
@@ -3716,27 +3737,6 @@ __metadata:
   checksum: 10c0/df5e4662a8c750bdba69af4e8263c5d96fe4cd0f9fe4bdfa3cbdeb45d2e869dff640beaaeb1ef0e99db4d8d2ec92f85508c269f50c972174851bc1ae5bd64308
   languageName: node
   linkType: hard
-
-"site@workspace:apps/site":
-  version: 0.0.0-use.local
-  resolution: "site@workspace:apps/site"
-  dependencies:
-    "@repo/eslint-config": "npm:*"
-    "@repo/typescript-config": "npm:*"
-    "@types/node": "npm:^22.15.3"
-    "@types/react": "npm:19.1.0"
-    "@types/react-dom": "npm:19.1.1"
-    clsx: "npm:^2.1.1"
-    eslint: "npm:^9.34.0"
-    gsap: "npm:^3.13.0"
-    next: "npm:^15.5.0"
-    react: "npm:^19.1.0"
-    react-dom: "npm:^19.1.0"
-    react-icons: "npm:^5.5.0"
-    sass: "npm:^1.92.1"
-    typescript: "npm:5.9.2"
-  languageName: unknown
-  linkType: soft
 
 "smart-buffer@npm:^4.2.0":
   version: 4.2.0

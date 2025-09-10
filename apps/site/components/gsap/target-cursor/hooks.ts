@@ -144,7 +144,8 @@ export const useTargetCursor = (props: TargetCursorProps) => {
         if (current.matches(targetSelector)) {
           allTargets.push(current);
         }
-        current = current.parentElement!;
+        if (!current.parentElement) break;
+        current = current.parentElement;
       }
 
       const target = allTargets[0] || null;
@@ -173,7 +174,8 @@ export const useTargetCursor = (props: TargetCursorProps) => {
 
       const updateCorners = (mouseX?: number, mouseY?: number) => {
         const rect = target.getBoundingClientRect();
-        const cursorRect = cursorRef.current!.getBoundingClientRect();
+        if (!cursorRef.current) return;
+        const cursorRect = cursorRef.current.getBoundingClientRect();
 
         const cursorCenterX = cursorRect.left + cursorRect.width / 2;
         const cursorCenterY = cursorRect.top + cursorRect.height / 2;
