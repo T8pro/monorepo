@@ -33,9 +33,10 @@ h5,
 h6,
 button {
   line-height: 1.2;
-  font-weight: 600;
+  font-weight: 800;
   font-family: var(--font-montserrat), sans-serif;
   font-style: italic;
+  text-transform: uppercase;
 }
 
 p {

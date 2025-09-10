@@ -19,9 +19,6 @@ export type {
   FooterContact,
 } from './components/footer/index.js';
 
-export { Header } from './components/header/index.js';
-export type { HeaderProps } from './components/header/index.js';
-
 export { Logo } from './components/logo/index.js';
 export type { LogoProps } from './components/logo/index.js';
 

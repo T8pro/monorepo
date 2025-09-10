@@ -16,66 +16,16 @@
 }
 
 .logo {
-  height: 4rem;
+  height: 2rem;
   width: auto;
-}
-
-.switcherContainer {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.switcher {
-  display: inline-flex;
-  background: #f3f4f6;
-  border-radius: 0.5rem;
-  padding: 0.25rem;
-}
-
-.switcherButton {
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-  background: transparent;
-  color: #6b7280;
-
-  &.active {
-    background: #6b8e23;
-    color: white;
-  }
-
-  &:hover:not(.active) {
-    background: #e5e7eb;
-  }
 }
 
 .heroContent {
   text-align: center;
-  transition: all 0.3s ease;
-
-  &.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  &.hide {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(1rem);
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
 }
 
 .title {
   font-size: 3rem;
-  font-weight: bold;
   margin-bottom: 1.5rem;
   line-height: 1.1;
   color: #111827;

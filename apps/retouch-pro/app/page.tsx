@@ -1,4 +1,4 @@
-import { Footer, Header, StickyCTA } from '@t8pro/design-system';
+import { Footer, StickyCTA } from '@t8pro/design-system';
 import { BeforeAfter } from '@/features/before-after';
 import { FAQ } from '@/features/faq';
 import { Hero } from '@/features/hero';
@@ -12,7 +12,6 @@ import { WhatYouGet } from '@/features/what-you-get';
 export default function Home() {
   return (
     <main id="home">
-      <Header />
       <Hero />
       <SocialProof />
       <BeforeAfter />

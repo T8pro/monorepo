@@ -5,11 +5,10 @@ import { StaggeredMenu } from '../gsap/staggered-menu';
 import styles from './styles.module.scss';
 
 export interface HeaderProps {
-  ctaLabel?: string;
   onCtaClick?: () => void;
 }
 
-export const Header = ({ ctaLabel = 'BE PRO', onCtaClick }: HeaderProps) => {
+export const Header = ({ onCtaClick }: HeaderProps) => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -17,7 +16,7 @@ export const Header = ({ ctaLabel = 'BE PRO', onCtaClick }: HeaderProps) => {
 
         <div className={styles.secondary}>
           <Button size="large" onClick={onCtaClick} iconLeft={<GrTechnology />}>
-            {ctaLabel}
+            BE PRO!
           </Button>
 
           <StaggeredMenu />

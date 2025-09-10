@@ -3,9 +3,9 @@ import { Geist_Mono, Montserrat } from 'next/font/google';
 import '@t8pro/design-system/styles';
 
 const montserrat = Montserrat({
-  variable: '--font-inter',
+  variable: '--font-montserrat',
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['500', '600', '700', '800'],
 });
 
 const geistMono = Geist_Mono({
