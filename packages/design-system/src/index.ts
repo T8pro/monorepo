@@ -32,3 +32,9 @@ export type {
   HeadingLineHeight,
   HeadingMarginBottom,
 } from './components/heading/index.js';
+
+export { ThemeToggle } from './components/theme-toggle/index.js';
+export type { ThemeToggleProps } from './components/theme-toggle/index.js';
+
+// Hooks
+export { useTheme } from './hooks/useTheme.js';

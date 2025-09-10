@@ -27,7 +27,8 @@
 
 .secondary {
   display: flex;
-  min-width: 240px;
+  min-width: 400;
+  padding-right: var(--spacing-800);
   align-items: center;
   gap: var(--spacing-300);
 }

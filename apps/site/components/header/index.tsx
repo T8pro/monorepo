@@ -1,6 +1,5 @@
 import { GrTechnology } from 'react-icons/gr';
-import { Button } from '@t8pro/design-system';
-import { Logo } from '@t8pro/design-system';
+import { Button, Logo, ThemeToggle } from '@t8pro/design-system';
 import { StaggeredMenu } from '../gsap/staggered-menu';
 import styles from './styles.module.scss';
 
@@ -19,6 +18,7 @@ export const Header = ({ onCtaClick }: HeaderProps) => {
             BE PRO!
           </Button>
 
+          <ThemeToggle />
           <StaggeredMenu />
         </div>
       </div>

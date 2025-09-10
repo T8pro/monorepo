@@ -34,7 +34,10 @@ export default function RootLayout({
           href="https://page.gensparksite.com/v1/base64_upload/8053203880ae33bce40ff119936ccd20add"
         />
       </head>
-      <body className={montserrat.variable + ' ' + geistMono.variable}>
+      <body
+        className={montserrat.variable + ' ' + geistMono.variable}
+        style={{ backgroundColor: 'var(--color-secondary-invert)' }}
+      >
         {children}
       </body>
     </html>

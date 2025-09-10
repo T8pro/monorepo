@@ -1,7 +1,10 @@
+'use client';
+
 import { Button, Heading } from '@t8pro/design-system';
 import { FaClock, FaShieldAlt, FaFileContract, FaFlag } from 'react-icons/fa';
 import styles from './styles.module.scss';
 import Image from 'next/image';
+import { BackgroundOrb } from '@/components/background-orb';
 
 export const Hero = () => {
   return (
@@ -21,6 +24,13 @@ export const Hero = () => {
 
         {/* Hero Content */}
         <div className={styles.heroContent}>
+          <BackgroundOrb
+            hoverIntensity={0.5}
+            rotateOnHover={true}
+            hue={0}
+            forceHoverState={false}
+          />
+
           <Heading
             as="h1"
             size="5xl"
@@ -30,7 +40,7 @@ export const Hero = () => {
             lineHeight="tight"
             marginBottom="lg"
           >
-            Turn Phone Pics into Craveable Menu Photos
+            Turn Phone Pics into <br /> Craveable Menu Photos
           </Heading>
           <p>
             Perfect crops for Uber Eats, DoorDash, Grubhub, Instagram & Google.
@@ -39,7 +49,7 @@ export const Hero = () => {
 
           {/* CTA Section */}
           <div className={styles.ctaSection}>
-            <Button variant="primary" size="large" className={styles.ctaButton}>
+            <Button variant="primary" size="large">
               🎁 Get 1 Photo Retouched FREE
             </Button>
 
