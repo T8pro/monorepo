@@ -1,7 +1,8 @@
-import { Footer, Header } from '@t8pro/design-system';
+import { Footer } from '@t8pro/design-system';
 import { Hero } from '@/features/hero';
 import { Process } from '@/features/process';
 import { Services } from '@/features/services';
+import { Header } from '@/components/header';
 
 export default function Home() {
   return (

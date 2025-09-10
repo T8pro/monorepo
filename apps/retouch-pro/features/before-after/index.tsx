@@ -45,7 +45,13 @@ export const BeforeAfter = () => {
   );
 };
 
-const BeforeAfterSlider = ({ before, after }: { before: any; after: any }) => {
+const BeforeAfterSlider = ({
+  before,
+  after,
+}: {
+  before: { label: string; description: string };
+  after: { label: string; description: string };
+}) => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const handleRef = useRef<HTMLDivElement>(null);
   const beforeRef = useRef<HTMLDivElement>(null);

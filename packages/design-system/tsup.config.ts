@@ -1,4 +1,5 @@
 import { defineConfig } from 'tsup';
+import { cssModulesPlugin } from './plugins/css-modules-plugin.js';
 
 export default defineConfig({
   entry: ['src/index.ts'],
@@ -8,9 +9,7 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   external: ['react', 'react-dom'],
-  loader: {
-    '.scss': 'text',
-  },
+  esbuildPlugins: [cssModulesPlugin()],
   esbuildOptions(options) {
     options.banner = {
       js: '"use client";',

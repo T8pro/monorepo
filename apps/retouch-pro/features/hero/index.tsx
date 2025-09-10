@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { Button } from '@t8pro/design-system';
 import { useHeroSwitcher } from './hooks';
 import styles from './styles.module.scss';
