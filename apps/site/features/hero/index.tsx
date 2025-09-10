@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Heading } from '@t8pro/design-system';
 import styles from './styles.module.scss';
 import { TerminalAnimated } from './terminal-animated';
 
@@ -8,13 +9,22 @@ export const Hero = () => {
       <div className={styles.content}>
         <div className={styles.container}>
           <div className={styles.textContent}>
-            <h1 className={styles.title}>
+            <Heading
+              as="h1"
+              size="5xl"
+              weight="black"
+              color="secondary"
+              lineHeight="tight"
+              marginBottom="lg"
+              uppercase
+              letterSpacing="wide"
+            >
               <span className={styles.creative}>CREATIVE SOLUTIONS</span>
               <span>
                 FOR{' '}
                 <span className={styles.highlight}>AMBITIOUS BUSINESSES</span>!
               </span>
-            </h1>
+            </Heading>
 
             <p className={styles.lead}>
               At T8 Pro, we empower businesses of all sizes with innovative

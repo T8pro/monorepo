@@ -1,7 +1,7 @@
 .header {
   padding: var(--spacing-300) 0;
   position: relative;
-  z-index: var(--z-10);
+  z-index: var(--z-50);
   background-color: var(--color-secondary);
 
   @media (min-width: 768px) {

@@ -1,4 +1,4 @@
-import { Card } from '@t8pro/design-system';
+import { Card, Heading } from '@t8pro/design-system';
 import { ADDITIONAL_SERVICES, SERVICES } from './constants';
 import styles from './styles.module.scss';
 
@@ -7,7 +7,19 @@ export const Services = () => {
     <section id="what-we-do" className={styles.services}>
       <div className={styles.container}>
         <header className={styles.header}>
-          <h2 className={styles.title}>WHAT WE DO</h2>
+          <Heading
+            as="h2"
+            size="5xl"
+            weight="black"
+            color="secondary"
+            align="center"
+            marginBottom="none"
+            uppercase
+            italic
+            letterSpacing="wider"
+          >
+            WHAT WE DO
+          </Heading>
         </header>
 
         <div className={styles.mainServices}>
@@ -21,7 +33,15 @@ export const Services = () => {
                 className={styles.serviceCard}
               >
                 <div className={styles.serviceIcon}>{<Icon />}</div>
-                <h3 className={styles.serviceTitle}>{service.title}</h3>
+                <Heading
+                  as="h3"
+                  size="base"
+                  weight="bold"
+                  color="primary"
+                  marginBottom="sm"
+                >
+                  {service.title}
+                </Heading>
                 <p className={styles.serviceDescription}>
                   {service.description}
                 </p>

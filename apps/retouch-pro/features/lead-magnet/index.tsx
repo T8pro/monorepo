@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@t8pro/design-system';
+import { Button, Heading } from '@t8pro/design-system';
 import styles from './styles.module.scss';
 
 export const LeadMagnet = () => {
@@ -16,7 +16,16 @@ export const LeadMagnet = () => {
   return (
     <section className={styles.leadMagnet}>
       <div className={styles.container}>
-        <h2 className={styles.title}>Not Ready Yet?</h2>
+        <Heading
+          as="h2"
+          size="3xl"
+          weight="bold"
+          color="white"
+          align="center"
+          marginBottom="base"
+        >
+          Not Ready Yet?
+        </Heading>
         <p className={styles.description}>
           Download the Delivery Photo Cheat Sheet (free) — and get 3 of your
           images cropped on us.

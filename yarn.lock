@@ -1076,6 +1076,7 @@ __metadata:
     next: "npm:^15.5.0"
     react: "npm:^19.1.0"
     react-dom: "npm:^19.1.0"
+    react-icons: "npm:^5.5.0"
     sass: "npm:^1.92.1"
     typescript: "npm:5.9.2"
   languageName: unknown

@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { Heading } from '@t8pro/design-system';
+import { FaChevronDown } from 'react-icons/fa';
 import styles from './styles.module.scss';
 
 const faqs = [
@@ -21,7 +23,7 @@ const faqs = [
   {
     question: 'How fast is the turnaround?',
     answer:
-      '48 hours for up to 12 photos. Rush orders available for an additional fee.',
+      '24 hours for up to 12 photos. Rush orders available for an additional fee.',
   },
   {
     question: 'Can you handle multiple locations?',
@@ -39,7 +41,16 @@ export const FAQ = () => {
   return (
     <section className={styles.faq}>
       <div className={styles.container}>
-        <h2 className={styles.title}>Frequently Asked Questions</h2>
+        <Heading
+          as="h2"
+          size="4xl"
+          weight="bold"
+          color="gray-900"
+          align="center"
+          marginBottom="3xl"
+        >
+          Frequently Asked Questions
+        </Heading>
         <div className={styles.faqList}>
           {faqs.map((faq, index) => (
             <div key={index} className={styles.faqItem}>
@@ -49,8 +60,8 @@ export const FAQ = () => {
                 aria-expanded={openIndex === index}
               >
                 <h3>{faq.question}</h3>
-                <i
-                  className={`fas fa-chevron-down ${openIndex === index ? styles.rotated : ''}`}
+                <FaChevronDown
+                  className={openIndex === index ? styles.rotated : ''}
                 />
               </button>
               {openIndex === index && (

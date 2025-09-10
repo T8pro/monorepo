@@ -1,4 +1,5 @@
-import { Button } from '@t8pro/design-system';
+import { Button, Heading } from '@t8pro/design-system';
+import { FaCheck, FaWhatsapp } from 'react-icons/fa';
 import styles from './styles.module.scss';
 
 const plans = [
@@ -25,7 +26,7 @@ const plans = [
     buttonVariant: 'secondary' as const,
     features: [
       '6–12 photos/month',
-      '48-hour turnaround',
+      '24-hour turnaround',
       'Platform crops',
       'Deployment guide',
     ],
@@ -50,7 +51,16 @@ export const Plans = () => {
   return (
     <section className={styles.plans}>
       <div className={styles.container}>
-        <h2 className={styles.title}>Choose Your Plan</h2>
+        <Heading
+          as="h2"
+          size="4xl"
+          weight="bold"
+          color="gray-900"
+          align="center"
+          marginBottom="3xl"
+        >
+          Choose Your Plan
+        </Heading>
         <div className={styles.grid}>
           {plans.map((plan, index) => (
             <div
@@ -58,7 +68,17 @@ export const Plans = () => {
               className={`${styles.plan} ${plan.highlighted ? styles.highlighted : ''}`}
             >
               <div className={styles.planHeader}>
-                <h3 className={styles.planName}>{plan.name}</h3>
+                <Heading
+                  as="h3"
+                  size="2xl"
+                  weight="bold"
+                  color="gray-900"
+                  align="center"
+                  marginBottom="sm"
+                  className={styles.planName}
+                >
+                  {plan.name}
+                </Heading>
                 <div className={styles.planPrice}>
                   <span className={styles.price}>{plan.price}</span>
                   <span className={styles.period}>{plan.period}</span>
@@ -77,7 +97,7 @@ export const Plans = () => {
               <ul className={styles.features}>
                 {plan.features.map((feature, featureIndex) => (
                   <li key={featureIndex} className={styles.feature}>
-                    <i className="fas fa-check" />
+                    <FaCheck />
                     {feature}
                   </li>
                 ))}
@@ -87,7 +107,7 @@ export const Plans = () => {
         </div>
         <div className={styles.whatsappCta}>
           <Button variant="whatsapp" size="large">
-            <i className="fab fa-whatsapp" />
+            <FaWhatsapp />
             Chat on WhatsApp
           </Button>
         </div>

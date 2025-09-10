@@ -1,7 +1,7 @@
 import styles from './styles.module.scss';
 
 export interface LogoProps {
-  variant?: 'header' | 'footer';
+  variant?: 'header';
   size?: 'small' | 'medium' | 'large';
   className?: string;
   src?: string;
@@ -25,8 +25,6 @@ export const Logo = ({
     switch (variant) {
       case 'header':
         return '/logo-header.svg';
-      case 'footer':
-        return '/logo-footer.svg';
       default:
         return '/logo-header.svg';
     }

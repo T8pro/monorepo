@@ -76,7 +76,7 @@ export const StaggeredMenu = ({
       >
         <button
           ref={toggleBtnRef}
-          className="sm-toggle"
+          className={`sm-toggle ${open ? 'open' : ''}`}
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           aria-controls="staggered-menu-panel"

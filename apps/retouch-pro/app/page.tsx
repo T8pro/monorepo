@@ -1,4 +1,4 @@
-import { Footer, StickyCTA } from '@t8pro/design-system';
+import { StickyCTA } from '@t8pro/design-system';
 import { BeforeAfter } from '@/features/before-after';
 import { FAQ } from '@/features/faq';
 import { Hero } from '@/features/hero';
@@ -21,7 +21,6 @@ export default function Home() {
       <Upload />
       <FAQ />
       <LeadMagnet />
-      <Footer />
       <StickyCTA />
     </main>
   );

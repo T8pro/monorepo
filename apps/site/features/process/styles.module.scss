@@ -61,26 +61,6 @@
   }
 }
 
-.title {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-black);
-  color: var(--color-primary);
-  font-style: italic;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin: 0;
-
-  // Tablet and up
-  @media (min-width: 768px) {
-    font-size: var(--font-size-5xl);
-  }
-
-  // Desktop and up
-  @media (min-width: 1024px) {
-    font-size: var(--font-size-6xl);
-  }
-}
-
 .steps {
   display: flex;
   flex-direction: column;
@@ -137,22 +117,10 @@
   flex: 1;
 }
 
-.stepTitle {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-extrabold);
-  color: var(--color-secondary-invert);
-  margin-bottom: var(--spacing-50);
-
-  // Tablet and up
-  @media (min-width: 768px) {
-    font-size: var(--font-size-xl);
-  }
-}
-
 .stepDescription {
   font-size: var(--font-size-sm);
   line-height: var(--line-height-normal);
-  color: rgba(26, 26, 26, 0.8);
+  color: var(--color-gray-400);
   margin: 0;
 
   // Tablet and up

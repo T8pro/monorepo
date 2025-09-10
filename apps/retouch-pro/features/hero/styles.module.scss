@@ -2,6 +2,12 @@
   background: var(--color-white);
   padding-top: var(--spacing-600);
   padding-bottom: var(--spacing-400);
+  height: 100vh;
+  min-height: 800px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
@@ -24,35 +30,33 @@
   text-align: center;
 }
 
-.title {
-  font-size: var(--font-size-5xl);
-  margin-bottom: var(--spacing-300);
-  line-height: var(--line-height-tight);
-  color: var(--color-gray-900);
-
-  @media (max-width: 640px) {
-    font-size: var(--font-size-4xl);
-  }
-}
-
-.subtitle {
-  font-size: var(--font-size-xl);
-  color: var(--color-gray-500);
-  margin-bottom: var(--spacing-300);
-  max-width: 64rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.buttonGroup {
+.ctaSection {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--spacing-200);
-  justify-content: center;
+  margin-top: var(--spacing-400);
+}
 
-  @media (min-width: 640px) {
-    flex-direction: row;
+.ctaButton {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  padding: var(--spacing-300) var(--spacing-500);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.15);
   }
+}
+
+.ctaSubtext {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  margin: 0;
+  font-weight: var(--font-weight-medium);
 }
 
 .trustBadges {

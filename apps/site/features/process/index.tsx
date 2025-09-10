@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Heading } from '@t8pro/design-system';
 import { processSteps } from './constants';
 import styles from './styles.module.scss';
 
@@ -8,7 +9,19 @@ export const Process = () => {
       <div className={styles.container}>
         <div className={styles.content}>
           <header className={styles.header}>
-            <h2 className={styles.title}>HOW WE WORK</h2>
+            <Heading
+              as="h2"
+              size="4xl"
+              weight="black"
+              color="primary"
+              align="center"
+              marginBottom="none"
+              uppercase
+              italic
+              letterSpacing="wider"
+            >
+              HOW WE WORK
+            </Heading>
           </header>
 
           <div className={styles.steps}>
@@ -16,7 +29,16 @@ export const Process = () => {
               <div key={index} className={styles.step}>
                 <div className={styles.stepNumber}>{step.number}</div>
                 <div className={styles.stepContent}>
-                  <h3 className={styles.stepTitle}>{step.title}</h3>
+                  <Heading
+                    as="h3"
+                    size="lg"
+                    weight="extrabold"
+                    marginBottom="sm"
+                    color="primary"
+                  >
+                    {step.title}
+                  </Heading>
+
                   <p className={styles.stepDescription}>{step.description}</p>
                 </div>
               </div>

@@ -59,25 +59,6 @@
   }
 }
 
-.title {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-black);
-  line-height: var(--line-height-tight);
-  margin-bottom: var(--spacing-300);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-
-  @media (min-width: 768px) {
-    font-size: var(--font-size-4xl);
-    margin-bottom: var(--spacing-700);
-  }
-
-  @media (min-width: 1024px) {
-    font-size: var(--font-size-5xl);
-    margin-bottom: var(--spacing-800);
-  }
-}
-
 .creative {
   color: var(--color-secondary);
   display: block;

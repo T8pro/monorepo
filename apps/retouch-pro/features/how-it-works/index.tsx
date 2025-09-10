@@ -1,3 +1,4 @@
+import { Heading } from '@t8pro/design-system';
 import styles from './styles.module.scss';
 
 const steps = [
@@ -22,12 +23,29 @@ export const HowItWorks = () => {
   return (
     <section className={styles.howItWorks}>
       <div className={styles.container}>
-        <h2 className={styles.title}>How It Works</h2>
+        <Heading
+          as="h2"
+          size="4xl"
+          weight="bold"
+          color="secondary"
+          align="center"
+          marginBottom="3xl"
+        >
+          How It Works
+        </Heading>
         <div className={styles.grid}>
           {steps.map(step => (
             <div key={step.number} className={styles.step}>
               <div className={styles.stepNumber}>{step.number}</div>
-              <h3 className={styles.stepTitle}>{step.title}</h3>
+              <Heading
+                as="h3"
+                size="xl"
+                weight="extrabold"
+                color="secondary"
+                align="center"
+              >
+                {step.title}
+              </Heading>
               <p className={styles.stepDescription}>{step.description}</p>
             </div>
           ))}

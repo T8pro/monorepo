@@ -48,23 +48,6 @@ import { Header } from '@t8pro/design-system';
 />;
 ```
 
-### Footer
-
-A flexible footer component with support for links and contact info.
-
-```tsx
-import { Footer } from '@t8pro/design-system';
-
-<Footer
-  description="Professional services for your business"
-  quickLinks={[
-    { label: 'About', href: '/about' },
-    { label: 'Contact', href: '/contact' },
-  ]}
-  contactInfo={[{ icon: 'fas fa-envelope', text: 'hello@example.com' }]}
-/>;
-```
-
 ### Logo
 
 A responsive logo component.
@@ -75,7 +58,7 @@ import { Logo } from '@t8pro/design-system';
 <Logo variant="header" size="medium" alt="Company Logo" />;
 ```
 
-**Variants:** `header`, `footer`
+**Variants:** `header`
 **Sizes:** `small`, `medium`, `large`
 
 ### StickyCTA
@@ -101,7 +84,7 @@ npm install @t8pro/design-system
 ## Usage
 
 ```tsx
-import { Button, Card, Header, Footer } from '@t8pro/design-system';
+import { Button, Card, Header } from '@t8pro/design-system';
 
 function App() {
   return (
@@ -112,7 +95,6 @@ function App() {
           <Button variant="primary">Click me</Button>
         </Card>
       </main>
-      <Footer />
     </div>
   );
 }

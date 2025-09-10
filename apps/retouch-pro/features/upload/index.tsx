@@ -1,14 +1,33 @@
-import { Button } from '@t8pro/design-system';
+import { Button, Heading } from '@t8pro/design-system';
+import { FaCloudUploadAlt } from 'react-icons/fa';
 import styles from './styles.module.scss';
 
 export const Upload = () => {
   return (
     <section className={styles.upload}>
       <div className={styles.container}>
-        <h2 className={styles.title}>Upload Your Photos</h2>
+        <Heading
+          as="h2"
+          size="3xl"
+          weight="bold"
+          color="gray-900"
+          align="center"
+          marginBottom="lg"
+        >
+          Upload Your Photos
+        </Heading>
         <div className={styles.uploadArea}>
-          <i className="fas fa-cloud-upload-alt" />
-          <h3 className={styles.uploadTitle}>Drag and drop your photos here</h3>
+          <FaCloudUploadAlt />
+          <Heading
+            as="h3"
+            size="xl"
+            weight="semibold"
+            color="gray-900"
+            align="center"
+            marginBottom="sm"
+          >
+            Drag and drop your photos here
+          </Heading>
           <p className={styles.uploadDescription}>
             You can drag photos straight from your desktop or paste a link
           </p>

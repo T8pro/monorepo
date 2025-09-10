@@ -1,5 +1,7 @@
-import { Button } from '@t8pro/design-system';
+import { Button, Heading } from '@t8pro/design-system';
+import { FaClock, FaShieldAlt, FaFileContract, FaFlag } from 'react-icons/fa';
 import styles from './styles.module.scss';
+import Image from 'next/image';
 
 export const Hero = () => {
   return (
@@ -7,49 +9,62 @@ export const Hero = () => {
       <div className={styles.container}>
         {/* Logo */}
         <div className={styles.logoContainer}>
-          <img
+          <Image
             src="/retouch-pro-logo.svg"
             alt="TG Logo"
+            width={100}
+            height={100}
             className={styles.logo}
+            priority
           />
         </div>
 
         {/* Hero Content */}
         <div className={styles.heroContent}>
-          <h1 className={styles.title}>
-            Turn Phone Pics into Craveable Menu Photos — in 48 Hours
-          </h1>
-          <p className={styles.subtitle}>
-            AI + human touch. Pixel-perfect crops for Uber Eats, DoorDash,
-            Grubhub, and Instagram. Zero contract. Money-back guarantee.
+          <Heading
+            as="h1"
+            size="5xl"
+            weight="extrabold"
+            color="secondary"
+            align="center"
+            lineHeight="tight"
+            marginBottom="lg"
+          >
+            Turn Phone Pics into Craveable Menu Photos
+          </Heading>
+          <p>
+            Perfect crops for Uber Eats, DoorDash, Grubhub, Instagram & Google.
+            No contract. Money-back guarantee.
           </p>
-          <div className={styles.buttonGroup}>
-            <Button variant="primary" size="large">
-              <i className="fas fa-upload" />
-              Upload Photos & Start
+
+          {/* CTA Section */}
+          <div className={styles.ctaSection}>
+            <Button variant="primary" size="large" className={styles.ctaButton}>
+              🎁 Get 1 Photo Retouched FREE
             </Button>
-            <Button variant="outline" size="large">
-              See Before/After
-            </Button>
+
+            <p className={styles.ctaSubtext}>
+              Upload your photo → Decide if you want more.
+            </p>
           </div>
         </div>
 
         {/* Trust Badges */}
         <div className={styles.trustBadges}>
           <div className={styles.badge}>
-            <i className="fas fa-clock" />
-            48-Hour Turnaround
+            <FaClock />
+            24-Hour Turnaround
           </div>
           <div className={styles.badge}>
-            <i className="fas fa-shield-alt" />
+            <FaShieldAlt />
             Money-Back Guarantee
           </div>
           <div className={styles.badge}>
-            <i className="fas fa-file-contract" />
+            <FaFileContract />
             No Contract
           </div>
           <div className={styles.badge}>
-            <i className="fas fa-flag" />
+            <FaFlag />
             US-Based Remote
           </div>
         </div>

@@ -9,14 +9,6 @@
   padding: 0 var(--spacing-200);
 }
 
-.title {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
-  text-align: center;
-  margin-bottom: var(--spacing-600);
-  color: var(--color-gray-900);
-}
-
 .grid {
   display: grid;
   gap: var(--spacing-300);
@@ -37,12 +29,6 @@
   color: var(--color-primary);
   margin-top: var(--spacing-50);
   flex-shrink: 0;
-}
-
-.featureTitle {
-  font-weight: var(--font-weight-semibold);
-  margin-bottom: var(--spacing-100);
-  color: var(--color-gray-900);
 }
 
 .featureDescription {

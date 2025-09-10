@@ -1,0 +1,229 @@
+.heading {
+  margin: 0;
+  font-family: var(--font-montserrat);
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+// Size variants
+.size-xs {
+  font-size: var(--font-size-xs);
+}
+
+.size-sm {
+  font-size: var(--font-size-sm);
+}
+
+.size-base {
+  font-size: var(--font-size-base);
+}
+
+.size-lg {
+  font-size: var(--font-size-lg);
+}
+
+.size-xl {
+  font-size: var(--font-size-xl);
+}
+
+.size-2xl {
+  font-size: var(--font-size-2xl);
+}
+
+.size-3xl {
+  font-size: var(--font-size-3xl);
+}
+
+.size-4xl {
+  font-size: var(--font-size-4xl);
+}
+
+.size-5xl {
+  font-size: var(--font-size-5xl);
+}
+
+.size-6xl {
+  font-size: var(--font-size-6xl);
+}
+
+// Weight variants
+.weight-normal {
+  font-weight: var(--font-weight-normal);
+}
+
+.weight-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.weight-semibold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.weight-bold {
+  font-weight: var(--font-weight-bold);
+}
+
+.weight-extrabold {
+  font-weight: var(--font-weight-extrabold);
+}
+
+.weight-black {
+  font-weight: var(--font-weight-black);
+}
+
+// Color variants
+.color-primary {
+  color: var(--color-primary);
+}
+
+.color-secondary {
+  color: var(--color-secondary);
+}
+
+.color-gray-900 {
+  color: var(--color-gray-900);
+}
+
+.color-gray-700 {
+  color: var(--color-gray-700);
+}
+
+.color-gray-500 {
+  color: var(--color-gray-500);
+}
+
+.color-white {
+  color: var(--color-white);
+}
+
+.color-black {
+  color: var(--color-black);
+}
+
+// Alignment variants
+.align-left {
+  text-align: left;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}
+
+// Letter spacing variants
+.letterSpacing-tight {
+  letter-spacing: -0.025em;
+}
+
+.letterSpacing-normal {
+  letter-spacing: 0;
+}
+
+.letterSpacing-wide {
+  letter-spacing: 0.025em;
+}
+
+.letterSpacing-wider {
+  letter-spacing: 0.05em;
+}
+
+.letterSpacing-widest {
+  letter-spacing: 0.1em;
+}
+
+// Line height variants
+.lineHeight-none {
+  line-height: var(--line-height-none);
+}
+
+.lineHeight-tight {
+  line-height: var(--line-height-tight);
+}
+
+.lineHeight-snug {
+  line-height: var(--line-height-snug);
+}
+
+.lineHeight-normal {
+  line-height: var(--line-height-normal);
+}
+
+.lineHeight-relaxed {
+  line-height: var(--line-height-relaxed);
+}
+
+.lineHeight-loose {
+  line-height: var(--line-height-loose);
+}
+
+// Margin bottom variants
+.marginBottom-none {
+  margin-bottom: 0;
+}
+
+.marginBottom-sm {
+  margin-bottom: var(--spacing-100);
+}
+
+.marginBottom-base {
+  margin-bottom: var(--spacing-200);
+}
+
+.marginBottom-lg {
+  margin-bottom: var(--spacing-300);
+}
+
+.marginBottom-xl {
+  margin-bottom: var(--spacing-400);
+}
+
+.marginBottom-2xl {
+  margin-bottom: var(--spacing-500);
+}
+
+.marginBottom-3xl {
+  margin-bottom: var(--spacing-600);
+}
+
+.marginBottom-4xl {
+  margin-bottom: var(--spacing-700);
+}
+
+.marginBottom-5xl {
+  margin-bottom: var(--spacing-800);
+}
+
+.marginBottom-6xl {
+  margin-bottom: var(--spacing-900);
+}
+
+// Utility classes
+.uppercase {
+  text-transform: uppercase;
+}
+
+.italic {
+  font-style: italic;
+}
+
+// Responsive adjustments for common heading patterns
+.size-5xl {
+  @media (max-width: 640px) {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+.size-4xl {
+  @media (max-width: 640px) {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+.size-3xl {
+  @media (max-width: 640px) {
+    font-size: var(--font-size-2xl);
+  }
+}

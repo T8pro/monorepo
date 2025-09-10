@@ -45,7 +45,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: var(--color-black) !important;
+  color: var(--color-primary) !important;
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-none);
   overflow: visible;
@@ -53,7 +53,7 @@
 }
 
 .sm-toggle:focus-visible {
-  outline: var(--border-2) solid #cbd4c6aa;
+  outline: var(--border-2) solid var(--color-primary);
   outline-offset: var(--spacing-50);
   border-radius: var(--radius-base);
 }
@@ -181,7 +181,7 @@
   margin: 0;
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
-  color: var(--sm-accent, #ff0000);
+  color: var(--sm-accent, var(--color-error));
 }
 
 .sm-socials-list {
@@ -208,7 +208,7 @@
 }
 
 .sm-socials-link:focus-visible {
-  outline: var(--border-2) solid var(--sm-accent, #ff0000);
+  outline: var(--border-2) solid var(--sm-accent, var(--color-error));
   outline-offset: var(--spacing-50);
 }
 
@@ -234,7 +234,7 @@
 }
 
 .sm-socials-link:hover {
-  color: var(--sm-accent, #ff0000);
+  color: var(--sm-accent, var(--color-error));
 }
 
 .sm-panel-title {
@@ -301,7 +301,7 @@
 }
 
 .sm-panel-item:hover {
-  color: var(--sm-accent, #5227ff);
+  color: var(--sm-accent, var(--color-primary));
 }
 
 .sm-panel-list[data-numbering] {
@@ -316,7 +316,7 @@
   right: 2.8em;
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-normal);
-  color: var(--sm-accent, #5227ff);
+  color: var(--sm-accent, var(--color-primary));
   letter-spacing: 0;
   pointer-events: none;
   user-select: none;

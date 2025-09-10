@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { Heading } from '@t8pro/design-system';
 import styles from './styles.module.scss';
 
 const beforeAfterItems = [
@@ -22,7 +23,16 @@ export const BeforeAfter = () => {
   return (
     <section className={styles.beforeAfter}>
       <div className={styles.container}>
-        <h2 className={styles.title}>See the Difference</h2>
+        <Heading
+          as="h2"
+          size="4xl"
+          weight="bold"
+          color="secondary"
+          align="center"
+          marginBottom="3xl"
+        >
+          See the Difference
+        </Heading>
         <div className={styles.grid}>
           {beforeAfterItems.map((item, index) => (
             <BeforeAfterSlider
