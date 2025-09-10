@@ -1,27 +1,27 @@
 .header {
-  padding: 20px 0;
+  padding: var(--spacing-300) 0;
   position: relative;
-  z-index: 10;
-  background-color: #cbd4c6;
+  z-index: var(--z-10);
+  background-color: var(--color-secondary);
 
   @media (min-width: 768px) {
-    padding: 24px 0;
+    padding: var(--spacing-300) 0;
   }
 }
 
 .container {
   max-width: 1600px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 var(--spacing-300);
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   @media (min-width: 768px) {
-    padding: 0 40px;
+    padding: 0 var(--spacing-500);
   }
   @media (min-width: 1024px) {
-    padding: 0 60px;
+    padding: 0 var(--spacing-600);
   }
 }
 
@@ -29,5 +29,5 @@
   display: flex;
   min-width: 240px;
   align-items: center;
-  gap: 20px;
+  gap: var(--spacing-300);
 }

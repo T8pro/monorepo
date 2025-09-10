@@ -1,22 +1,22 @@
 .hero {
-  background: white;
-  padding-top: 6rem;
-  padding-bottom: 4rem;
+  background: var(--color-white);
+  padding-top: var(--spacing-600);
+  padding-bottom: var(--spacing-400);
 }
 
 .container {
   max-width: 72rem;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 var(--spacing-200);
 }
 
 .logoContainer {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-300);
 }
 
 .logo {
-  height: 2rem;
+  height: var(--spacing-300);
   width: auto;
 }
 
@@ -25,20 +25,20 @@
 }
 
 .title {
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
-  line-height: 1.1;
-  color: #111827;
+  font-size: var(--font-size-5xl);
+  margin-bottom: var(--spacing-300);
+  line-height: var(--line-height-tight);
+  color: var(--color-gray-900);
 
   @media (max-width: 640px) {
-    font-size: 2.25rem;
+    font-size: var(--font-size-4xl);
   }
 }
 
 .subtitle {
-  font-size: 1.25rem;
-  color: #6b7280;
-  margin-bottom: 2rem;
+  font-size: var(--font-size-xl);
+  color: var(--color-gray-500);
+  margin-bottom: var(--spacing-300);
   max-width: 64rem;
   margin-left: auto;
   margin-right: auto;
@@ -47,7 +47,7 @@
 .buttonGroup {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--spacing-200);
   justify-content: center;
 
   @media (min-width: 640px) {
@@ -56,26 +56,26 @@
 }
 
 .trustBadges {
-  margin-top: 3rem;
+  margin-top: var(--spacing-600);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.5rem;
-  font-size: 0.875rem;
-  color: #6b7280;
+  gap: var(--spacing-300);
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-500);
 }
 
 .badge {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--spacing-100);
 
   i {
-    color: #6b8e23;
+    color: var(--color-primary);
   }
 
   &:nth-child(2) i {
-    color: #16a34a;
+    color: var(--color-success-dark);
   }
 
   &:nth-child(3) i {
@@ -83,6 +83,6 @@
   }
 
   &:nth-child(4) i {
-    color: #dc2626;
+    color: var(--color-error-dark);
   }
 }

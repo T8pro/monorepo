@@ -1,40 +1,40 @@
 // Process feature styles - mobile first
 .process {
-  background: #cbd4c6;
-  color: #1a1a1a;
-  padding: 60px 0;
+  background: var(--color-secondary);
+  color: var(--color-black);
+  padding: var(--spacing-600) 0;
 
   // Tablet and up
   @media (min-width: 768px) {
-    padding: 80px 0;
+    padding: var(--spacing-1000) 0;
   }
 
   // Desktop and up
   @media (min-width: 1024px) {
-    padding: 120px 0;
+    padding: var(--spacing-700) 0;
   }
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 var(--spacing-300);
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
+  gap: var(--spacing-500);
   align-items: center;
 
   // Tablet and up
   @media (min-width: 768px) {
-    padding: 0 40px;
-    gap: 60px;
+    padding: 0 var(--spacing-500);
+    gap: var(--spacing-600);
   }
 
   // Desktop and up
   @media (min-width: 1024px) {
-    padding: 0 60px;
+    padding: 0 var(--spacing-600);
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    gap: var(--spacing-1000);
   }
 }
 
@@ -48,23 +48,23 @@
 }
 
 .header {
-  margin-bottom: 40px;
+  margin-bottom: var(--spacing-500);
 
   // Tablet and up
   @media (min-width: 768px) {
-    margin-bottom: 50px;
+    margin-bottom: var(--spacing-500);
   }
 
   // Desktop and up
   @media (min-width: 1024px) {
-    margin-bottom: 60px;
+    margin-bottom: var(--spacing-600);
   }
 }
 
 .title {
-  font-size: 32px;
-  font-weight: 900;
-  color: #679a58;
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-black);
+  color: var(--color-primary);
   font-style: italic;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -72,64 +72,64 @@
 
   // Tablet and up
   @media (min-width: 768px) {
-    font-size: 40px;
+    font-size: var(--font-size-5xl);
   }
 
   // Desktop and up
   @media (min-width: 1024px) {
-    font-size: 48px;
+    font-size: var(--font-size-6xl);
   }
 }
 
 .steps {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: var(--spacing-300);
 
   // Tablet and up
   @media (min-width: 768px) {
-    gap: 32px;
+    gap: var(--spacing-800);
   }
 
   // Desktop and up
   @media (min-width: 1024px) {
-    gap: 40px;
+    gap: var(--spacing-500);
   }
 }
 
 .step {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
+  gap: var(--spacing-200);
 
   // Tablet and up
   @media (min-width: 768px) {
-    gap: 20px;
+    gap: var(--spacing-300);
   }
 
   // Desktop and up
   @media (min-width: 1024px) {
-    gap: 24px;
+    gap: var(--spacing-300);
   }
 }
 
 .stepNumber {
-  font-size: 24px;
-  font-weight: 700;
-  color: #679a58;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
   flex-shrink: 0;
-  min-width: 32px;
+  min-width: var(--spacing-800);
 
   // Tablet and up
   @media (min-width: 768px) {
-    font-size: 28px;
-    min-width: 40px;
+    font-size: var(--font-size-3xl);
+    min-width: var(--spacing-500);
   }
 
   // Desktop and up
   @media (min-width: 1024px) {
-    font-size: 32px;
-    min-width: 48px;
+    font-size: var(--font-size-4xl);
+    min-width: var(--spacing-600);
   }
 }
 
@@ -138,38 +138,31 @@
 }
 
 .stepTitle {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #1a1a1a;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-secondary-invert);
+  margin-bottom: var(--spacing-50);
 
   // Tablet and up
   @media (min-width: 768px) {
-    font-size: 20px;
-    margin-bottom: 12px;
-  }
-
-  // Desktop and up
-  @media (min-width: 1024px) {
-    font-size: 22px;
-    margin-bottom: 16px;
+    font-size: var(--font-size-xl);
   }
 }
 
 .stepDescription {
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
   color: rgba(26, 26, 26, 0.8);
   margin: 0;
 
   // Tablet and up
   @media (min-width: 768px) {
-    font-size: 15px;
+    font-size: var(--font-size-sm);
   }
 
   // Desktop and up
   @media (min-width: 1024px) {
-    font-size: 16px;
+    font-size: var(--font-size-base);
   }
 }
 
@@ -190,7 +183,7 @@
   width: 100%;
   height: 100%;
   height: auto;
-  border-radius: 16px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
   object-fit: cover;
 }

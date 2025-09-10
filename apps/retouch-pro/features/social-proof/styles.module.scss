@@ -1,17 +1,17 @@
 .socialProof {
-  background: #f3f4f6;
-  padding: 3rem 0;
+  background: var(--color-gray-100);
+  padding: var(--spacing-600) 0;
 }
 
 .container {
   max-width: 72rem;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 var(--spacing-200);
 }
 
 .grid {
   display: grid;
-  gap: 1.5rem;
+  gap: var(--spacing-300);
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
@@ -19,19 +19,19 @@
 }
 
 .card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  background: var(--color-white);
+  padding: var(--spacing-300);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-base);
 }
 
 .text {
-  color: #374151;
-  margin-bottom: 1rem;
-  line-height: 1.6;
+  color: var(--color-gray-700);
+  margin-bottom: var(--spacing-200);
+  line-height: var(--line-height-relaxed);
 }
 
 .author {
-  font-size: 0.875rem;
-  color: #6b7280;
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-500);
 }

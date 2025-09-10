@@ -1,31 +1,31 @@
 .faq {
-  background: white;
-  padding: 4rem 0;
+  background: var(--color-white);
+  padding: var(--spacing-400) 0;
 }
 
 .container {
   max-width: 64rem;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 var(--spacing-200);
 }
 
 .title {
-  font-size: 2.25rem;
-  font-weight: bold;
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
   text-align: center;
-  margin-bottom: 3rem;
-  color: #111827;
+  margin-bottom: var(--spacing-600);
+  color: var(--color-gray-900);
 }
 
 .faqList {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: var(--spacing-300);
 }
 
 .faqItem {
-  border-bottom: 1px solid #e5e7eb;
-  padding-bottom: 1.5rem;
+  border-bottom: var(--border-1) solid var(--color-gray-200);
+  padding-bottom: var(--spacing-300);
 
   &:last-child {
     border-bottom: none;
@@ -44,16 +44,16 @@
   text-align: left;
 
   h3 {
-    font-weight: 600;
-    font-size: 1.125rem;
-    color: #111827;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-lg);
+    color: var(--color-gray-900);
     margin: 0;
   }
 
   i {
-    color: #6b7280;
-    transition: transform 0.3s ease;
-    margin-left: 1rem;
+    color: var(--color-gray-500);
+    transition: transform var(--transition-slow);
+    margin-left: var(--spacing-200);
     flex-shrink: 0;
 
     &.rotated {
@@ -63,12 +63,12 @@
 }
 
 .faqAnswer {
-  margin-top: 1rem;
-  animation: fadeIn 0.3s ease;
+  margin-top: var(--spacing-200);
+  animation: fadeIn var(--transition-slow);
 
   p {
-    color: #6b7280;
-    line-height: 1.6;
+    color: var(--color-gray-500);
+    line-height: var(--line-height-relaxed);
     margin: 0;
   }
 }

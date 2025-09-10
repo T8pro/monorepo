@@ -1,33 +1,33 @@
 .leadMagnet {
-  background: #6b8e23;
-  padding: 4rem 0;
+  background: var(--color-primary);
+  padding: var(--spacing-400) 0;
 }
 
 .container {
   max-width: 64rem;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 var(--spacing-200);
   text-align: center;
-  color: white;
+  color: var(--color-white);
 }
 
 .title {
-  font-size: 1.875rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: white;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-200);
+  color: var(--color-white);
 }
 
 .description {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
-  color: white;
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-300);
+  color: var(--color-white);
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--spacing-200);
   justify-content: center;
   align-items: center;
 
@@ -37,13 +37,13 @@
 }
 
 .emailInput {
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
+  padding: var(--spacing-150) var(--spacing-200);
+  border-radius: var(--radius-lg);
   border: none;
-  color: #111827;
+  color: var(--color-gray-900);
   flex: 1;
   max-width: 28rem;
-  font-size: 1rem;
+  font-size: var(--font-size-base);
 
   &:focus {
     outline: none;
@@ -51,13 +51,13 @@
   }
 
   &::placeholder {
-    color: #6b7280;
+    color: var(--color-gray-500);
   }
 }
 
 .disclaimer {
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   opacity: 0.8;
-  margin-top: 1rem;
-  color: white;
+  margin-top: var(--spacing-200);
+  color: var(--color-white);
 }

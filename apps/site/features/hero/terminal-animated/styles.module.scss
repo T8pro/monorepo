@@ -4,32 +4,32 @@
     rgba(64, 74, 94, 0.4) 0%,
     rgba(22, 26, 32, 0.6) 100%
   );
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-  border-radius: 12px;
-  padding: 20px;
+  border: var(--border-1) solid rgba(255, 255, 255, 0.12);
+  box-shadow: var(--shadow-xl);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-300);
   max-width: 680px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   width: 100%;
   justify-content: space-between;
-  gap: 10px;
+  gap: var(--spacing-150);
   min-height: 240px;
 
   @media (min-width: 768px) {
-    padding: 24px;
+    padding: var(--spacing-300);
   }
 }
 
 .ctaText {
-  font-size: 18px;
+  font-size: var(--font-size-lg);
   opacity: 0.85;
-  line-height: 1.6;
-  color: #cbd4c6;
+  line-height: var(--line-height-relaxed);
+  color: var(--color-secondary);
 }
 
 .cta {
-  margin-top: 8px;
+  margin-top: var(--spacing-100);
   align-self: flex-end;
 }

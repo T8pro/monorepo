@@ -1,25 +1,25 @@
 .plans {
-  background: #f3f4f6;
-  padding: 4rem 0;
+  background: var(--color-gray-100);
+  padding: var(--spacing-400) 0;
 }
 
 .container {
   max-width: 72rem;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 var(--spacing-200);
 }
 
 .title {
-  font-size: 2.25rem;
-  font-weight: bold;
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
   text-align: center;
-  margin-bottom: 3rem;
-  color: #111827;
+  margin-bottom: var(--spacing-600);
+  color: var(--color-gray-900);
 }
 
 .grid {
   display: grid;
-  gap: 2rem;
+  gap: var(--spacing-300);
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
@@ -27,45 +27,45 @@
 }
 
 .plan {
-  background: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  border: 2px solid transparent;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--spacing-300);
+  border: var(--border-2) solid transparent;
 
   &.highlighted {
-    border-color: #6b8e23;
+    border-color: var(--color-primary);
   }
 }
 
 .planHeader {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-300);
 }
 
 .planName {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  color: #111827;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-100);
+  color: var(--color-gray-900);
 }
 
 .planPrice {
-  font-size: 2.25rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: #111827;
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-200);
+  color: var(--color-gray-900);
 
   .period {
-    font-size: 1.125rem;
-    color: #6b7280;
-    font-weight: normal;
+    font-size: var(--font-size-lg);
+    color: var(--color-gray-500);
+    font-weight: var(--font-weight-normal);
   }
 }
 
 .planDescription {
-  color: #6b7280;
-  margin-bottom: 1.5rem;
+  color: var(--color-gray-500);
+  margin-bottom: var(--spacing-300);
 }
 
 .planButton {
@@ -78,21 +78,21 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: var(--spacing-150);
 }
 
 .feature {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: var(--spacing-150);
 
   i {
-    color: #6b8e23;
-    font-size: 0.875rem;
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
   }
 }
 
 .whatsappCta {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: var(--spacing-300);
 }

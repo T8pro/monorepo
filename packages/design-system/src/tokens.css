@@ -10,6 +10,10 @@
   --color-secondary-light: #3b4237;
   --color-secondary-dark: #0c0d0c;
 
+  --color-secondary-invert: #cbd4c6;
+  --color-secondary-invert-light: #a4ae9f;
+  --color-secondary-invert-dark: #eff3ed;
+
   /* Semantic Colors */
   --color-informative: #3b82f6;
   --color-informative-light: #60a5fa;
@@ -150,6 +154,10 @@
     --color-secondary: #cbd4c6;
     --color-secondary-light: #a4ae9f;
     --color-secondary-dark: #eff3ed;
+
+    --color-secondary-invert: #20231c;
+    --color-secondary-invert-light: #3b4237;
+    --color-secondary-invert-dark: #0c0d0c;
 
     --color-black: #dcdcdc;
     --color-gray-900: #f9fafb;

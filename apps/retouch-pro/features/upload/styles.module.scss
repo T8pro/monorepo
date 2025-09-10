@@ -1,54 +1,54 @@
 .upload {
-  background: white;
-  padding: 4rem 0;
+  background: var(--color-white);
+  padding: var(--spacing-400) 0;
 }
 
 .container {
   max-width: 64rem;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 var(--spacing-200);
 }
 
 .title {
-  font-size: 1.875rem;
-  font-weight: bold;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
   text-align: center;
-  margin-bottom: 2rem;
-  color: #111827;
+  margin-bottom: var(--spacing-300);
+  color: var(--color-gray-900);
 }
 
 .uploadArea {
-  border: 2px dashed #d1d5db;
-  border-radius: 0.5rem;
-  padding: 3rem;
+  border: var(--border-2) dashed var(--color-gray-300);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-600);
   text-align: center;
-  transition: border-color 0.3s ease;
+  transition: border-color var(--transition-slow);
 
   &:hover {
-    border-color: #6b8e23;
+    border-color: var(--color-primary);
   }
 
   i {
     font-size: 4rem;
-    color: #9ca3af;
-    margin-bottom: 1rem;
+    color: var(--color-gray-400);
+    margin-bottom: var(--spacing-200);
   }
 }
 
 .uploadTitle {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #111827;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-100);
+  color: var(--color-gray-900);
 }
 
 .uploadDescription {
-  color: #6b7280;
-  margin-bottom: 1.5rem;
+  color: var(--color-gray-500);
+  margin-bottom: var(--spacing-300);
 }
 
 .uploadInfo {
-  font-size: 0.875rem;
-  color: #6b7280;
-  margin-top: 1rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-500);
+  margin-top: var(--spacing-200);
 }

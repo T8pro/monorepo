@@ -1,25 +1,25 @@
 .whatYouGet {
-  background: white;
-  padding: 4rem 0;
+  background: var(--color-white);
+  padding: var(--spacing-400) 0;
 }
 
 .container {
   max-width: 72rem;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 var(--spacing-200);
 }
 
 .title {
-  font-size: 2.25rem;
-  font-weight: bold;
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
   text-align: center;
-  margin-bottom: 3rem;
-  color: #111827;
+  margin-bottom: var(--spacing-600);
+  color: var(--color-gray-900);
 }
 
 .grid {
   display: grid;
-  gap: 2rem;
+  gap: var(--spacing-300);
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
@@ -29,23 +29,23 @@
 .feature {
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
+  gap: var(--spacing-200);
 }
 
 .icon {
-  font-size: 1.25rem;
-  color: #6b8e23;
-  margin-top: 0.25rem;
+  font-size: var(--font-size-xl);
+  color: var(--color-primary);
+  margin-top: var(--spacing-50);
   flex-shrink: 0;
 }
 
 .featureTitle {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #111827;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-100);
+  color: var(--color-gray-900);
 }
 
 .featureDescription {
-  color: #6b7280;
-  line-height: 1.6;
+  color: var(--color-gray-500);
+  line-height: var(--line-height-relaxed);
 }
