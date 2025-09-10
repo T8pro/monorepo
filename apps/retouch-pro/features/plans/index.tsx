@@ -1,21 +1,74 @@
 import { Button, Heading } from '@t8pro/design-system';
-import { FaCheck, FaWhatsapp } from 'react-icons/fa';
+import { FaCheck, FaWhatsapp, FaGift, FaStar } from 'react-icons/fa';
 import styles from './styles.module.scss';
 
 const plans = [
   {
-    name: '3-Photo Trial',
-    price: '$29',
-    period: 'Credited to your first month',
-    buttonText: 'Try Now',
+    name: 'FREE Trial',
+    price: '$0',
+    period: 'No credit card required',
+    description: 'Try before you buy',
+    buttonText: 'Get 1 Photo FREE',
     buttonVariant: 'primary' as const,
     features: [
-      '3 enhanced photos',
+      '1 enhanced photo',
       '24-hour turnaround',
       'Platform crops included',
-      'Credit toward first month',
+      'No credit card required',
     ],
     highlighted: true,
+    isFree: true,
+    category: 'trial',
+  },
+  {
+    name: '1 Photo',
+    price: '$10',
+    period: 'One-time',
+    description: 'Perfect for testing',
+    buttonText: 'Order Now',
+    buttonVariant: 'secondary' as const,
+    features: [
+      '1 enhanced photo',
+      '24-hour turnaround',
+      'Platform crops included',
+      'Instant delivery',
+    ],
+    category: 'pay-as-you-go',
+  },
+  {
+    name: '10 Photos',
+    price: '$80',
+    period: 'One-time',
+    description: 'Best value',
+    originalPrice: '$100',
+    savings: '20% off',
+    buttonText: 'Order Now',
+    buttonVariant: 'secondary' as const,
+    features: [
+      '10 enhanced photos',
+      '24-hour turnaround',
+      'Platform crops included',
+      'Bulk discount applied',
+    ],
+    popular: true,
+    category: 'pay-as-you-go',
+  },
+  {
+    name: '20 Photos',
+    price: '$140',
+    period: 'One-time',
+    description: 'Maximum savings',
+    originalPrice: '$200',
+    savings: '30% off',
+    buttonText: 'Order Now',
+    buttonVariant: 'secondary' as const,
+    features: [
+      '20 enhanced photos',
+      '24-hour turnaround',
+      'Platform crops included',
+      'Best bulk discount',
+    ],
+    category: 'pay-as-you-go',
   },
   {
     name: 'Starter',
@@ -30,6 +83,7 @@ const plans = [
       'Platform crops',
       'Deployment guide',
     ],
+    category: 'subscription',
   },
   {
     name: 'Growth',
@@ -44,10 +98,19 @@ const plans = [
       'Monthly mini-report',
       'Priority support',
     ],
+    category: 'subscription',
   },
 ];
 
 export const Plans = () => {
+  const trialPlans = plans.filter(plan => plan.category === 'trial');
+  const payAsYouGoPlans = plans.filter(
+    plan => plan.category === 'pay-as-you-go',
+  );
+  const subscriptionPlans = plans.filter(
+    plan => plan.category === 'subscription',
+  );
+
   return (
     <section className={styles.plans}>
       <div className={styles.container}>
@@ -61,50 +124,250 @@ export const Plans = () => {
         >
           Choose Your Plan
         </Heading>
-        <div className={styles.grid}>
-          {plans.map((plan, index) => (
-            <div
-              key={index}
-              className={`${styles.plan} ${plan.highlighted ? styles.highlighted : ''}`}
-            >
-              <div className={styles.planHeader}>
-                <Heading
-                  as="h3"
-                  size="2xl"
-                  weight="bold"
-                  color="gray-900"
-                  align="center"
-                  marginBottom="sm"
-                  className={styles.planName}
-                >
-                  {plan.name}
-                </Heading>
-                <div className={styles.planPrice}>
-                  <span className={styles.price}>{plan.price}</span>
-                  <span className={styles.period}>{plan.period}</span>
-                </div>
-                {plan.description && (
-                  <p className={styles.planDescription}>{plan.description}</p>
+
+        {/* Free Trial Section */}
+        <div className={styles.section}>
+          <Heading
+            as="h3"
+            size="2xl"
+            weight="bold"
+            color="secondary"
+            align="center"
+            marginBottom="lg"
+          >
+            Start with Our Free Trial
+          </Heading>
+          <div className={styles.grid}>
+            {trialPlans.map((plan, index) => (
+              <div
+                key={index}
+                className={`${styles.plan} ${plan.highlighted ? styles.highlighted : ''} ${
+                  plan.popular ? styles.popular : ''
+                }`}
+              >
+                {plan.popular && (
+                  <div className={styles.popularBadge}>
+                    <FaStar />
+                    Most Popular
+                  </div>
                 )}
-                <Button
-                  variant={plan.buttonVariant}
-                  size="large"
-                  className={styles.planButton}
-                >
-                  {plan.buttonText}
-                </Button>
+
+                <div className={styles.planHeader}>
+                  <div className={styles.planIcon}>
+                    {plan.isFree ? <FaGift /> : null}
+                  </div>
+
+                  <Heading
+                    as="h4"
+                    size="xl"
+                    weight="bold"
+                    color="gray-900"
+                    align="center"
+                    marginBottom="sm"
+                  >
+                    {plan.name}
+                  </Heading>
+
+                  <div className={styles.planPrice}>
+                    <span className={styles.price}>{plan.price}</span>
+                    <span className={styles.period}>{plan.period}</span>
+                  </div>
+
+                  {plan.originalPrice && (
+                    <div className={styles.originalPrice}>
+                      <span className={styles.strikethrough}>
+                        {plan.originalPrice}
+                      </span>
+                      <span className={styles.savings}>{plan.savings}</span>
+                    </div>
+                  )}
+
+                  <p className={styles.planDescription}>{plan.description}</p>
+
+                  <Button
+                    variant={plan.buttonVariant}
+                    size="large"
+                    className={styles.planButton}
+                  >
+                    {plan.buttonText}
+                  </Button>
+                </div>
+
+                <ul className={styles.features}>
+                  {plan.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className={styles.feature}>
+                      <FaCheck />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className={styles.features}>
-                {plan.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className={styles.feature}>
-                    <FaCheck />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+
+        {/* Pay-As-You-Go Section */}
+        <div className={styles.section}>
+          <Heading
+            as="h3"
+            size="2xl"
+            weight="bold"
+            color="secondary"
+            align="center"
+            marginBottom="lg"
+          >
+            Pay-As-You-Go Packages
+          </Heading>
+          <div className={styles.grid}>
+            {payAsYouGoPlans.map((plan, index) => (
+              <div
+                key={index}
+                className={`${styles.plan} ${plan.highlighted ? styles.highlighted : ''} ${
+                  plan.popular ? styles.popular : ''
+                }`}
+              >
+                {plan.popular && (
+                  <div className={styles.popularBadge}>
+                    <FaStar />
+                    Most Popular
+                  </div>
+                )}
+
+                <div className={styles.planHeader}>
+                  <div className={styles.planIcon}>
+                    {plan.isFree ? <FaGift /> : null}
+                  </div>
+
+                  <Heading
+                    as="h4"
+                    size="xl"
+                    weight="bold"
+                    color="gray-900"
+                    align="center"
+                    marginBottom="sm"
+                  >
+                    {plan.name}
+                  </Heading>
+
+                  <div className={styles.planPrice}>
+                    <span className={styles.price}>{plan.price}</span>
+                    <span className={styles.period}>{plan.period}</span>
+                  </div>
+
+                  {plan.originalPrice && (
+                    <div className={styles.originalPrice}>
+                      <span className={styles.strikethrough}>
+                        {plan.originalPrice}
+                      </span>
+                      <span className={styles.savings}>{plan.savings}</span>
+                    </div>
+                  )}
+
+                  <p className={styles.planDescription}>{plan.description}</p>
+
+                  <Button
+                    variant={plan.buttonVariant}
+                    size="large"
+                    className={styles.planButton}
+                  >
+                    {plan.buttonText}
+                  </Button>
+                </div>
+
+                <ul className={styles.features}>
+                  {plan.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className={styles.feature}>
+                      <FaCheck />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Monthly Subscriptions Section */}
+        <div className={styles.section}>
+          <Heading
+            as="h3"
+            size="2xl"
+            weight="bold"
+            color="secondary"
+            align="center"
+            marginBottom="lg"
+          >
+            Monthly Subscriptions
+          </Heading>
+          <div className={styles.grid}>
+            {subscriptionPlans.map((plan, index) => (
+              <div
+                key={index}
+                className={`${styles.plan} ${plan.highlighted ? styles.highlighted : ''} ${
+                  plan.popular ? styles.popular : ''
+                }`}
+              >
+                {plan.popular && (
+                  <div className={styles.popularBadge}>
+                    <FaStar />
+                    Most Popular
+                  </div>
+                )}
+
+                <div className={styles.planHeader}>
+                  <div className={styles.planIcon}>
+                    {plan.isFree ? <FaGift /> : null}
+                  </div>
+
+                  <Heading
+                    as="h4"
+                    size="xl"
+                    weight="bold"
+                    color="gray-900"
+                    align="center"
+                    marginBottom="sm"
+                  >
+                    {plan.name}
+                  </Heading>
+
+                  <div className={styles.planPrice}>
+                    <span className={styles.price}>{plan.price}</span>
+                    <span className={styles.period}>{plan.period}</span>
+                  </div>
+
+                  {plan.originalPrice && (
+                    <div className={styles.originalPrice}>
+                      <span className={styles.strikethrough}>
+                        {plan.originalPrice}
+                      </span>
+                      <span className={styles.savings}>{plan.savings}</span>
+                    </div>
+                  )}
+
+                  <p className={styles.planDescription}>{plan.description}</p>
+
+                  <Button
+                    variant={plan.buttonVariant}
+                    size="large"
+                    className={styles.planButton}
+                  >
+                    {plan.buttonText}
+                  </Button>
+                </div>
+
+                <ul className={styles.features}>
+                  {plan.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className={styles.feature}>
+                      <FaCheck />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className={styles.whatsappCta}>
           <Button variant="whatsapp" size="large">
             <FaWhatsapp />
