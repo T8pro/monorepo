@@ -61,20 +61,6 @@ import { Logo } from '@t8pro/design-system';
 **Variants:** `header`
 **Sizes:** `small`, `medium`, `large`
 
-### StickyCTA
-
-A fixed position call-to-action button.
-
-```tsx
-import { StickyCTA } from '@t8pro/design-system';
-
-<StickyCTA
-  label="Get Started"
-  variant="primary"
-  onClick={() => console.log('Clicked')}
-/>;
-```
-
 ## Installation
 
 ```bash

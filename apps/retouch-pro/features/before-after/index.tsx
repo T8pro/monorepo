@@ -44,13 +44,13 @@ const beforeAfterItems = [
 
 export const BeforeAfter = () => {
   return (
-    <section className={styles.beforeAfter}>
+    <section id="before-after" className={styles.beforeAfter}>
       <div className={styles.container}>
         <Heading
           as="h2"
           size="4xl"
           weight="black"
-          color="secondary"
+          color="secondary-invert"
           align="center"
           marginBottom="3xl"
         >

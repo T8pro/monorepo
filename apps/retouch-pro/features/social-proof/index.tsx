@@ -3,16 +3,16 @@ import styles from './styles.module.scss';
 
 const testimonials = [
   {
-    text: 'As easy as it gets — sent photos on Monday, updated our DoorDash on Wednesday.',
-    author: 'Restaurant Owner, Louisville',
+    text: 'As easy as it gets — sent photos on Monday, updated our DoorDash on Tuesday.',
+    author: 'Charly, Righteous (Louisville, KY)',
   },
   {
     text: 'Consistent look across Uber, IG, and Google — finally.',
-    author: 'Pizza Shop Manager',
+    author: 'Maria Rodriguez, Taco Luna (Austin, TX)',
   },
   {
     text: 'Kept it real, just brighter, cleaner, and more appetizing.',
-    author: 'Taco Truck Owner',
+    author: "James Chen, Chen's Kitchen (Seattle, WA)",
   },
 ];
 

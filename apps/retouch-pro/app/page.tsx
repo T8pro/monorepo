@@ -1,8 +1,8 @@
-import { StickyCTA } from '@t8pro/design-system';
 import { BeforeAfter } from '@/features/before-after';
 import { FAQ } from '@/features/faq';
 import { Hero } from '@/features/hero';
-import { HowItWorks } from '@/features/how-it-works';
+import { LimitedAlert } from '@/features/limited-alert';
+import { ScienceBehindSales } from '@/features/science-behind-sales';
 import { LeadMagnet } from '@/features/lead-magnet';
 import { Plans } from '@/features/plans';
 import { SocialProof } from '@/features/social-proof';
@@ -13,15 +13,15 @@ export default function Home() {
   return (
     <main id="home">
       <Hero />
-      <SocialProof />
       <BeforeAfter />
-      <HowItWorks />
+      <LimitedAlert />
+      <SocialProof />
+      <ScienceBehindSales />
       <WhatYouGet />
       <Plans />
       <Upload />
       <FAQ />
       <LeadMagnet />
-      <StickyCTA />
     </main>
   );
 }

@@ -1,113 +1,83 @@
 import { Button, Heading, Text } from '@t8pro/design-system';
-import { FaCheck, FaWhatsapp, FaGift, FaStar, FaTable } from 'react-icons/fa';
+import { FaCheck, FaWhatsapp, FaGift, FaStar } from 'react-icons/fa';
 import styles from './styles.module.scss';
 
-const plans = [
+const trialPlan = {
+  name: 'FREE Trial',
+  price: '$0',
+  period: 'No credit card required',
+  description: 'Send us 1 real photo and see how it works',
+  buttonText: 'Get 1 Photo FREE',
+  buttonVariant: 'primary' as const,
+  features: [
+    '1 enhanced photo',
+    '48-hour turnaround',
+    'Platform crops included',
+    'No credit card required',
+  ],
+  highlighted: true,
+  isFree: true,
+  category: 'trial',
+};
+
+const revenuePackages = [
   {
-    name: 'FREE Trial',
-    price: '$0',
-    period: 'No credit card required',
-    description: 'Try before you buy',
-    buttonText: 'Get 1 Photo FREE',
+    name: 'QUICK FIX',
+    emoji: '🚀',
+    subtitle: 'Most Popular',
+    photoCount: '6 Photos',
+    price: '$60',
+    description: 'Perfect for testing top performers',
+    buttonText: 'START WITH QUICK FIX - $60',
     buttonVariant: 'primary' as const,
     features: [
-      '1 enhanced photo',
-      '24-hour turnaround',
+      '48-hour turnaround',
+      '1 revision included',
       'Platform crops included',
-      'No credit card required',
-    ],
-    highlighted: true,
-    isFree: true,
-    category: 'trial',
-  },
-  {
-    name: '1 Photo',
-    price: '$10',
-    period: 'One-time',
-    description: 'Perfect for testing',
-    buttonText: 'Order Now',
-    buttonVariant: 'secondary' as const,
-    features: [
-      '1 enhanced photo',
-      '24-hour turnaround',
-      'Platform crops included',
-      'Instant delivery',
-    ],
-    category: 'pay-as-you-go',
-  },
-  {
-    name: '10 Photos',
-    price: '$80',
-    period: 'One-time',
-    description: 'Best value',
-    originalPrice: '$100',
-    savings: '20% off',
-    buttonText: 'Order Now',
-    buttonVariant: 'secondary' as const,
-    features: [
-      '10 enhanced photos',
-      '24-hour turnaround',
-      'Platform crops included',
-      'Bulk discount applied',
+      'Typical ROI: 300%+ in first month',
     ],
     popular: true,
-    category: 'pay-as-you-go',
+    category: 'revenue-package',
   },
   {
-    name: '20 Photos',
-    price: '$140',
-    period: 'One-time',
-    description: 'Maximum savings',
-    originalPrice: '$200',
-    savings: '30% off',
-    buttonText: 'Order Now',
+    name: 'GROWTH ACCELERATOR',
+    emoji: '📈',
+    subtitle: '',
+    photoCount: '12 Photos',
+    price: '$115',
+    description: 'Cover your core menu items',
+    buttonText: 'Choose Growth Accelerator',
     buttonVariant: 'secondary' as const,
     features: [
-      '20 enhanced photos',
-      '24-hour turnaround',
+      '48-hour turnaround',
+      '1 revision included',
       'Platform crops included',
-      'Best bulk discount',
+      'Typical ROI: 250%+ in first month',
     ],
-    category: 'pay-as-you-go',
+    category: 'revenue-package',
   },
   {
-    name: 'Starter',
-    price: '$299',
-    period: '/mo',
-    description: 'Perfect for single location',
-    buttonText: 'Get Started',
+    name: 'PROFIT MAXIMIZER',
+    emoji: '💰',
+    subtitle: 'Best Value',
+    photoCount: '24 Photos',
+    price: '$220',
+    description: 'Complete menu transformation',
+    buttonText: 'Choose Profit Maximizer',
     buttonVariant: 'secondary' as const,
     features: [
-      '6–12 photos/month',
-      '24-hour turnaround',
-      'Platform crops',
-      'Deployment guide',
+      '3 business day turnaround',
+      '2 revision rounds',
+      'Platform crops included',
+      'Bonus: Hero variants for top items',
+      'Typical ROI: 400%+ in first month',
     ],
-    category: 'subscription',
-  },
-  {
-    name: 'Growth',
-    price: '$599',
-    period: '/mo',
-    description: 'Everything in Starter plus',
-    buttonText: 'Get Growth',
-    buttonVariant: 'secondary' as const,
-    features: [
-      'Everything in Starter',
-      '1 animated loop/month',
-      'Monthly mini-report',
-      'Priority support',
-    ],
-    category: 'subscription',
+    bestValue: true,
+    category: 'revenue-package',
   },
 ];
 
 export const Plans = () => {
-  const trialPlans = plans.filter(plan => plan.category === 'trial');
-  const payAsYouGoPlans = plans.filter(
-    plan => plan.category === 'pay-as-you-go',
-  );
-
   return (
     <section className={styles.plans}>
       <div className={styles.container}>
@@ -119,94 +89,94 @@ export const Plans = () => {
           align="center"
           marginBottom="lg"
         >
-          Choose Your Plan
+          PRICING
         </Heading>
 
-        <div className={styles.comparisonTableContainer}>
-          <div className={styles.tableIcon}>
-            <FaTable />
-          </div>
-          <div className={styles.comparisonTable}>
-            <table>
-              <thead>
-                <tr>
-                  <th>Package</th>
-                  <th>Photos Included</th>
-                  <th>Price (USD)</th>
-                  <th>Turnaround</th>
-                  <th>Best For</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Free Trial</td>
-                  <td>1</td>
-                  <td>$0</td>
-                  <td>24 hours</td>
-                  <td>Try it out</td>
-                </tr>
-                <tr>
-                  <td>Test (1x)</td>
-                  <td>1</td>
-                  <td>$10</td>
-                  <td>24 hours</td>
-                  <td>Just getting started</td>
-                </tr>
-                <tr className={styles.popularRow}>
-                  <td>Small Bundle</td>
-                  <td>10</td>
-                  <td>$80</td>
-                  <td>24 hours</td>
-                  <td>Menu updates</td>
-                </tr>
-                <tr>
-                  <td>Large Bundle</td>
-                  <td>20</td>
-                  <td>$140</td>
-                  <td>24 hours</td>
-                  <td>New locations</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <Heading
+          as="h3"
+          size="2xl"
+          weight="bold"
+          color="secondary"
+          align="center"
+          marginBottom="3xl"
+        >
+          Choose Your Revenue Boost Package
+        </Heading>
 
         {/* Free Trial Section */}
-        <div className={styles.section}>
-          <Heading
-            as="h3"
-            size="2xl"
-            weight="bold"
-            color="secondary"
-            align="center"
-            marginBottom="lg"
-          >
-            Start with Our Free Trial
-          </Heading>
+        <div className={styles.trialSection}>
+          <div className={`${styles.plan} ${styles.trialPlan}`}>
+            <div className={styles.planHeader}>
+              <div className={styles.planIcon}>
+                <FaGift />
+              </div>
 
-          <div className={styles.grid}>
-            {trialPlans.map((plan, index) => (
+              <Heading
+                as="h4"
+                size="xl"
+                weight="bold"
+                color="gray-900"
+                align="center"
+                marginBottom="sm"
+              >
+                {trialPlan.name}
+              </Heading>
+
+              <div className={styles.planPrice}>
+                <span className={styles.price}>{trialPlan.price}</span>
+                <span className={styles.period}>{trialPlan.period}</span>
+              </div>
+
+              <Text className={styles.planDescription}>
+                {trialPlan.description}
+              </Text>
+
+              <Button variant={trialPlan.buttonVariant} size="large">
+                {trialPlan.buttonText}
+              </Button>
+            </div>
+
+            <ul className={styles.features}>
+              {trialPlan.features.map((feature, featureIndex) => (
+                <li key={featureIndex} className={styles.feature}>
+                  <FaCheck />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Revenue Packages Section */}
+        <div className={styles.revenuePackagesSection}>
+          <div className={styles.revenueGrid}>
+            {revenuePackages.map((plan, index) => (
               <div
                 key={index}
-                className={`${styles.plan} ${plan.highlighted ? styles.highlighted : ''} ${
+                className={`${styles.revenuePlan} ${
                   plan.popular ? styles.popular : ''
-                }`}
+                } ${plan.bestValue ? styles.bestValue : ''}`}
               >
                 {plan.popular && (
                   <div className={styles.popularBadge}>
                     <FaStar />
-                    Most Popular
+                    {plan.subtitle}
                   </div>
                 )}
 
-                <div className={styles.planHeader}>
-                  <div className={styles.planIcon}>
-                    {plan.isFree ? <FaGift /> : null}
+                {plan.bestValue && !plan.popular && (
+                  <div className={styles.bestValueBadge}>
+                    <FaStar />
+                    {plan.subtitle}
                   </div>
+                )}
+
+                <div className={styles.revenuePlanHeader}>
+                  <div className={styles.planEmoji}>{plan.emoji}</div>
 
                   <Heading
                     as="h4"
-                    size="xl"
+                    size="lg"
                     weight="bold"
                     color="gray-900"
                     align="center"
@@ -215,29 +185,17 @@ export const Plans = () => {
                     {plan.name}
                   </Heading>
 
+                  <div className={styles.photoCount}>{plan.photoCount}</div>
+
                   <div className={styles.planPrice}>
                     <span className={styles.price}>{plan.price}</span>
-                    <span className={styles.period}>{plan.period}</span>
                   </div>
-
-                  {plan.originalPrice && (
-                    <div className={styles.originalPrice}>
-                      <span className={styles.strikethrough}>
-                        {plan.originalPrice}
-                      </span>
-                      <span className={styles.savings}>{plan.savings}</span>
-                    </div>
-                  )}
 
                   <Text className={styles.planDescription}>
                     {plan.description}
                   </Text>
 
-                  <Button
-                    variant={plan.buttonVariant}
-                    size="large"
-                    className={styles.planButton}
-                  >
+                  <Button variant={plan.buttonVariant} size="large">
                     {plan.buttonText}
                   </Button>
                 </div>
@@ -255,86 +213,23 @@ export const Plans = () => {
           </div>
         </div>
 
-        {/* Pay-As-You-Go Section */}
-        <div className={styles.section}>
-          <Heading
-            as="h3"
-            size="2xl"
-            weight="bold"
-            color="secondary"
-            align="center"
-            marginBottom="lg"
-          >
-            Pay-As-You-Go Packages
-          </Heading>
-          <div className={styles.grid}>
-            {payAsYouGoPlans.map((plan, index) => (
-              <div
-                key={index}
-                className={`${styles.plan} ${plan.highlighted ? styles.highlighted : ''} ${
-                  plan.popular ? styles.popular : ''
-                }`}
-              >
-                {plan.popular && (
-                  <div className={styles.popularBadge}>
-                    <FaStar />
-                    Most Popular
-                  </div>
-                )}
-
-                <div className={styles.planHeader}>
-                  <div className={styles.planIcon}>
-                    {plan.isFree ? <FaGift /> : null}
-                  </div>
-
-                  <Heading
-                    as="h4"
-                    size="xl"
-                    weight="bold"
-                    color="gray-900"
-                    align="center"
-                    marginBottom="sm"
-                  >
-                    {plan.name}
-                  </Heading>
-
-                  <div className={styles.planPrice}>
-                    <span className={styles.price}>{plan.price}</span>
-                    <span className={styles.period}>{plan.period}</span>
-                  </div>
-
-                  {plan.originalPrice && (
-                    <div className={styles.originalPrice}>
-                      <span className={styles.strikethrough}>
-                        {plan.originalPrice}
-                      </span>
-                      <span className={styles.savings}>{plan.savings}</span>
-                    </div>
-                  )}
-
-                  <Text className={styles.planDescription}>
-                    {plan.description}
-                  </Text>
-
-                  <Button
-                    variant={plan.buttonVariant}
-                    size="large"
-                    className={styles.planButton}
-                  >
-                    {plan.buttonText}
-                  </Button>
-                </div>
-
-                <ul className={styles.features}>
-                  {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className={styles.feature}>
-                      <FaCheck />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+        <div className={styles.guaranteeSection}>
+          <div className={styles.guaranteeCard}>
+            <Heading
+              as="h3"
+              size="xl"
+              weight="bold"
+              color="secondary"
+              align="center"
+              marginBottom="base"
+            >
+              Money-Back Performance Guarantee
+            </Heading>
+            <Text size="lg" className={styles.guaranteeText}>
+              If your photos don&apos;t increase orders within 30 days,
+              we&apos;ll refund your first package (up to 12 photos). No
+              questions asked.
+            </Text>
           </div>
         </div>
 

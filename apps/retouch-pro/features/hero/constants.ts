@@ -1,11 +1,13 @@
 import type { HeroContent, TrustBadge } from './types';
 
 export const DEFAULT_HERO_CONTENT: HeroContent = {
-  title: 'Turn Phone Pics into Craveable Menu Photos',
+  title:
+    'Turn Your Phone Photos Into Professional Menu Images That Drive More Orders',
   subtitle:
-    'Perfect crops for Uber Eats, DoorDash, Grubhub, Instagram & Google. No contract. Money-back guarantee.',
-  ctaText: '🎁 Get 1 Photo Retouched FREE',
-  ctaSubtext: 'Upload your photo → Decide if you want more.',
+    'Stop losing customers to blurry, unappetizing photos. Our AI-enhanced editing turns your smartphone shots into professional food photography that increases orders by 35%—guaranteed.',
+  ctaText: 'GET MY PHOTOS FIXED NOW - $60',
+  ctaSubtext: 'Ready in Just 48 Hours',
+  secondaryCtaText: 'See Dramatic Before/After Results →',
   whatsappButtonText: 'Chat on WhatsApp',
   businessHours: 'Business hours: Mon-Fri 9am-6pm EST',
 };
@@ -13,7 +15,7 @@ export const DEFAULT_HERO_CONTENT: HeroContent = {
 export const TRUST_BADGES: TrustBadge[] = [
   {
     icon: 'FaClock',
-    text: '24-Hour Turnaround',
+    text: '48-Hour Delivery',
     color: 'var(--color-primary)',
   },
   {
@@ -22,13 +24,13 @@ export const TRUST_BADGES: TrustBadge[] = [
     color: 'var(--color-success-dark)',
   },
   {
-    icon: 'FaFileContract',
-    text: 'No Contract',
+    icon: 'FaStore',
+    text: '2,847+ Restaurants Served',
     color: '#9333ea',
   },
   {
     icon: 'FaFlag',
-    text: 'US-Based Remote',
+    text: 'US-Based Team',
     color: 'var(--color-error-dark)',
   },
 ];

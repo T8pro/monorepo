@@ -9,7 +9,17 @@ export const splitTitle = (
   title: string,
 ): { firstPart: string; secondPart: string } => {
   const words = title.split(' ');
-  const breakPoint = words.length - 3;
+  // Split at "That Drive" for better visual balance
+  const breakPoint = words.findIndex(word => word === 'That');
+
+  if (breakPoint === -1) {
+    // Fallback to original logic if "That" not found
+    const fallbackBreakPoint = words.length - 3;
+    return {
+      firstPart: words.slice(0, fallbackBreakPoint).join(' '),
+      secondPart: words.slice(fallbackBreakPoint).join(' '),
+    };
+  }
 
   return {
     firstPart: words.slice(0, breakPoint).join(' '),
@@ -17,7 +27,13 @@ export const splitTitle = (
   };
 };
 
-import { FaClock, FaShieldAlt, FaFileContract, FaFlag } from 'react-icons/fa';
+import {
+  FaClock,
+  FaShieldAlt,
+  FaFileContract,
+  FaFlag,
+  FaStore,
+} from 'react-icons/fa';
 
 /**
  * Maps icon string names to actual React components
@@ -34,6 +50,8 @@ export const getIconComponent = (iconName: string) => {
       return FaFileContract;
     case 'FaFlag':
       return FaFlag;
+    case 'FaStore':
+      return FaStore;
     default:
       return null;
   }

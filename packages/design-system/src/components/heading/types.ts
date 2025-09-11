@@ -19,6 +19,7 @@ export type HeadingWeight =
 export type HeadingColor =
   | 'primary'
   | 'secondary'
+  | 'secondary-invert'
   | 'gray-900'
   | 'gray-700'
   | 'gray-500'

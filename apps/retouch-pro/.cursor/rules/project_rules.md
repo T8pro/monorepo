@@ -128,7 +128,6 @@ Available from `@t8pro/design-system`:
 - **Logo**: Brand logo component
 - **ThemeToggle**: Dark/light mode switcher
 - **BeforeAfterSlider**: Image comparison component
-- **StickyCTA**: Fixed call-to-action component
 
 ### Custom Components
 

@@ -5,6 +5,7 @@ export interface HeroProps {
   subtitle?: string;
   ctaText?: string;
   ctaSubtext?: string;
+  secondaryCtaText?: string;
   whatsappButtonText?: string;
   businessHours?: string;
 }
@@ -20,6 +21,7 @@ export interface HeroContent {
   subtitle: string;
   ctaText: string;
   ctaSubtext: string;
+  secondaryCtaText: string;
   whatsappButtonText: string;
   businessHours: string;
 }

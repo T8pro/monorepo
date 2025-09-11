@@ -18,9 +18,6 @@ export type { CardProps } from './components/card/index.js';
 export { Logo } from './components/logo/index.js';
 export type { LogoProps } from './components/logo/index.js';
 
-export { StickyCTA } from './components/sticky-cta/index.js';
-export type { StickyCTAProps } from './components/sticky-cta/index.js';
-
 export { Heading } from './components/heading/index.js';
 export type {
   HeadingProps,

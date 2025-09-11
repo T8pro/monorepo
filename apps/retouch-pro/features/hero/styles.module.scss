@@ -35,7 +35,10 @@
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-200);
-  margin-top: var(--spacing-400);
+  margin-top: var(--spacing-500);
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .ctaContact {
@@ -66,17 +69,36 @@
   margin-top: var(--spacing-100);
 }
 
-.ctaButton {
+.primaryCta {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
   padding: var(--spacing-300) var(--spacing-500);
   border-radius: var(--border-radius-lg);
   box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
+  width: 100%;
+  max-width: 24rem;
 
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+  }
+}
+
+.secondaryCta {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  padding: var(--spacing-200) var(--spacing-400);
+  border-radius: var(--border-radius-md);
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-100);
+
+  &:hover {
+    transform: translateY(-1px);
+    text-decoration: none;
   }
 }
 
@@ -92,29 +114,35 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--spacing-300);
+  gap: var(--spacing-400);
   font-size: var(--font-size-sm);
   color: var(--color-gray-500);
+  max-width: 50rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .badge {
   display: flex;
   align-items: center;
   gap: var(--spacing-100);
+  white-space: nowrap;
+  flex-shrink: 0;
 
-  i {
+  svg {
     color: var(--color-primary);
+    flex-shrink: 0;
   }
 
-  &:nth-child(2) i {
+  &:nth-child(2) svg {
     color: var(--color-success-dark);
   }
 
-  &:nth-child(3) i {
+  &:nth-child(3) svg {
     color: #9333ea;
   }
 
-  &:nth-child(4) i {
+  &:nth-child(4) svg {
     color: var(--color-error-dark);
   }
 }

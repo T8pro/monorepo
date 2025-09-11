@@ -8,6 +8,7 @@ import { FaultyTerminal } from '@/components/faulty-terminal';
 import type { HeroProps } from './types';
 import { useHero } from './hooks';
 import { getIconComponent } from './utils';
+import Link from 'next/link';
 
 export const Hero = (props: HeroProps) => {
   const { content, trustBadges, terminalConfig, splitTitle } = useHero(props);
@@ -35,6 +36,7 @@ export const Hero = (props: HeroProps) => {
             {firstPart} <br />
             {secondPart}
           </Heading>
+
           <Text>{content.subtitle}</Text>
 
           <div className={styles.ctaSection}>
@@ -43,6 +45,12 @@ export const Hero = (props: HeroProps) => {
             </Button>
 
             <Text className={styles.ctaSubtext}>{content.ctaSubtext}</Text>
+
+            <Link href="/#before-after">
+              <Button variant="outline" size="large">
+                {content.secondaryCtaText}
+              </Button>
+            </Link>
 
             <div className={styles.ctaContact}>
               <Button
