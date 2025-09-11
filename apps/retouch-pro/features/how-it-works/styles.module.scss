@@ -7,6 +7,10 @@
   max-width: 72rem;
   margin: 0 auto;
   padding: 0 var(--spacing-200);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .sectionDescription {

@@ -17,6 +17,10 @@
   white-space: nowrap;
   min-width: fit-content;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-100);
 
   &:focus-visible {
     box-shadow: 0 0 0 3px var(--color-primary-dark);

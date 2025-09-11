@@ -61,7 +61,6 @@ export const HowItWorks = () => {
             {steps.map(step => (
               <div key={step.number} className={styles.step}>
                 <div className={styles.stepIcon}>{step.icon}</div>
-                <div className={styles.stepNumber}>{step.number}</div>
                 <Heading
                   as="h3"
                   size="xl"

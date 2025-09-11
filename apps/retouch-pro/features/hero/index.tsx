@@ -1,25 +1,17 @@
 'use client';
 
-import {
-  Button,
-  Heading,
-  Text,
-  ThemeToggle,
-  useTheme,
-} from '@t8pro/design-system';
-import {
-  FaClock,
-  FaShieldAlt,
-  FaFileContract,
-  FaFlag,
-  FaWhatsapp,
-} from 'react-icons/fa';
+import { Button, Heading, Text, ThemeToggle } from '@t8pro/design-system';
+import { FaWhatsapp } from 'react-icons/fa';
 import styles from './styles.module.scss';
 import { Logo } from '@/components/logo';
 import { FaultyTerminal } from '@/components/faulty-terminal';
+import type { HeroProps } from './types';
+import { useHero } from './hooks';
+import { getIconComponent } from './utils';
 
-export const Hero = () => {
-  const { theme } = useTheme();
+export const Hero = (props: HeroProps) => {
+  const { content, trustBadges, terminalConfig, splitTitle } = useHero(props);
+  const { firstPart, secondPart } = splitTitle(content.title);
 
   return (
     <section className={styles.hero}>
@@ -40,21 +32,17 @@ export const Hero = () => {
             lineHeight="tight"
             marginBottom="lg"
           >
-            Turn Phone Pics into <br /> Craveable Menu Photos
+            {firstPart} <br />
+            {secondPart}
           </Heading>
-          <Text>
-            Perfect crops for Uber Eats, DoorDash, Grubhub, Instagram & Google.
-            No contract. Money-back guarantee.
-          </Text>
+          <Text>{content.subtitle}</Text>
 
           <div className={styles.ctaSection}>
             <Button variant="primary" size="large">
-              🎁 Get 1 Photo Retouched FREE
+              {content.ctaText}
             </Button>
 
-            <Text className={styles.ctaSubtext}>
-              Upload your photo → Decide if you want more.
-            </Text>
+            <Text className={styles.ctaSubtext}>{content.ctaSubtext}</Text>
 
             <div className={styles.ctaContact}>
               <Button
@@ -62,48 +50,31 @@ export const Hero = () => {
                 size="medium"
                 className={styles.whatsappButton}
               >
-                <FaWhatsapp /> Chat on WhatsApp
+                <FaWhatsapp /> {content.whatsappButtonText}
               </Button>
               <Text className={styles.businessHours}>
-                Business hours: Mon-Fri 9am-6pm EST • Typical response time:
-                &lt;1 hour
+                {content.businessHours}
               </Text>
             </div>
           </div>
         </div>
 
         <div className={styles.trustBadges}>
-          <div className={styles.badge}>
-            <FaClock />
-            24-Hour Turnaround
-          </div>
-          <div className={styles.badge}>
-            <FaShieldAlt />
-            Money-Back Guarantee
-          </div>
-          <div className={styles.badge}>
-            <FaFileContract />
-            No Contract
-          </div>
-          <div className={styles.badge}>
-            <FaFlag />
-            US-Based Remote
-          </div>
+          {trustBadges.map((badge, index) => {
+            const IconComponent = getIconComponent(badge.icon);
+            return (
+              <div key={index} className={styles.badge}>
+                {IconComponent && (
+                  <IconComponent style={{ color: badge.color }} />
+                )}
+                {badge.text}
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      <FaultyTerminal
-        scale={3}
-        timeScale={1}
-        scanlineIntensity={1}
-        curvature={0.2}
-        tint={theme === 'light' ? '#181914' : '#cbd4c6'}
-        mouseReact={true}
-        mouseStrength={1}
-        pageLoadAnimation={false}
-        brightness={0.4}
-        background={theme === 'light' ? '#cbd4c6' : '#181914'}
-      />
+      <FaultyTerminal {...terminalConfig} />
     </section>
   );
 };
