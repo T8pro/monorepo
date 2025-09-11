@@ -101,11 +101,22 @@ export function cssModulesPlugin() {
           }
 
           const finalCss = cssParts.join('\n\n');
+
+          // Ensure dist directory exists
+          const distDir = 'dist';
+          if (!fs.existsSync(distDir)) {
+            fs.mkdirSync(distDir, { recursive: true });
+          }
+
           writeFileSync('dist/styles.css', finalCss);
           console.log('✅ Consolidated CSS file generated: dist/styles.css');
         } catch (error) {
           console.error('❌ Error generating consolidated CSS:', error);
           // Create empty file as fallback
+          const distDir = 'dist';
+          if (!fs.existsSync(distDir)) {
+            fs.mkdirSync(distDir, { recursive: true });
+          }
           writeFileSync('dist/styles.css', '');
           console.log('✅ Empty CSS file created as fallback: dist/styles.css');
         }
