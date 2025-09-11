@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist_Mono, Montserrat } from 'next/font/google';
 import '@t8pro/design-system/styles';
 import { TargetCursor } from '@/components/gsap/target-cursor';
+import { ThemeProvider } from '@t8pro/design-system';
 
 const geistSans = Montserrat({
   variable: '--font-montserrat',
@@ -28,7 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <TargetCursor spinDuration={2} hideDefaultCursor={true} />
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

@@ -17,7 +17,7 @@ export const Button = ({
   return (
     <button className={classes + ' cursorTarget'} {...props}>
       {iconLeft ? <span className={styles.iconLeft}>{iconLeft}</span> : null}
-      <span className={styles.label}>{children}</span>
+      {children && <span className={styles.label}>{children}</span>}
       {iconRight ? <span className={styles.iconRight}>{iconRight}</span> : null}
     </button>
   );

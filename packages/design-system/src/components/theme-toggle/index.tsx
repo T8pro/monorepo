@@ -1,4 +1,4 @@
-import { useTheme } from '../../hooks/useTheme.js';
+import { useTheme } from '../../contexts/theme.js';
 import { Button } from '../button/index.js';
 import { HiSun, HiMoon, HiComputerDesktop } from 'react-icons/hi2';
 import styles from './styles.module.scss';

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist_Mono, Montserrat } from 'next/font/google';
 import '@t8pro/design-system/styles';
+import { ThemeProvider } from '@t8pro/design-system';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -38,7 +39,7 @@ export default function RootLayout({
         className={montserrat.variable + ' ' + geistMono.variable}
         style={{ backgroundColor: 'var(--color-secondary-invert)' }}
       >
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

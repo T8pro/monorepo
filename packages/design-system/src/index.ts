@@ -37,4 +37,4 @@ export { ThemeToggle } from './components/theme-toggle/index.js';
 export type { ThemeToggleProps } from './components/theme-toggle/index.js';
 
 // Hooks
-export { useTheme } from './hooks/useTheme.js';
+export { useTheme, ThemeProvider, useThemeContext } from './contexts/theme.js';

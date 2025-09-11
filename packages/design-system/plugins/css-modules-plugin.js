@@ -1,6 +1,6 @@
 import { writeFileSync } from 'fs';
 import { dirname, basename } from 'path';
-import sass from 'sass';
+import * as sass from 'sass';
 import postcss from 'postcss';
 import postcssModules from 'postcss-modules';
 
@@ -66,6 +66,10 @@ export function cssModulesPlugin() {
 
           writeFileSync('dist/styles.css', consolidatedCss);
           console.log('✅ Consolidated CSS file generated: dist/styles.css');
+        } else {
+          // Create empty file if no CSS modules found
+          writeFileSync('dist/styles.css', '');
+          console.log('✅ Empty CSS file created: dist/styles.css');
         }
       });
     },

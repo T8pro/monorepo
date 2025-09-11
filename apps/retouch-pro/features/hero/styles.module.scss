@@ -13,6 +13,7 @@
   max-width: 72rem;
   margin: 0 auto;
   padding: 0 var(--spacing-200);
+  z-index: var(--z-10);
 }
 
 .logoContainer {
@@ -88,4 +89,11 @@
   &:nth-child(4) i {
     color: var(--color-error-dark);
   }
+}
+
+.themeToggle {
+  position: absolute;
+  top: var(--spacing-200);
+  right: var(--spacing-200);
+  z-index: var(--z-10);
 }

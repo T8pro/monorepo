@@ -1,36 +1,24 @@
 'use client';
 
-import { Button, Heading } from '@t8pro/design-system';
+import { Button, Heading, ThemeToggle, useTheme } from '@t8pro/design-system';
 import { FaClock, FaShieldAlt, FaFileContract, FaFlag } from 'react-icons/fa';
 import styles from './styles.module.scss';
-import Image from 'next/image';
-import { BackgroundOrb } from '@/components/background-orb';
+import { Logo } from '@/components/logo';
+import { FaultyTerminal } from '@/components/faulty-terminal';
 
 export const Hero = () => {
+  const { theme } = useTheme();
+
   return (
     <section className={styles.hero}>
       <div className={styles.container}>
-        {/* Logo */}
+        <ThemeToggle className={styles.themeToggle} />
+
         <div className={styles.logoContainer}>
-          <Image
-            src="/retouch-pro-logo.svg"
-            alt="TG Logo"
-            width={100}
-            height={100}
-            className={styles.logo}
-            priority
-          />
+          <Logo />
         </div>
 
-        {/* Hero Content */}
         <div className={styles.heroContent}>
-          <BackgroundOrb
-            hoverIntensity={0.5}
-            rotateOnHover={true}
-            hue={0}
-            forceHoverState={false}
-          />
-
           <Heading
             as="h1"
             size="5xl"
@@ -79,6 +67,19 @@ export const Hero = () => {
           </div>
         </div>
       </div>
+
+      <FaultyTerminal
+        scale={3}
+        timeScale={1}
+        scanlineIntensity={1}
+        curvature={0.2}
+        tint="#cbd4c6"
+        mouseReact={true}
+        mouseStrength={0.5}
+        pageLoadAnimation={false}
+        brightness={0.1}
+        background={theme === 'light' ? '#cbd4c6' : '#181914'}
+      />
     </section>
   );
 };
