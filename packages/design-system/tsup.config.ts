@@ -15,6 +15,5 @@ export default defineConfig({
       js: '"use client";',
     };
   },
-  onSuccess:
-    'cp src/tokens.css dist/ && cp src/globals.css dist/ && cat src/tokens.css src/globals.css dist/styles.css > dist/styles-combined.css && mv dist/styles-combined.css dist/styles.css',
+  onSuccess: 'cp src/tokens.css dist/ && cp src/globals.css dist/',
 });

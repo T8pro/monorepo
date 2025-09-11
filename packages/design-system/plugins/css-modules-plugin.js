@@ -58,18 +58,56 @@ export function cssModulesPlugin() {
         }
       });
 
-      build.onEnd(() => {
-        if (allCssFiles.length > 0) {
-          const consolidatedCss = allCssFiles
-            .map(file => `/* ${file.path} */\n${file.content}`)
-            .join('\n\n');
+      build.onEnd(async () => {
+        try {
+          // Read tokens and globals CSS files
+          const fs = await import('fs');
+          const path = await import('path');
 
-          writeFileSync('dist/styles.css', consolidatedCss);
+          const tokensPath = path.join(process.cwd(), 'src', 'tokens.css');
+          const globalsPath = path.join(process.cwd(), 'src', 'globals.css');
+
+          let tokensCss = '';
+          let globalsCss = '';
+
+          try {
+            tokensCss = fs.readFileSync(tokensPath, 'utf8');
+          } catch (error) {
+            console.warn('⚠️  Could not read tokens.css:', error.message);
+          }
+
+          try {
+            globalsCss = fs.readFileSync(globalsPath, 'utf8');
+          } catch (error) {
+            console.warn('⚠️  Could not read globals.css:', error.message);
+          }
+
+          // Combine all CSS
+          const cssParts = [];
+
+          if (tokensCss) {
+            cssParts.push(`/* Design System Tokens */\n${tokensCss}`);
+          }
+
+          if (globalsCss) {
+            cssParts.push(`/* Global styles reset and base */\n${globalsCss}`);
+          }
+
+          if (allCssFiles.length > 0) {
+            const consolidatedCss = allCssFiles
+              .map(file => `/* ${file.path} */\n${file.content}`)
+              .join('\n\n');
+            cssParts.push(consolidatedCss);
+          }
+
+          const finalCss = cssParts.join('\n\n');
+          writeFileSync('dist/styles.css', finalCss);
           console.log('✅ Consolidated CSS file generated: dist/styles.css');
-        } else {
-          // Create empty file if no CSS modules found
+        } catch (error) {
+          console.error('❌ Error generating consolidated CSS:', error);
+          // Create empty file as fallback
           writeFileSync('dist/styles.css', '');
-          console.log('✅ Empty CSS file created: dist/styles.css');
+          console.log('✅ Empty CSS file created as fallback: dist/styles.css');
         }
       });
     },
