@@ -38,6 +38,34 @@
   margin-top: var(--spacing-400);
 }
 
+.ctaContact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-100);
+  margin-top: var(--spacing-300);
+  padding-top: var(--spacing-200);
+  border-top: 1px solid var(--color-gray-200);
+  width: 100%;
+  max-width: 32rem;
+}
+
+.whatsappButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+
+  svg {
+    font-size: 1.2em;
+  }
+}
+
+.businessHours {
+  font-size: var(--font-size-xs);
+  color: var(--color-gray-600);
+  margin-top: var(--spacing-100);
+}
+
 .ctaButton {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);

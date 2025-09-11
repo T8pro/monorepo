@@ -7,7 +7,13 @@ import {
   ThemeToggle,
   useTheme,
 } from '@t8pro/design-system';
-import { FaClock, FaShieldAlt, FaFileContract, FaFlag } from 'react-icons/fa';
+import {
+  FaClock,
+  FaShieldAlt,
+  FaFileContract,
+  FaFlag,
+  FaWhatsapp,
+} from 'react-icons/fa';
 import styles from './styles.module.scss';
 import { Logo } from '@/components/logo';
 import { FaultyTerminal } from '@/components/faulty-terminal';
@@ -49,6 +55,20 @@ export const Hero = () => {
             <Text className={styles.ctaSubtext}>
               Upload your photo → Decide if you want more.
             </Text>
+
+            <div className={styles.ctaContact}>
+              <Button
+                variant="secondary"
+                size="medium"
+                className={styles.whatsappButton}
+              >
+                <FaWhatsapp /> Chat on WhatsApp
+              </Button>
+              <Text className={styles.businessHours}>
+                Business hours: Mon-Fri 9am-6pm EST • Typical response time:
+                &lt;1 hour
+              </Text>
+            </div>
           </div>
         </div>
 

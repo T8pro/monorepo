@@ -1,5 +1,5 @@
 import { Button, Heading, Text } from '@t8pro/design-system';
-import { FaCheck, FaWhatsapp, FaGift, FaStar } from 'react-icons/fa';
+import { FaCheck, FaWhatsapp, FaGift, FaStar, FaTable } from 'react-icons/fa';
 import styles from './styles.module.scss';
 
 const plans = [
@@ -117,10 +117,59 @@ export const Plans = () => {
           weight="black"
           color="secondary"
           align="center"
-          marginBottom="3xl"
+          marginBottom="lg"
         >
           Choose Your Plan
         </Heading>
+
+        <div className={styles.comparisonTableContainer}>
+          <div className={styles.tableIcon}>
+            <FaTable />
+          </div>
+          <div className={styles.comparisonTable}>
+            <table>
+              <thead>
+                <tr>
+                  <th>Package</th>
+                  <th>Photos Included</th>
+                  <th>Price (USD)</th>
+                  <th>Turnaround</th>
+                  <th>Best For</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Free Trial</td>
+                  <td>1</td>
+                  <td>$0</td>
+                  <td>24 hours</td>
+                  <td>Try it out</td>
+                </tr>
+                <tr>
+                  <td>Test (1x)</td>
+                  <td>1</td>
+                  <td>$10</td>
+                  <td>24 hours</td>
+                  <td>Just getting started</td>
+                </tr>
+                <tr className={styles.popularRow}>
+                  <td>Small Bundle</td>
+                  <td>10</td>
+                  <td>$80</td>
+                  <td>24 hours</td>
+                  <td>Menu updates</td>
+                </tr>
+                <tr>
+                  <td>Large Bundle</td>
+                  <td>20</td>
+                  <td>$140</td>
+                  <td>24 hours</td>
+                  <td>New locations</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         {/* Free Trial Section */}
         <div className={styles.section}>

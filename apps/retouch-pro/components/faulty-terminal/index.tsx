@@ -52,6 +52,7 @@ export const FaultyTerminal = ({
     <div
       style={{
         width: '100vw',
+        minHeight: 800,
         height: '100vh',
         position: 'absolute',
         top: 0,
