@@ -11,4 +11,3 @@ export interface PsychologyFact {
   description: string;
   icon: React.ReactNode;
 }
-
