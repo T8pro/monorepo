@@ -1,5 +1,5 @@
 .beforeAfter {
-  background: var(--color-white);
+  background: var(--color-secondary-invert);
   padding: var(--spacing-400) 0;
 }
 
@@ -22,69 +22,9 @@
   }
 }
 
-.sliderContainer {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--radius-lg);
-  background: var(--color-gray-200);
-  height: 16rem;
-}
-
-.sliderBefore {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #fecaca;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  clip-path: inset(0 50% 0 0);
-}
-
-.sliderAfter {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #bbf7d0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sliderContent {
-  text-align: center;
-}
-
-.label {
-  color: var(--color-gray-700);
-  font-weight: var(--font-weight-semibold);
-}
-
-.description {
-  font-size: var(--font-size-sm);
-  color: var(--color-gray-500);
-  margin-top: var(--spacing-100);
-}
-
-.sliderHandle {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: var(--border-4);
-  background: var(--color-primary);
-  cursor: ew-resize;
-  z-index: var(--z-10);
-  left: 50%;
-}
-
 .description {
   text-align: center;
   margin-top: var(--spacing-300);
-  color: var(--color-gray-500);
 }
 
 .highlight {

@@ -1,3 +1,4 @@
+import { Text } from '@t8pro/design-system';
 import styles from './styles.module.scss';
 
 const testimonials = [
@@ -22,7 +23,7 @@ export const SocialProof = () => {
         <div className={styles.grid}>
           {testimonials.map((testimonial, index) => (
             <div key={index} className={styles.card}>
-              <p className={styles.text}>{testimonial.text}</p>
+              <Text className={styles.text}>{testimonial.text}</Text>
               <div className={styles.author}>— {testimonial.author}</div>
             </div>
           ))}

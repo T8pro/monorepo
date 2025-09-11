@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Heading } from '@t8pro/design-system';
+import { Heading, Text } from '@t8pro/design-system';
 import { FaChevronDown } from 'react-icons/fa';
 import styles from './styles.module.scss';
 
@@ -66,7 +66,7 @@ export const FAQ = () => {
               </button>
               {openIndex === index && (
                 <div className={styles.faqAnswer}>
-                  <p>{faq.answer}</p>
+                  <Text>{faq.answer}</Text>
                 </div>
               )}
             </div>

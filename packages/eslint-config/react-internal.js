@@ -1,5 +1,6 @@
 import pluginReact from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
+import importPlugin from 'eslint-plugin-import';
 import globals from 'globals';
 import { config as baseConfig } from './base.js';
 
@@ -22,14 +23,11 @@ export const reactInternal = [
   {
     plugins: {
       'react-hooks': pluginReactHooks,
+      import: importPlugin,
     },
     settings: {
       react: { version: 'detect' },
       'import/resolver': {
-        typescript: {
-          alwaysTryTypes: true,
-          project: './tsconfig.json',
-        },
         node: {
           extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
@@ -37,6 +35,43 @@ export const reactInternal = [
     },
     rules: {
       ...pluginReactHooks.configs.recommended.rules,
+
+      // Import rules
+      'import/order': [
+        'error',
+        {
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            'parent',
+            'sibling',
+            'index',
+          ],
+          pathGroups: [
+            {
+              pattern: 'react',
+              group: 'external',
+              position: 'before',
+            },
+            {
+              pattern: '@/**',
+              group: 'internal',
+              position: 'after',
+            },
+          ],
+          'newlines-between': 'never',
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
+        },
+      ],
+      'import/no-duplicates': 'off', // Disabled due to TypeScript resolver conflicts
+      'import/first': 'off', // Disabled due to TypeScript resolver conflicts
+      'import/newline-after-import': 'off', // Disabled due to TypeScript resolver conflicts
+      'import/no-unresolved': 'off', // TypeScript handles this
+
       // React scope no longer necessary with new JSX transform.
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off', // TypeScript handles this

@@ -1,0 +1,83 @@
+.paragraph {
+  margin: 0;
+  font-family: var(--font-geist-mono);
+  line-height: var(--line-height-normal);
+}
+
+$margins: 'Bottom', 'Top', 'Left', 'Right';
+$colors:
+  'primary', 'secondary', 'secondary-invert', 'gray-900', 'gray-700',
+  'gray-500', 'white', 'black', 'informative', 'error', 'success', 'attention';
+$sizes: 'xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl';
+
+@each $margin in $margins {
+  .margin#{$margin}-sm {
+    margin-#{$margin}: var(--spacing-100);
+  }
+}
+
+@each $margin in $margins {
+  .margin#{$margin}-base {
+    margin-#{$margin}: var(--spacing-200);
+  }
+}
+
+@each $margin in $margins {
+  .margin#{$margin}-lg {
+    margin-#{$margin}: var(--spacing-300);
+  }
+}
+
+@each $margin in $margins {
+  .margin#{$margin}-xl {
+    margin-#{$margin}: var(--spacing-400);
+  }
+}
+
+@each $margin in $margins {
+  .margin#{$margin}-2xl {
+    margin-#{$margin}: var(--spacing-500);
+  }
+}
+
+@each $margin in $margins {
+  .margin#{$margin}-3xl {
+    margin-#{$margin}: var(--spacing-600);
+  }
+}
+
+@each $margin in $margins {
+  .margin#{$margin}-4xl {
+    margin-#{$margin}: var(--spacing-700);
+  }
+}
+
+@each $margin in $margins {
+  .margin#{$margin}-5xl {
+    margin-#{$margin}: var(--spacing-800);
+  }
+}
+
+@each $color in $colors {
+  .color-#{$color} {
+    color: var(--color-#{$color});
+  }
+}
+
+@each $color in $colors {
+  .color-#{$color}-light {
+    color: var(--color-#{$color}-light);
+  }
+}
+
+@each $color in $colors {
+  .color-#{$color}-dark {
+    color: var(--color-#{$color}-dark);
+  }
+}
+
+@each $size in $sizes {
+  .size-#{$size} {
+    font-size: var(--font-size-#{$size});
+  }
+}

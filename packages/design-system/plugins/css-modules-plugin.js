@@ -1,8 +1,8 @@
 import { writeFileSync } from 'fs';
 import { dirname, basename } from 'path';
-import * as sass from 'sass';
 import postcss from 'postcss';
 import postcssModules from 'postcss-modules';
+import * as sass from 'sass';
 
 export function cssModulesPlugin() {
   return {

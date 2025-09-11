@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, Heading } from '@t8pro/design-system';
+import { Button, Heading, Text } from '@t8pro/design-system';
 import styles from './styles.module.scss';
 
 export const LeadMagnet = () => {
@@ -26,10 +26,10 @@ export const LeadMagnet = () => {
         >
           Not Ready Yet?
         </Heading>
-        <p className={styles.description}>
+        <Text className={styles.description}>
           Download the Delivery Photo Cheat Sheet (free) — and get 3 of your
           images cropped on us.
-        </p>
+        </Text>
         <form onSubmit={handleSubmit} className={styles.form}>
           <input
             type="email"
@@ -43,7 +43,7 @@ export const LeadMagnet = () => {
             Download Free Guide
           </Button>
         </form>
-        <p className={styles.disclaimer}>No spam. Unsubscribe anytime.</p>
+        <Text className={styles.disclaimer}>No spam. Unsubscribe anytime.</Text>
       </div>
     </section>
   );

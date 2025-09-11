@@ -1,4 +1,4 @@
-import { Heading } from '@t8pro/design-system';
+import { Heading, Text } from '@t8pro/design-system';
 import { FaCheckCircle } from 'react-icons/fa';
 import styles from './styles.module.scss';
 
@@ -29,7 +29,7 @@ export const WhatYouGet = () => {
         <Heading
           as="h2"
           size="4xl"
-          weight="bold"
+          weight="black"
           color="secondary"
           align="center"
           marginBottom="3xl"
@@ -50,9 +50,9 @@ export const WhatYouGet = () => {
                 >
                   {feature.title}
                 </Heading>
-                <p className={styles.featureDescription}>
+                <Text className={styles.featureDescription}>
                   {feature.description}
-                </p>
+                </Text>
               </div>
             </div>
           ))}

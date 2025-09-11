@@ -28,7 +28,7 @@ import { Card } from '@t8pro/design-system';
 
 <Card variant="service">
   <h3>Service Title</h3>
-  <p>Service description</p>
+  <Text>Service description</Text>
 </Card>;
 ```
 

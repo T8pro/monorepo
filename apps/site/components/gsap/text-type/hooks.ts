@@ -132,22 +132,22 @@ export const useTextType = ({
     }
 
     return () => clearTimeout(timeout);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
+    isVisible,
     currentCharIndex,
     displayedText,
     isDeleting,
-    typingSpeed,
-    deletingSpeed,
-    pauseDuration,
-    textArray,
     currentTextIndex,
-    loop,
-    initialDelay,
-    isVisible,
+    textArray,
     reverseMode,
+    loop,
+    pauseDuration,
+    deletingSpeed,
+    typingSpeed,
     variableSpeed,
+    initialDelay,
     onSentenceComplete,
+    getRandomSpeed,
   ]);
 
   const shouldHideCursor =

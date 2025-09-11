@@ -1,4 +1,4 @@
-import { Button, Heading } from '@t8pro/design-system';
+import { Button, Heading, Text } from '@t8pro/design-system';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 import styles from './styles.module.scss';
 
@@ -28,15 +28,15 @@ export const Upload = () => {
           >
             Drag and drop your photos here
           </Heading>
-          <p className={styles.uploadDescription}>
+          <Text className={styles.uploadDescription}>
             You can drag photos straight from your desktop or paste a link
-          </p>
+          </Text>
           <Button variant="primary" size="large">
             Browse Files
           </Button>
-          <p className={styles.uploadInfo}>
+          <Text className={styles.uploadInfo}>
             Supported formats: JPG, PNG, HEIC • Max 10MB per file
-          </p>
+          </Text>
         </div>
       </div>
     </section>

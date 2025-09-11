@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Heading } from '@t8pro/design-system';
+import { Heading, Text } from '@t8pro/design-system';
 import { processSteps } from './constants';
 import styles from './styles.module.scss';
 
@@ -39,7 +39,9 @@ export const Process = () => {
                     {step.title}
                   </Heading>
 
-                  <p className={styles.stepDescription}>{step.description}</p>
+                  <Text className={styles.stepDescription}>
+                    {step.description}
+                  </Text>
                 </div>
               </div>
             ))}

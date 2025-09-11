@@ -20,7 +20,8 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "lint": "eslint . --max-warnings 50",
+    "lint": "eslint . --max-warnings 5",
+    "lint:fix": "eslint . --fix",
     "check-types": "tsc --noEmit"
   },
   "dependencies": {

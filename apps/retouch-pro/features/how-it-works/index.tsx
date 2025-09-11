@@ -1,4 +1,4 @@
-import { Heading } from '@t8pro/design-system';
+import { Heading, Text } from '@t8pro/design-system';
 import styles from './styles.module.scss';
 
 const steps = [
@@ -26,7 +26,7 @@ export const HowItWorks = () => {
         <Heading
           as="h2"
           size="4xl"
-          weight="bold"
+          weight="black"
           color="secondary"
           align="center"
           marginBottom="3xl"
@@ -46,7 +46,7 @@ export const HowItWorks = () => {
               >
                 {step.title}
               </Heading>
-              <p className={styles.stepDescription}>{step.description}</p>
+              <Text className={styles.stepDescription}>{step.description}</Text>
             </div>
           ))}
         </div>

@@ -1,6 +1,12 @@
 'use client';
 
-import { Button, Heading, ThemeToggle, useTheme } from '@t8pro/design-system';
+import {
+  Button,
+  Heading,
+  Text,
+  ThemeToggle,
+  useTheme,
+} from '@t8pro/design-system';
 import { FaClock, FaShieldAlt, FaFileContract, FaFlag } from 'react-icons/fa';
 import styles from './styles.module.scss';
 import { Logo } from '@/components/logo';
@@ -30,24 +36,22 @@ export const Hero = () => {
           >
             Turn Phone Pics into <br /> Craveable Menu Photos
           </Heading>
-          <p>
+          <Text>
             Perfect crops for Uber Eats, DoorDash, Grubhub, Instagram & Google.
             No contract. Money-back guarantee.
-          </p>
+          </Text>
 
-          {/* CTA Section */}
           <div className={styles.ctaSection}>
             <Button variant="primary" size="large">
               🎁 Get 1 Photo Retouched FREE
             </Button>
 
-            <p className={styles.ctaSubtext}>
+            <Text className={styles.ctaSubtext}>
               Upload your photo → Decide if you want more.
-            </p>
+            </Text>
           </div>
         </div>
 
-        {/* Trust Badges */}
         <div className={styles.trustBadges}>
           <div className={styles.badge}>
             <FaClock />
@@ -73,11 +77,11 @@ export const Hero = () => {
         timeScale={1}
         scanlineIntensity={1}
         curvature={0.2}
-        tint="#cbd4c6"
+        tint={theme === 'light' ? '#181914' : '#cbd4c6'}
         mouseReact={true}
-        mouseStrength={0.5}
+        mouseStrength={1}
         pageLoadAnimation={false}
-        brightness={0.1}
+        brightness={0.4}
         background={theme === 'light' ? '#cbd4c6' : '#181914'}
       />
     </section>

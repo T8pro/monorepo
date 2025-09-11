@@ -1,8 +1,8 @@
+import { useMemo } from 'react';
+import { HiSun, HiMoon, HiComputerDesktop } from 'react-icons/hi2';
 import { useTheme } from '../../contexts/theme.js';
 import { Button } from '../button/index.js';
-import { HiSun, HiMoon, HiComputerDesktop } from 'react-icons/hi2';
 import styles from './styles.module.scss';
-import { useMemo } from 'react';
 
 export interface ThemeToggleProps {
   showLabel?: boolean;

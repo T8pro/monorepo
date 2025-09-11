@@ -36,5 +36,15 @@ export type {
 export { ThemeToggle } from './components/theme-toggle/index.js';
 export type { ThemeToggleProps } from './components/theme-toggle/index.js';
 
+export { BeforeAfterSlider } from './components/before-after-slider/index.js';
+export type { BeforeAfterSliderProps } from './components/before-after-slider/index.js';
+
+export { Text } from './components/text/index.js';
+export type {
+  TextProps,
+  TextSize,
+  TextMargin,
+} from './components/text/types.js';
+
 // Hooks
 export { useTheme, ThemeProvider, useThemeContext } from './contexts/theme.js';

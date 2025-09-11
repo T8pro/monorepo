@@ -1,4 +1,4 @@
-import { Button, Heading } from '@t8pro/design-system';
+import { Button, Heading, Text } from '@t8pro/design-system';
 import { FaCheck, FaWhatsapp, FaGift, FaStar } from 'react-icons/fa';
 import styles from './styles.module.scss';
 
@@ -107,9 +107,6 @@ export const Plans = () => {
   const payAsYouGoPlans = plans.filter(
     plan => plan.category === 'pay-as-you-go',
   );
-  const subscriptionPlans = plans.filter(
-    plan => plan.category === 'subscription',
-  );
 
   return (
     <section className={styles.plans}>
@@ -117,8 +114,8 @@ export const Plans = () => {
         <Heading
           as="h2"
           size="4xl"
-          weight="bold"
-          color="gray-900"
+          weight="black"
+          color="secondary"
           align="center"
           marginBottom="3xl"
         >
@@ -137,6 +134,7 @@ export const Plans = () => {
           >
             Start with Our Free Trial
           </Heading>
+
           <div className={styles.grid}>
             {trialPlans.map((plan, index) => (
               <div
@@ -182,7 +180,9 @@ export const Plans = () => {
                     </div>
                   )}
 
-                  <p className={styles.planDescription}>{plan.description}</p>
+                  <Text className={styles.planDescription}>
+                    {plan.description}
+                  </Text>
 
                   <Button
                     variant={plan.buttonVariant}
@@ -263,88 +263,9 @@ export const Plans = () => {
                     </div>
                   )}
 
-                  <p className={styles.planDescription}>{plan.description}</p>
-
-                  <Button
-                    variant={plan.buttonVariant}
-                    size="large"
-                    className={styles.planButton}
-                  >
-                    {plan.buttonText}
-                  </Button>
-                </div>
-
-                <ul className={styles.features}>
-                  {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className={styles.feature}>
-                      <FaCheck />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Monthly Subscriptions Section */}
-        <div className={styles.section}>
-          <Heading
-            as="h3"
-            size="2xl"
-            weight="bold"
-            color="secondary"
-            align="center"
-            marginBottom="lg"
-          >
-            Monthly Subscriptions
-          </Heading>
-          <div className={styles.grid}>
-            {subscriptionPlans.map((plan, index) => (
-              <div
-                key={index}
-                className={`${styles.plan} ${plan.highlighted ? styles.highlighted : ''} ${
-                  plan.popular ? styles.popular : ''
-                }`}
-              >
-                {plan.popular && (
-                  <div className={styles.popularBadge}>
-                    <FaStar />
-                    Most Popular
-                  </div>
-                )}
-
-                <div className={styles.planHeader}>
-                  <div className={styles.planIcon}>
-                    {plan.isFree ? <FaGift /> : null}
-                  </div>
-
-                  <Heading
-                    as="h4"
-                    size="xl"
-                    weight="bold"
-                    color="gray-900"
-                    align="center"
-                    marginBottom="sm"
-                  >
-                    {plan.name}
-                  </Heading>
-
-                  <div className={styles.planPrice}>
-                    <span className={styles.price}>{plan.price}</span>
-                    <span className={styles.period}>{plan.period}</span>
-                  </div>
-
-                  {plan.originalPrice && (
-                    <div className={styles.originalPrice}>
-                      <span className={styles.strikethrough}>
-                        {plan.originalPrice}
-                      </span>
-                      <span className={styles.savings}>{plan.savings}</span>
-                    </div>
-                  )}
-
-                  <p className={styles.planDescription}>{plan.description}</p>
+                  <Text className={styles.planDescription}>
+                    {plan.description}
+                  </Text>
 
                   <Button
                     variant={plan.buttonVariant}

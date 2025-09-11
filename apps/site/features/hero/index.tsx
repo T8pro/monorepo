@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Heading } from '@t8pro/design-system';
+import { Heading, Text } from '@t8pro/design-system';
 import styles from './styles.module.scss';
 import { TerminalAnimated } from './terminal-animated';
 
@@ -26,14 +26,14 @@ export const Hero = () => {
               </span>
             </Heading>
 
-            <p className={styles.lead}>
+            <Text className={styles.lead}>
               At T8 Pro, we empower businesses of all sizes with innovative
               solutions designed to propel your brand to new heights. Whether
               you&apos;re a startup ready to make your mark, a mid-size
               enterprise looking to scale, or a large corporation aiming for
               industry leadership, we offer a full suite of services to fit your
               vision and needs.
-            </p>
+            </Text>
 
             <TerminalAnimated />
           </div>
