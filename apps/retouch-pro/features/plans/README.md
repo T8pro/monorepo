@@ -78,3 +78,4 @@ import { Plans } from '@/features/plans';
 - **Revenue packages** with hover animations and badges
 - **Guarantee section** with success-themed styling
 - **Mobile-responsive** design with stacked layout
+

@@ -55,3 +55,4 @@ This section leverages several psychological triggers:
 - **FOMO**: Fear of missing out on the opportunity
 - **Social Proof**: Shows high demand (spots filling up)
 - **Risk Reversal**: Multiple guarantees reduce perceived risk
+

@@ -41,3 +41,4 @@ Uses a clean, data-focused design with:
 - Hover animations for engagement
 - Responsive grid layout
 - Clear typography hierarchy
+

@@ -11,3 +11,4 @@ export interface Guarantee {
   title: string;
   description: string;
 }
+
