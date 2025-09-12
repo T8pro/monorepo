@@ -1,7 +1,8 @@
 'use client';
 
+import { useRef } from 'react';
 import { Button, Heading, Text, ThemeToggle } from '@t8pro/design-system';
-import { FaWhatsapp } from 'react-icons/fa';
+import { FaWhatsapp, FaImage } from 'react-icons/fa';
 import styles from './styles.module.scss';
 import { Logo } from '@/components/logo';
 import { FaultyTerminal } from '@/components/faulty-terminal';
@@ -11,7 +12,20 @@ import { getIconComponent } from './utils';
 import Link from 'next/link';
 
 export const Hero = (props: HeroProps) => {
-  const { content, trustBadges, terminalConfig, splitTitle } = useHero(props);
+  const {
+    content,
+    trustBadges,
+    terminalConfig,
+    splitTitle,
+    dragDropState,
+    handleDragEnter,
+    handleDragLeave,
+    handleDragOver,
+    handleDrop,
+    handleFileSelect,
+    handleClick,
+    fileInputRef,
+  } = useHero(props);
   const { firstPart, secondPart } = splitTitle(content.title);
 
   return (
@@ -23,48 +37,55 @@ export const Hero = (props: HeroProps) => {
           <Logo />
         </div>
 
-        <div className={styles.heroContent}>
-          <Heading
-            as="h1"
-            size="5xl"
-            weight="extrabold"
-            color="secondary"
-            align="center"
-            lineHeight="tight"
-            marginBottom="lg"
-          >
-            {firstPart} <br />
-            {secondPart}
-          </Heading>
+        {/* Drag and Drop Area */}
+        <div
+          className={`${styles.dragDropArea} ${
+            dragDropState.isDragOver ? styles['dragDropArea--dragOver'] : ''
+          } ${dragDropState.isDragActive ? styles['dragDropArea--active'] : ''}`}
+          onDragEnter={handleDragEnter}
+          onDragLeave={handleDragLeave}
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
+          onClick={handleClick}
+          role="button"
+          tabIndex={0}
+          aria-label="Upload photos"
+        >
+          <div className={styles.dragDropContent}>
+            <FaImage className={styles.dragDropIcon} />
 
-          <Text>{content.subtitle}</Text>
+            <div>
+              <h2 className={styles.dragDropTitle}>{firstPart}</h2>
+              <h3 className={styles.dragDropSubtitle}>{secondPart}</h3>
+            </div>
 
-          <div className={styles.ctaSection}>
-            <Button variant="primary" size="large">
-              {content.ctaText}
-            </Button>
-
-            <Text className={styles.ctaSubtext}>{content.ctaSubtext}</Text>
-
-            <Link href="/#before-after">
-              <Button variant="outline" size="large">
-                {content.secondaryCtaText}
-              </Button>
+            <Link href="/#before-after" className={styles.dragDropLink}>
+              {content.secondaryCtaText}
             </Link>
 
-            <div className={styles.ctaContact}>
-              <Button
-                variant="secondary"
-                size="medium"
-                className={styles.whatsappButton}
-              >
-                <FaWhatsapp /> {content.whatsappButtonText}
-              </Button>
-              <Text className={styles.businessHours}>
-                {content.businessHours}
-              </Text>
-            </div>
+            <button
+              type="button"
+              className={styles.dragDropButton}
+              onClick={e => {
+                e.stopPropagation();
+                handleClick();
+              }}
+            >
+              {content.ctaText}
+            </button>
+
+            <p className={styles.dragDropHint}>{content.ctaSubtext}</p>
           </div>
+
+          <input
+            ref={fileInputRef}
+            type="file"
+            multiple
+            accept="image/*"
+            onChange={e => handleFileSelect(e.target.files)}
+            className={styles.hiddenFileInput}
+            aria-label="Select photos to upload"
+          />
         </div>
 
         <div className={styles.trustBadges}>

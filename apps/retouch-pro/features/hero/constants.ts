@@ -1,15 +1,16 @@
 import type { HeroContent, TrustBadge } from './types';
 
 export const DEFAULT_HERO_CONTENT: HeroContent = {
-  title:
-    'Turn Your Phone Photos Into Professional Menu Images That Drive More Orders',
-  subtitle:
-    'Stop losing customers to blurry, unappetizing photos. Our AI-enhanced editing turns your smartphone shots into professional food photography that increases orders by 35%—guaranteed.',
-  ctaText: 'GET MY PHOTOS FIXED NOW - $60',
-  ctaSubtext: 'Ready in Just 48 Hours',
-  secondaryCtaText: 'See Dramatic Before/After Results →',
+  title: 'Transform your common photos into professional photos.',
+  subtitle: 'No matter how it was taken!',
+  ctaText: 'SELECT YOUR PHOTOS',
+  ctaIcon: 'FaImage',
+  ctaSubtext: 'You can send up to 24 photos at once',
+  secondaryCtaText: "See what's possible to do",
   whatsappButtonText: 'Chat on WhatsApp',
   businessHours: 'Business hours: Mon-Fri 9am-6pm EST',
+  dragDropText: 'Drag and drop your photos here or click to select',
+  maxPhotos: 24,
 };
 
 export const TRUST_BADGES: TrustBadge[] = [

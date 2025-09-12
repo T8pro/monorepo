@@ -1,0 +1,125 @@
+.uploadPage {
+  min-height: 100vh;
+  padding: var(--spacing-400) 0;
+  background: var(--color-secondary-invert);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-200);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--spacing-500);
+}
+
+.emptyState {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-400);
+}
+
+.photosGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--spacing-300);
+  margin-bottom: var(--spacing-500);
+}
+
+.photoItem {
+  position: relative;
+  background: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.photoPreview {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.photoInfo {
+  padding: var(--spacing-200);
+}
+
+.photoName {
+  display: block;
+  margin-bottom: var(--spacing-100);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.removeButton {
+  position: absolute;
+  top: var(--spacing-100);
+  right: var(--spacing-100);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--color-error);
+    color: var(--color-white);
+  }
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-300);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.uploadButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-200);
+
+  svg {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 768px) {
+  .photosGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-200);
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .uploadButton,
+  .actions button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+

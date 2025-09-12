@@ -1,6 +1,4 @@
-// Hero feature types and interfaces
-
-export interface HeroProps {
+export type HeroProps = {
   title?: string;
   subtitle?: string;
   ctaText?: string;
@@ -8,25 +6,30 @@ export interface HeroProps {
   secondaryCtaText?: string;
   whatsappButtonText?: string;
   businessHours?: string;
-}
+  dragDropText?: string;
+  maxPhotos?: number;
+};
 
-export interface TrustBadge {
+export type TrustBadge = {
   icon: string;
   text: string;
   color?: string;
-}
+};
 
-export interface HeroContent {
+export type HeroContent = {
   title: string;
   subtitle: string;
   ctaText: string;
+  ctaIcon: string;
   ctaSubtext: string;
   secondaryCtaText: string;
   whatsappButtonText: string;
   businessHours: string;
-}
+  dragDropText: string;
+  maxPhotos: number;
+};
 
-export interface TerminalConfig {
+export type TerminalConfig = {
   scale: number;
   timeScale: number;
   scanlineIntensity: number;
@@ -37,12 +40,26 @@ export interface TerminalConfig {
   pageLoadAnimation: boolean;
   brightness: number;
   background: string;
-}
+};
 
-export interface UseHeroReturn {
+export type DragDropState = {
+  isDragOver: boolean;
+  isDragActive: boolean;
+  dragCounter: number;
+};
+
+export type UseHeroReturn = {
   content: HeroContent;
   trustBadges: TrustBadge[];
   terminalConfig: TerminalConfig;
   theme: string;
   splitTitle: (title: string) => { firstPart: string; secondPart: string };
-}
+  dragDropState: DragDropState;
+  handleDragEnter: (e: React.DragEvent) => void;
+  handleDragLeave: (e: React.DragEvent) => void;
+  handleDragOver: (e: React.DragEvent) => void;
+  handleDrop: (e: React.DragEvent) => void;
+  handleFileSelect: (files: FileList | null) => void;
+  handleClick: () => void;
+  fileInputRef: React.RefObject<HTMLInputElement>;
+};
