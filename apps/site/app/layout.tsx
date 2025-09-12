@@ -10,7 +10,7 @@ const geistSans = Montserrat({
 });
 
 const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+  variable: '--jet-brains-mono',
   subsets: ['latin'],
 });
 

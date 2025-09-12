@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import { Geist_Mono, Montserrat } from 'next/font/google';
+import { JetBrains_Mono, Montserrat } from 'next/font/google';
 import '@t8pro/design-system/styles';
-import { ThemeProvider } from '@t8pro/design-system';
+import { Providers } from './providers';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -9,8 +9,8 @@ const montserrat = Montserrat({
   weight: ['500', '600', '700', '800'],
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const jetBrainsMono = JetBrains_Mono({
+  variable: '--jet-brains-mono',
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
 });
@@ -28,18 +28,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="icon"
-          type="image/png"
-          href="https://page.gensparksite.com/v1/base64_upload/8053203880ae33bce40ff119936ccd20add"
-        />
-      </head>
       <body
-        className={montserrat.variable + ' ' + geistMono.variable}
+        className={montserrat.variable + ' ' + jetBrainsMono.variable}
         style={{ backgroundColor: 'var(--color-secondary-invert)' }}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

@@ -28,7 +28,7 @@ This document outlines the design tokens used throughout the T8 Pro design syste
 ### Font Families
 
 - `--font-primary`: var(--font-montserrat), 'Montserrat', sans-serif
-- `--font-mono`: var(--font-geist-mono), 'Geist Mono', monospace
+- `--font-mono`: var(--jet-brains-mono), 'Geist Mono', monospace
 
 ### Font Weights
 
