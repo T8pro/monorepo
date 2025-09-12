@@ -1,3 +1,5 @@
+import { IconName } from '@t8pro/design-system';
+
 export type FooterProps = {
   primaryButtonText?: string;
   secondaryButtonText?: string;
@@ -8,7 +10,7 @@ export type FooterProps = {
 };
 
 export type TrustBadge = {
-  icon: string;
+  icon: IconName;
   text: string;
   color?: string;
 };

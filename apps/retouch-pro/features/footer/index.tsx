@@ -23,9 +23,9 @@ export const Footer = (props: FooterProps = {}) => {
         <div className={styles.buttonSection}>
           <div className={styles.buttonGroup}>
             <Button
-              variant="primary"
+              variant="1"
               size="medium"
-              iconLeft={<Icon name="upload" size={18} />}
+              iconLeft="upload"
               className={styles.primaryButton}
               onClick={onPrimaryButtonClick}
             >
@@ -33,9 +33,10 @@ export const Footer = (props: FooterProps = {}) => {
             </Button>
 
             <Button
-              variant="outline"
+              variant="4"
+              style="outline"
               size="medium"
-              iconLeft={<Icon name="download" size={18} />}
+              iconLeft="download"
               className={styles.secondaryButton}
               onClick={onSecondaryButtonClick}
             >

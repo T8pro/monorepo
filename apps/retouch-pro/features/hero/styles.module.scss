@@ -1,6 +1,6 @@
 .hero {
   min-height: 519px;
-  padding: var(--spacing-700) 0;
+  padding: var(--spacing-200) 0;
   position: relative;
   display: flex;
   align-items: center;
@@ -31,15 +31,28 @@
 
 .heroContent {
   width: 100%;
-  max-width: 649px;
+  max-width: 800px;
   position: relative;
 }
 
+.custom-border {
+  position: relative;
+  display: inline-block;
+}
+
+.borderSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
 .contentFrame {
-  border: 2px dashed var(--color-gray-400);
+  position: relative;
   border-radius: 16px;
   background: transparent;
-  padding: var(--spacing-400);
+  padding: var(--spacing-600) var(--spacing-1000);
   display: flex;
   flex-direction: column;
   align-items: center;

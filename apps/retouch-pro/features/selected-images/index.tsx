@@ -21,7 +21,7 @@ const PhotoCard = ({
     <div className={styles.imageContainer}>
       {isPlaceholder ? (
         <div className={styles.placeholderIcon}>
-          <Icon name="add_photo" size={40} />
+          <Icon name="add_a_photo" size={40} />
         </div>
       ) : (
         <Image
@@ -40,7 +40,7 @@ const PhotoCard = ({
       variant="primary"
       size="small"
       className={styles.proButton}
-      iconLeft={<Icon name="star" size={12} />}
+      iconLeft="star"
     >
       Be Pro
     </Button>

@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { useTheme } from '../../contexts/theme.js';
 import { Button } from '../button/index.js';
-import { Icon } from '../icon/index.js';
 import styles from './styles.module.scss';
 
 export interface ThemeToggleProps {
@@ -16,14 +15,10 @@ export const ThemeToggle = ({
 }: ThemeToggleProps) => {
   const { theme, resolvedTheme, toggleTheme } = useTheme();
 
-  const getIcon = () => {
-    if (theme === 'system') return <Icon name="computer" size={20} />;
-    return resolvedTheme === 'dark' ? (
-      <Icon name="dark_mode" size={20} />
-    ) : (
-      <Icon name="light_mode" size={20} />
-    );
-  };
+  const icon = useMemo(() => {
+    if (theme === 'system') return 'computer';
+    return resolvedTheme === 'dark' ? 'dark_mode' : 'light_mode';
+  }, [theme, resolvedTheme]);
 
   const currentTheme = useMemo(() => {
     if (theme === 'system') return 'System';
@@ -33,10 +28,10 @@ export const ThemeToggle = ({
   return (
     <Button
       title={currentTheme}
-      variant="tertiary"
+      variant="4"
       size={size}
       onClick={toggleTheme}
-      iconLeft={getIcon()}
+      iconLeft={icon}
       className={`${styles.themeToggle} ${className || ''}`}
     />
   );

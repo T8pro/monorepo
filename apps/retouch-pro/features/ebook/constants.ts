@@ -10,19 +10,19 @@ export const EBOOK_BUTTONS: EbookButton[] = [
   {
     id: 'download-pdf',
     text: 'Download PDF',
-    variant: 'outline',
+    variant: '3',
     icon: 'download',
   },
   {
     id: 'download-epub',
     text: 'Download EPUB',
-    variant: 'outline',
+    variant: '3',
     icon: 'download',
   },
   {
     id: 'download-now',
     text: 'Baixar Agora',
-    variant: 'primary',
+    variant: '3',
     icon: 'download',
   },
 ];

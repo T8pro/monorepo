@@ -13,4 +13,3 @@ export type PricingCard = {
   onClick?: () => void;
   featured?: boolean;
 };
-

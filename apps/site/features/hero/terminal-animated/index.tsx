@@ -1,4 +1,4 @@
-import { Button, Icon } from '@t8pro/design-system';
+import { Button } from '@t8pro/design-system';
 import { TextType } from '@/components/gsap/text-type';
 import styles from './styles.module.scss';
 
@@ -18,8 +18,8 @@ export const TerminalAnimated = () => {
       />
 
       <Button
-        iconLeft={<Icon name="auto_awesome" size={20} />}
-        variant="secondary"
+        iconLeft="auto_awesome_motion"
+        variant="2"
         size="large"
         className={styles.cta}
       >

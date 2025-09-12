@@ -47,11 +47,7 @@ export const Ebook = (props: EbookProps = {}) => {
                 key={button.id}
                 variant={button.variant}
                 size="medium"
-                iconLeft={
-                  button.icon ? (
-                    <Icon name={button.icon} size={18} />
-                  ) : undefined
-                }
+                iconLeft={button.icon}
                 className={styles.button}
                 onClick={button.onClick}
               >

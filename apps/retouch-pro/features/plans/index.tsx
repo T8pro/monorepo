@@ -234,7 +234,7 @@ export const Plans = () => {
         </div>
 
         <div className={styles.whatsappCta}>
-          <Button variant="whatsapp" size="large" iconLeft={<FaWhatsapp />}>
+          <Button variant="4" size="large" iconLeft="chat">
             Chat on WhatsApp
           </Button>
         </div>

@@ -1,3 +1,5 @@
+import { ButtonVariant, IconName } from '@t8pro/design-system';
+
 export type EbookProps = {
   title?: string;
   subtitle?: string;
@@ -9,7 +11,7 @@ export type EbookProps = {
 export type EbookButton = {
   id: string;
   text: string;
-  variant: 'primary' | 'outline';
-  icon?: string;
+  variant: ButtonVariant;
+  icon?: IconName;
   onClick?: () => void;
 };

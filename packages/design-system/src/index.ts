@@ -37,7 +37,8 @@ export { BeforeAfterSlider } from './components/before-after-slider/index.js';
 export type { BeforeAfterSliderProps } from './components/before-after-slider/index.js';
 
 export { Icon } from './components/icon/index.js';
-export type { IconProps } from './components/icon/index.js';
+export type { IconProps } from './components/icon/types.js';
+export type { IconName } from './components/icon/types.js';
 
 export { Text } from './components/text/index.js';
 export type {

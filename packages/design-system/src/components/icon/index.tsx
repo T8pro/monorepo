@@ -1,12 +1,5 @@
 import styles from './styles.module.scss';
-
-export type IconProps = {
-  name: string;
-  className?: string;
-  filled?: boolean;
-  size?: number | string;
-  style?: React.CSSProperties;
-};
+import { IconProps } from './types.js';
 
 export const Icon = ({
   name,

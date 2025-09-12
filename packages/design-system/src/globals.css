@@ -26,12 +26,10 @@ h2,
 h3,
 h4,
 h5,
-h6,
-button {
+h6 {
   line-height: var(--line-height-snug);
   font-weight: var(--font-weight-extrabold);
   font-family: var(--font-montserrat);
-  font-style: italic;
 }
 
 p {

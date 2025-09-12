@@ -33,9 +33,9 @@ export const Pricing = (props: PricingProps = {}) => {
               </div>
 
               <Button
-                variant="primary"
+                variant="1"
                 size="medium"
-                iconLeft={<Icon name="upload" size={18} />}
+                iconLeft="upload"
                 className={styles.cardButton}
                 onClick={card.onClick}
               >

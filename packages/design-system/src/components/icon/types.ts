@@ -1,4 +1,12 @@
-export type IconeName =
+export type IconProps = {
+  name: IconName;
+  className?: string;
+  filled?: boolean;
+  size?: number | string;
+  style?: React.CSSProperties;
+};
+
+export type IconName =
   | 'search'
   | 'home'
   | 'menu'
