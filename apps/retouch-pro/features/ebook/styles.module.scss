@@ -1,0 +1,173 @@
+.ebook {
+  min-height: 491px;
+  padding: var(--spacing-700) 0;
+  background: var(--color-secondary-invert);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-200);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-600);
+  width: 100%;
+}
+
+.ebookImage {
+  flex: 0 0 548px;
+  height: 395px;
+  position: relative;
+}
+
+.ebookImageElement {
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background: var(--color-gray-100);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-200);
+  border: 2px dashed var(--color-gray-300);
+}
+
+.placeholderIcon {
+  color: var(--color-gray-400);
+}
+
+.placeholderText {
+  color: var(--color-gray-500);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.ebookContent {
+  flex: 1;
+  max-width: 726px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-400);
+}
+
+.ebookTitle {
+  font-family: var(--font-montserrat);
+  font-size: 48px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-secondary);
+  line-height: 1.2;
+  margin: 0;
+  max-width: 726px;
+}
+
+.ebookSubtitle {
+  font-family: var(--font-montserrat);
+  font-size: 24px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-secondary);
+  margin: 0;
+  max-width: 418px;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: var(--spacing-200);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-300);
+}
+
+.button {
+  height: 40px;
+  border-radius: 4px;
+  font-family: var(--font-montserrat);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 24px;
+  transition: all 0.3s ease;
+
+  &[data-variant='outline'] {
+    background: transparent;
+    border: 1px solid var(--color-secondary);
+    color: var(--color-secondary);
+
+    &:hover {
+      background: var(--color-secondary);
+      color: var(--color-secondary-invert);
+    }
+  }
+
+  &[data-variant='primary'] {
+    background: #67a15a;
+    border: none;
+    color: var(--color-secondary-invert);
+
+    &:hover {
+      background: #5a8f4d;
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    gap: var(--spacing-500);
+    text-align: center;
+  }
+
+  .ebookImage {
+    flex: none;
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+  }
+
+  .ebookTitle {
+    font-size: 36px;
+  }
+
+  .ebookSubtitle {
+    font-size: 20px;
+  }
+
+  .buttonGroup {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .ebook {
+    padding: var(--spacing-500) 0;
+  }
+
+  .ebookTitle {
+    font-size: 28px;
+  }
+
+  .ebookSubtitle {
+    font-size: 18px;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .button {
+    width: 100%;
+    max-width: 280px;
+  }
+}

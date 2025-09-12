@@ -1025,11 +1025,11 @@ __metadata:
     clsx: "npm:^2.1.1"
     eslint: "npm:^9.34.0"
     gsap: "npm:^3.13.0"
+    material-symbols: "npm:^0.35.0"
     postcss: "npm:^8.4.31"
     postcss-modules: "npm:^6.0.1"
     react: "npm:^19.1.0"
     react-dom: "npm:^19.1.0"
-    react-icons: "npm:^5.5.0"
     sass: "npm:^1.92.1"
     tsup: "npm:^8.0.0"
     typescript: "npm:5.9.2"
@@ -1073,6 +1073,7 @@ __metadata:
     "@types/react": "npm:19.1.0"
     "@types/react-dom": "npm:19.1.1"
     eslint: "npm:^9.34.0"
+    material-symbols: "npm:^0.35.1"
     next: "npm:^15.5.0"
     ogl: "npm:^1.0.11"
     react: "npm:^19.1.0"
@@ -1099,7 +1100,6 @@ __metadata:
     next: "npm:^15.5.0"
     react: "npm:^19.1.0"
     react-dom: "npm:^19.1.0"
-    react-icons: "npm:^5.5.0"
     sass: "npm:^1.92.1"
     typescript: "npm:5.9.2"
   languageName: unknown
@@ -3408,6 +3408,13 @@ __metadata:
     promise-retry: "npm:^2.0.1"
     ssri: "npm:^12.0.0"
   checksum: 10c0/c40efb5e5296e7feb8e37155bde8eb70bc57d731b1f7d90e35a092fde403d7697c56fb49334d92d330d6f1ca29a98142036d6480a12681133a0a1453164cb2f0
+  languageName: node
+  linkType: hard
+
+"material-symbols@npm:^0.35.0, material-symbols@npm:^0.35.1":
+  version: 0.35.1
+  resolution: "material-symbols@npm:0.35.1"
+  checksum: 10c0/b3540605a3ff173709128a48dd858c69b3547673fc35b963d95bc84572fcad6f358ca20c070fe96aa9f4f9c93c84c4ec3539eda000bd781d36609bd0a2563615
   languageName: node
   linkType: hard
 

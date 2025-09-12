@@ -36,6 +36,9 @@ export type { ThemeToggleProps } from './components/theme-toggle/index.js';
 export { BeforeAfterSlider } from './components/before-after-slider/index.js';
 export type { BeforeAfterSliderProps } from './components/before-after-slider/index.js';
 
+export { Icon } from './components/icon/index.js';
+export type { IconProps } from './components/icon/index.js';
+
 export { Text } from './components/text/index.js';
 export type {
   TextProps,

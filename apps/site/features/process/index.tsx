@@ -16,7 +16,6 @@ export const Process = () => {
               color="primary"
               align="center"
               marginBottom="none"
-              uppercase
               italic
               letterSpacing="wider"
             >

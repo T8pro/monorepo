@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { JetBrains_Mono, Montserrat } from 'next/font/google';
 import '@t8pro/design-system/styles';
+import './global.css';
 import { Providers } from './providers';
 
 const montserrat = Montserrat({

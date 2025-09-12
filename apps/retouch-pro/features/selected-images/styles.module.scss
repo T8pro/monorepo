@@ -1,0 +1,114 @@
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.photoCard {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+  padding: 8px;
+  background: #cbd4c6;
+  border-radius: 16px;
+  height: 96px;
+  position: relative;
+}
+
+.placeholder {
+  background: rgba(203, 212, 198, 0.2);
+  border: 2px solid #cbd4c6;
+}
+
+.imageContainer {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholderIcon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(203, 212, 198, 0.2);
+  color: #67a15a;
+}
+
+.photoInfo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.photoName {
+  font-family: var(--font-montserrat);
+  font-size: 16px;
+  font-weight: var(--font-weight-medium);
+  color: #181a14;
+}
+
+.proButton {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 32px;
+  padding: 0 12px;
+  background: #67a15a;
+  border: none;
+  border-radius: 4px;
+  color: #cbd4c6;
+  font-family: var(--font-montserrat);
+  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &:hover {
+    background: #5a8f4d;
+  }
+}
+
+// Responsive design
+@media (max-width: 1024px) {
+  .imageGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .photoCard {
+    height: 80px;
+    gap: 16px;
+  }
+
+  .imageContainer {
+    width: 64px;
+    height: 64px;
+  }
+
+  .photoName {
+    font-size: 14px;
+  }
+
+  .proButton {
+    height: 28px;
+    padding: 0 8px;
+    font-size: 11px;
+  }
+}

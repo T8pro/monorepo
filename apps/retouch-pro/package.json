@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings 5",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@t8pro/design-system": "*",
+    "material-symbols": "^0.35.1",
     "next": "^15.5.0",
     "ogl": "^1.0.11",
     "react": "^19.1.0",

@@ -50,7 +50,7 @@
 .revenuePlan {
   position: relative;
   background: var(--color-white);
-  border-radius: var(--border-radius-xl);
+  border-radius: var(--radius-xl);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   padding: var(--spacing-200);
   border: 2px solid var(--color-gray-200);
@@ -93,14 +93,13 @@
   left: 50%;
   transform: translateX(-50%);
   padding: var(--spacing-100) var(--spacing-300);
-  border-radius: var(--border-radius-full);
+  border-radius: var(--radius-full);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-bold);
   display: flex;
   align-items: center;
   gap: var(--spacing-100);
   z-index: var(--z-10);
-  text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
@@ -129,7 +128,6 @@
   font-weight: var(--font-weight-bold);
   color: var(--color-gray-700);
   margin-bottom: var(--spacing-200);
-  text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
@@ -154,10 +152,9 @@
 .planButton {
   width: 100%;
   font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: var(--spacing-300) var(--spacing-400);
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--radius-lg);
   transition: all 0.3s ease;
 
   &:hover {
@@ -169,7 +166,7 @@
 .plan {
   position: relative;
   background: var(--color-white);
-  border-radius: var(--border-radius-xl);
+  border-radius: var(--radius-xl);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   padding: var(--spacing-500);
   border: 2px solid var(--color-gray-200);
@@ -239,7 +236,7 @@
     background: var(--color-success);
     color: var(--color-white);
     padding: var(--spacing-50) var(--spacing-100);
-    border-radius: var(--border-radius-sm);
+    border-radius: var(--radius-sm);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-semibold);
   }
@@ -289,7 +286,7 @@
     var(--color-success-100) 100%
   );
   border: 2px solid var(--color-success);
-  border-radius: var(--border-radius-xl);
+  border-radius: var(--radius-xl);
   padding: var(--spacing-500);
   max-width: 48rem;
   text-align: center;

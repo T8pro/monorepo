@@ -50,7 +50,7 @@ export const BeforeAfter = () => {
           as="h2"
           size="4xl"
           weight="black"
-          color="secondary-invert"
+          color="secondary"
           align="center"
           marginBottom="3xl"
         >

@@ -42,24 +42,12 @@ export type TerminalConfig = {
   background: string;
 };
 
-export type DragDropState = {
-  isDragOver: boolean;
-  isDragActive: boolean;
-  dragCounter: number;
-};
-
 export type UseHeroReturn = {
   content: HeroContent;
   trustBadges: TrustBadge[];
   terminalConfig: TerminalConfig;
   theme: string;
-  splitTitle: (title: string) => { firstPart: string; secondPart: string };
-  dragDropState: DragDropState;
-  handleDragEnter: (e: React.DragEvent) => void;
-  handleDragLeave: (e: React.DragEvent) => void;
-  handleDragOver: (e: React.DragEvent) => void;
-  handleDrop: (e: React.DragEvent) => void;
   handleFileSelect: (files: FileList | null) => void;
   handleClick: () => void;
-  fileInputRef: React.RefObject<HTMLInputElement>;
+  fileInputRef: React.RefObject<HTMLInputElement | null>;
 };

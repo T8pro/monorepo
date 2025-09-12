@@ -1,4 +1,6 @@
-export const Logo = () => {
+import { HTMLAttributes } from 'react';
+
+export const Logo = (props: HTMLAttributes<SVGSVGElement>) => {
   return (
     <svg
       width="234"
@@ -6,6 +8,7 @@ export const Logo = () => {
       viewBox="0 0 234 22"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <g clipPath="url(#clip0_28_81)">
         <path

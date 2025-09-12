@@ -1,4 +1,6 @@
 /* Design System Tokens */
+@import 'material-symbols';
+@import 'material-symbols/outlined.css';
 
 :root {
   /* Colors - Primary & Secondary */

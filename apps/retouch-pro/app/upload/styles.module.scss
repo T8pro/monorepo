@@ -1,125 +1,194 @@
 .uploadPage {
-  min-height: 100vh;
-  padding: var(--spacing-400) 0;
-  background: var(--color-secondary-invert);
+  min-height: 920px;
+  background: #181a14;
+  padding: 24px 0;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1366px;
   margin: 0 auto;
-  padding: 0 var(--spacing-200);
+  padding: 0 143px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .header {
-  text-align: center;
-  margin-bottom: var(--spacing-500);
-}
-
-.emptyState {
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: var(--spacing-400);
+  height: 40px;
 }
 
-.photosGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: var(--spacing-300);
-  margin-bottom: var(--spacing-500);
-}
-
-.photoItem {
-  position: relative;
-  background: var(--color-white);
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-  }
-}
-
-.photoPreview {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  display: block;
-}
-
-.photoInfo {
-  padding: var(--spacing-200);
-}
-
-.photoName {
-  display: block;
-  margin-bottom: var(--spacing-100);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.removeButton {
-  position: absolute;
-  top: var(--spacing-100);
-  right: var(--spacing-100);
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
+.selectedInfo {
   display: flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  gap: 9px;
+  height: 22px;
+}
 
-  &:hover {
-    background: var(--color-error);
-    color: var(--color-white);
-  }
+.icon {
+  font-size: 18px;
+  color: #67a15a;
+}
+
+.text {
+  font-family: var(--font-montserrat);
+  font-size: 16px;
+  font-weight: var(--font-weight-regular);
+  color: #cbd4c6;
 }
 
 .actions {
   display: flex;
-  gap: var(--spacing-300);
-  justify-content: center;
-  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
 }
 
-.uploadButton {
+.outlineButton {
   display: flex;
   align-items: center;
-  gap: var(--spacing-200);
+  gap: 8px;
+  padding: 9px 24px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid #67a15a;
+  border-radius: 4px;
+  color: #cbd4c6;
+  font-family: var(--font-montserrat);
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all 0.3s ease;
 
-  svg {
-    font-size: 1.2em;
+  &:hover {
+    background: rgba(103, 161, 90, 0.1);
+  }
+}
+
+.primaryButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 24px;
+  height: 40px;
+  background: #67a15a;
+  border: none;
+  border-radius: 4px;
+  color: #181a14;
+  font-family: var(--font-montserrat);
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #5a8f4d;
+  }
+}
+
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  min-height: 662px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 122px;
+  gap: 175px;
+}
+
+.packageInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  width: 436px;
+}
+
+.packageDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.packageTitle {
+  font-family: var(--font-montserrat);
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+  color: #cbd4c6;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.packagePrice {
+  font-family: var(--font-montserrat);
+  font-size: 14px;
+  font-weight: var(--font-weight-regular);
+  color: #cbd4c6;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.pricingActions {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  height: 40px;
+}
+
+.discountPrice {
+  font-family: var(--font-montserrat);
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  color: #cbd4c6;
+}
+
+// Responsive design
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 var(--spacing-200);
+  }
+
+  .imageGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    height: auto;
+  }
+
+  .packageInfo {
+    width: 100%;
+  }
+
+  .pricingActions {
+    justify-content: space-between;
   }
 }
 
 @media (max-width: 768px) {
-  .photosGrid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: var(--spacing-200);
+  .header {
+    flex-direction: column;
+    gap: 16px;
+    height: auto;
   }
 
   .actions {
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
+    justify-content: center;
   }
 
-  .uploadButton,
-  .actions button {
-    width: 100%;
-    max-width: 300px;
+  .outlineButton,
+  .primaryButton {
+    flex: 1;
+    justify-content: center;
   }
 }
-

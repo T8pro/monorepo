@@ -1,4 +1,4 @@
-import { Card, Heading, Text } from '@t8pro/design-system';
+import { Card, Heading, Text, Icon } from '@t8pro/design-system';
 import { ADDITIONAL_SERVICES, SERVICES } from './constants';
 import styles from './styles.module.scss';
 
@@ -14,7 +14,6 @@ export const Services = () => {
             color="secondary"
             align="center"
             marginBottom="none"
-            uppercase
             italic
             letterSpacing="wider"
           >
@@ -24,15 +23,15 @@ export const Services = () => {
 
         <div className={styles.mainServices}>
           {SERVICES.map((service, index) => {
-            const Icon = service.icon;
-
             return (
               <Card
                 key={index}
                 variant="service"
                 className={styles.serviceCard}
               >
-                <div className={styles.serviceIcon}>{<Icon />}</div>
+                <div className={styles.serviceIcon}>
+                  <Icon name={service.icon} size={32} />
+                </div>
                 <Heading
                   as="h3"
                   size="base"
@@ -52,11 +51,11 @@ export const Services = () => {
 
         <div className={styles.additionalServices}>
           {ADDITIONAL_SERVICES.map((service, index) => {
-            const Icon = service.icon;
-
             return (
               <div key={index} className={styles.additionalService}>
-                <div className={styles.additionalIcon}>{<Icon />}</div>
+                <div className={styles.additionalIcon}>
+                  <Icon name={service.icon} size={24} />
+                </div>
                 <div className={styles.additionalContent}>
                   <Text className={styles.additionalLine}>
                     <strong>{service.title}: </strong>

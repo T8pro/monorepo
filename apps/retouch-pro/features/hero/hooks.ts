@@ -1,15 +1,9 @@
-import { useState, useCallback, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTheme } from '@t8pro/design-system';
 import { usePhotos } from '../../contexts/photos-upload/context';
-import type {
-  HeroContent,
-  TerminalConfig,
-  UseHeroReturn,
-  DragDropState,
-} from './types';
+import type { HeroContent, TerminalConfig, UseHeroReturn } from './types';
 import { DEFAULT_HERO_CONTENT, TRUST_BADGES } from './constants';
-import { splitTitle } from './utils';
 
 /**
  * Custom hook for Hero component logic
@@ -26,12 +20,6 @@ export const useHero = (
 
   const content: HeroContent = { ...DEFAULT_HERO_CONTENT, ...customContent };
   const trustBadges = TRUST_BADGES;
-
-  const [dragDropState, setDragDropState] = useState<DragDropState>({
-    isDragOver: false,
-    isDragActive: false,
-    dragCounter: 0,
-  });
 
   const terminalConfig: TerminalConfig = {
     scale: 3,
@@ -80,9 +68,9 @@ export const useHero = (
 
   const processFiles = useCallback(
     (files: File[]) => {
-      if (files.length === 0) return;
+      if (files && files.length === 0) return;
 
-      const validFiles = validateFiles(files as any);
+      const validFiles = validateFiles(files as unknown as FileList);
       if (validFiles.length > 0) {
         addPhotos(validFiles);
         router.push('/upload');
@@ -103,68 +91,11 @@ export const useHero = (
     fileInputRef.current?.click();
   }, []);
 
-  const handleDragEnter = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    setDragDropState(prev => ({
-      ...prev,
-      dragCounter: prev.dragCounter + 1,
-      isDragOver: true,
-      isDragActive: true,
-    }));
-  }, []);
-
-  const handleDragLeave = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    setDragDropState(prev => {
-      const newCounter = prev.dragCounter - 1;
-      return {
-        ...prev,
-        dragCounter: newCounter,
-        isDragOver: newCounter > 0,
-        isDragActive: newCounter > 0,
-      };
-    });
-  }, []);
-
-  const handleDragOver = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-  }, []);
-
-  const handleDrop = useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      setDragDropState({
-        isDragOver: false,
-        isDragActive: false,
-        dragCounter: 0,
-      });
-
-      const files = e.dataTransfer.files;
-      if (files && files.length > 0) {
-        handleFileSelect(files);
-      }
-    },
-    [handleFileSelect],
-  );
-
   return {
     content,
     trustBadges,
     terminalConfig,
     theme,
-    splitTitle,
-    dragDropState,
-    handleDragEnter,
-    handleDragLeave,
-    handleDragOver,
-    handleDrop,
     handleFileSelect,
     handleClick,
     fileInputRef,

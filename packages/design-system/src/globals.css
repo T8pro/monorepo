@@ -1,4 +1,3 @@
-/* Global styles reset and base */
 * {
   box-sizing: border-box;
   padding: 0;
@@ -33,7 +32,6 @@ button {
   font-weight: var(--font-weight-extrabold);
   font-family: var(--font-montserrat);
   font-style: italic;
-  text-transform: uppercase;
 }
 
 p {

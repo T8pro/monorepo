@@ -1,91 +1,58 @@
-'use client';
-
-import { usePhotos } from '../../contexts/photos-upload/context';
-import { Button, Heading, Text } from '@t8pro/design-system';
-import { FaTrash, FaUpload } from 'react-icons/fa';
+import { SelectedImages } from '@/features/selected-images';
+import { Upload } from '@/features/upload';
 import styles from './styles.module.scss';
-import Image from 'next/image';
 
 export default function UploadPage() {
-  const { photos, removePhoto, clearPhotos } = usePhotos();
-
-  if (photos.length === 0) {
-    return (
-      <div className={styles.emptyState}>
-        <Heading as="h1" size="2xl" align="center">
-          No photos selected
-        </Heading>
-        <Text align="center" marginTop="base">
-          Please go back to the home page to select your photos.
-        </Text>
-        <Button
-          variant="primary"
-          size="large"
-          onClick={() => window.history.back()}
-        >
-          Go Back
-        </Button>
-      </div>
-    );
-  }
-
   return (
-    <div className={styles.uploadPage}>
+    <main id="upload" className={styles.uploadPage}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <Heading as="h1" size="3xl">
-            Upload Photos
-          </Heading>
-          <Text color="gray-900">
-            {photos.length} photo{photos.length !== 1 ? 's' : ''} selected
-          </Text>
+          <div className={styles.selectedInfo}>
+            <span className={styles.icon}>🛒</span>
+            <span className={styles.text}>Você selecionou de 10 fotos</span>
+          </div>
+          <div className={styles.actions}>
+            <button className={styles.outlineButton}>
+              <span className={styles.icon}>📤</span>
+              <span>Be Pro</span>
+            </button>
+            <button className={styles.primaryButton}>
+              <span className={styles.icon}>📤</span>
+              <span>Be Pro</span>
+            </button>
+          </div>
         </div>
 
-        <div className={styles.photosGrid}>
-          {photos.map(photo => (
-            <div key={photo.id} className={styles.photoItem}>
-              <Image
-                src={photo.preview}
-                alt={photo.name}
-                className={styles.photoPreview}
-                width={250}
-                height={200}
-              />
-              <div className={styles.photoInfo}>
-                <Text size="sm" weight="semibold" className={styles.photoName}>
-                  {photo.name}
-                </Text>
-                <Text size="xs" color="gray-700">
-                  {(photo.size / 1024 / 1024).toFixed(2)} MB
-                </Text>
-              </div>
-              <Button
-                variant="outline"
-                size="small"
-                onClick={() => removePhoto(photo.id)}
-                className={styles.removeButton}
-                aria-label={`Remove ${photo.name}`}
-              >
-                <FaTrash />
-              </Button>
+        <div className={styles.imageGrid}>
+          <SelectedImages />
+        </div>
+
+        <div className={styles.footer}>
+          <div className={styles.packageInfo}>
+            <div className={styles.packageDetails}>
+              <h3 className={styles.packageTitle}>
+                Pacote selecionado: Quick Fix: até 12 unidades
+              </h3>
+              <p className={styles.packagePrice}>
+                Valor unitário: R$10 - Valor total: R$ 200
+              </p>
             </div>
-          ))}
-        </div>
-
-        <div className={styles.actions}>
-          <Button variant="outline" size="large" onClick={clearPhotos}>
-            Clear All
-          </Button>
-          <Button
-            variant="primary"
-            size="large"
-            className={styles.uploadButton}
-          >
-            <FaUpload />
-            Upload Photos
-          </Button>
+            <button className={styles.outlineButton}>
+              <span className={styles.icon}>📤</span>
+              <span>Be Pro</span>
+            </button>
+          </div>
+          <div className={styles.pricingActions}>
+            <span className={styles.discountPrice}>
+              Valor com desconto: R$ 180
+            </span>
+            <button className={styles.primaryButton}>
+              <span className={styles.icon}>📤</span>
+              <span>Be Pro</span>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

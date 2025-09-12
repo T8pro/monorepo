@@ -1,5 +1,4 @@
-import { RiGeminiFill } from 'react-icons/ri';
-import { Button } from '@t8pro/design-system';
+import { Button, Icon } from '@t8pro/design-system';
 import { TextType } from '@/components/gsap/text-type';
 import styles from './styles.module.scss';
 
@@ -19,7 +18,7 @@ export const TerminalAnimated = () => {
       />
 
       <Button
-        iconLeft={<RiGeminiFill />}
+        iconLeft={<Icon name="auto_awesome" size={20} />}
         variant="secondary"
         size="large"
         className={styles.cta}

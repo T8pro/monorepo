@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { HiSun, HiMoon, HiComputerDesktop } from 'react-icons/hi2';
 import { useTheme } from '../../contexts/theme.js';
 import { Button } from '../button/index.js';
+import { Icon } from '../icon/index.js';
 import styles from './styles.module.scss';
 
 export interface ThemeToggleProps {
@@ -17,8 +17,12 @@ export const ThemeToggle = ({
   const { theme, resolvedTheme, toggleTheme } = useTheme();
 
   const getIcon = () => {
-    if (theme === 'system') return <HiComputerDesktop />;
-    return resolvedTheme === 'dark' ? <HiMoon /> : <HiSun />;
+    if (theme === 'system') return <Icon name="computer" size={20} />;
+    return resolvedTheme === 'dark' ? (
+      <Icon name="dark_mode" size={20} />
+    ) : (
+      <Icon name="light_mode" size={20} />
+    );
   };
 
   const currentTheme = useMemo(() => {

@@ -1,12 +1,13 @@
 import type { HeroContent, TrustBadge } from './types';
 
 export const DEFAULT_HERO_CONTENT: HeroContent = {
-  title: 'Transform your common photos into professional photos.',
-  subtitle: 'No matter how it was taken!',
-  ctaText: 'SELECT YOUR PHOTOS',
+  title:
+    'Transforme suas fotos comuns em fotos profissionais. Não importa como foi tirada!',
+  subtitle: '',
+  ctaText: 'Selecione suas fotos',
   ctaIcon: 'FaImage',
-  ctaSubtext: 'You can send up to 24 photos at once',
-  secondaryCtaText: "See what's possible to do",
+  ctaSubtext: 'Você pode enviar até 24 fotos de uma vez',
+  secondaryCtaText: 'Veja o que é possível fazer',
   whatsappButtonText: 'Chat on WhatsApp',
   businessHours: 'Business hours: Mon-Fri 9am-6pm EST',
   dragDropText: 'Drag and drop your photos here or click to select',

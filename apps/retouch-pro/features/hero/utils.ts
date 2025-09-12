@@ -27,32 +27,19 @@ export const splitTitle = (
   };
 };
 
-import {
-  FaClock,
-  FaShieldAlt,
-  FaFileContract,
-  FaFlag,
-  FaStore,
-} from 'react-icons/fa';
-
 /**
- * Maps icon string names to actual React components
+ * Maps icon string names to Material Symbols names
  * @param iconName - String name of the icon
- * @returns React component or null
+ * @returns Material Symbols name or null
  */
-export const getIconComponent = (iconName: string) => {
-  switch (iconName) {
-    case 'FaClock':
-      return FaClock;
-    case 'FaShieldAlt':
-      return FaShieldAlt;
-    case 'FaFileContract':
-      return FaFileContract;
-    case 'FaFlag':
-      return FaFlag;
-    case 'FaStore':
-      return FaStore;
-    default:
-      return null;
-  }
+export const getIconName = (iconName: string): string | null => {
+  const iconMap: Record<string, string> = {
+    FaClock: 'schedule',
+    FaShieldAlt: 'security',
+    FaFileContract: 'description',
+    FaFlag: 'flag',
+    FaStore: 'store',
+  };
+
+  return iconMap[iconName] || null;
 };

@@ -1,5 +1,4 @@
-import { Button, Heading, Text } from '@t8pro/design-system';
-import { FaCloudUploadAlt } from 'react-icons/fa';
+import { Button, Heading, Text, Icon } from '@t8pro/design-system';
 import styles from './styles.module.scss';
 
 export const Upload = () => {
@@ -17,7 +16,7 @@ export const Upload = () => {
           Upload Your Photos
         </Heading>
         <div className={styles.uploadArea}>
-          <FaCloudUploadAlt />
+          <Icon name="cloud_upload" size={48} />
           <Heading
             as="h3"
             size="xl"

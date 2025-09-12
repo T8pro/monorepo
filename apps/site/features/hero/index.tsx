@@ -16,7 +16,6 @@ export const Hero = () => {
               color="secondary"
               lineHeight="tight"
               marginBottom="lg"
-              uppercase
               letterSpacing="wide"
             >
               <span className={styles.creative}>CREATIVE SOLUTIONS</span>

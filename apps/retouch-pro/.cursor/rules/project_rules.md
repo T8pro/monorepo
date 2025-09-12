@@ -295,7 +295,6 @@ yarn format
 - `next`: ^15.5.0
 - `react`: ^19.1.0
 - `react-dom`: ^19.1.0
-- `react-icons`: ^5.5.0 (Font Awesome icons)
 - `ogl`: ^1.0.11 (WebGL library)
 - `sass`: ^1.92.1 (SCSS compilation)
 

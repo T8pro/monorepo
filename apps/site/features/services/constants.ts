@@ -1,28 +1,18 @@
-import {
-  PiBuilding,
-  PiCamera,
-  PiComputerTower,
-  PiTarget,
-  PiUserSwitch,
-  PiGear,
-  PiRobot,
-} from 'react-icons/pi';
-
 export const SERVICES = [
   {
-    icon: PiUserSwitch,
+    icon: 'person_switch',
     title: 'Branding & Design',
     description:
       'Identity, design systems, UI/UX, guidelines, design operations',
   },
   {
-    icon: PiComputerTower,
+    icon: 'computer',
     title: 'Web & App',
     description:
       'React/Next.js, TypeScript, APIs, headless CMS, accessibility & performance',
   },
   {
-    icon: PiBuilding,
+    icon: 'business',
     title: 'Employee Communications',
     description: '(Endomarketing): internal campaigns, onboarding, intranet',
   },
@@ -30,25 +20,25 @@ export const SERVICES = [
 
 export const ADDITIONAL_SERVICES = [
   {
-    icon: PiCamera,
+    icon: 'camera_alt',
     title: 'Content (Photo/Video)',
     description:
       'product shoots, brand films, post-production, motion graphics',
   },
   {
-    icon: PiTarget,
+    icon: 'track_changes',
     title: 'Marketing',
     description:
       'campaigns, landing pages, SEO/ASO, paid media assets, email/SMS',
   },
   {
-    icon: PiRobot,
+    icon: 'smart_toy',
     title: 'AI',
     description:
       'content copilots, data-aware assistants, image/video generation, workflow agents',
   },
   {
-    icon: PiGear,
+    icon: 'settings',
     title: 'Automation & Integrations',
     description: 'HubSpot, Salesforce, GA4, Meta/Google Ads, PayPal, and more',
   },

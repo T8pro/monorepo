@@ -1,80 +1,55 @@
 'use client';
 
-import { useRef } from 'react';
-import { Button, Heading, Text, ThemeToggle } from '@t8pro/design-system';
-import { FaWhatsapp, FaImage } from 'react-icons/fa';
+import { ThemeToggle, Icon, Heading, Button, Text } from '@t8pro/design-system';
 import styles from './styles.module.scss';
-import { Logo } from '@/components/logo';
-import { FaultyTerminal } from '@/components/faulty-terminal';
 import type { HeroProps } from './types';
 import { useHero } from './hooks';
-import { getIconComponent } from './utils';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export const Hero = (props: HeroProps) => {
-  const {
-    content,
-    trustBadges,
-    terminalConfig,
-    splitTitle,
-    dragDropState,
-    handleDragEnter,
-    handleDragLeave,
-    handleDragOver,
-    handleDrop,
-    handleFileSelect,
-    handleClick,
-    fileInputRef,
-  } = useHero(props);
-  const { firstPart, secondPart } = splitTitle(content.title);
+  const { content, handleFileSelect, handleClick, fileInputRef } =
+    useHero(props);
+  const router = useRouter();
 
   return (
     <section className={styles.hero}>
       <div className={styles.container}>
         <ThemeToggle className={styles.themeToggle} />
 
-        <div className={styles.logoContainer}>
-          <Logo />
-        </div>
+        <div className={styles.heroContent}>
+          <div className={styles.contentFrame}>
+            <Icon name="image" size={48} className={styles.heroIcon} />
 
-        {/* Drag and Drop Area */}
-        <div
-          className={`${styles.dragDropArea} ${
-            dragDropState.isDragOver ? styles['dragDropArea--dragOver'] : ''
-          } ${dragDropState.isDragActive ? styles['dragDropArea--active'] : ''}`}
-          onDragEnter={handleDragEnter}
-          onDragLeave={handleDragLeave}
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
-          onClick={handleClick}
-          role="button"
-          tabIndex={0}
-          aria-label="Upload photos"
-        >
-          <div className={styles.dragDropContent}>
-            <FaImage className={styles.dragDropIcon} />
+            <Heading as="h1" className={styles.heroTitle} weight="bold">
+              {content.title}
+            </Heading>
 
-            <div>
-              <h2 className={styles.dragDropTitle}>{firstPart}</h2>
-              <h3 className={styles.dragDropSubtitle}>{secondPart}</h3>
-            </div>
-
-            <Link href="/#before-after" className={styles.dragDropLink}>
+            <Link
+              href="/#before-after"
+              className={styles.secondaryLink}
+              onClick={e => {
+                e.preventDefault();
+                e.stopPropagation();
+                router.push('/#before-after');
+              }}
+            >
               {content.secondaryCtaText}
             </Link>
 
-            <button
+            <Button
               type="button"
-              className={styles.dragDropButton}
+              size="large"
+              iconLeft={<Icon name="upload" size={24} />}
               onClick={e => {
                 e.stopPropagation();
                 handleClick();
               }}
             >
               {content.ctaText}
-            </button>
+            </Button>
 
-            <p className={styles.dragDropHint}>{content.ctaSubtext}</p>
+            <Text className={styles.heroSubtext}>{content.ctaSubtext}</Text>
           </div>
 
           <input
@@ -87,23 +62,7 @@ export const Hero = (props: HeroProps) => {
             aria-label="Select photos to upload"
           />
         </div>
-
-        <div className={styles.trustBadges}>
-          {trustBadges.map((badge, index) => {
-            const IconComponent = getIconComponent(badge.icon);
-            return (
-              <div key={index} className={styles.badge}>
-                {IconComponent && (
-                  <IconComponent style={{ color: badge.color }} />
-                )}
-                {badge.text}
-              </div>
-            );
-          })}
-        </div>
       </div>
-
-      <FaultyTerminal {...terminalConfig} />
     </section>
   );
 };

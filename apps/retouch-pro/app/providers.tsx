@@ -1,3 +1,5 @@
+'use client';
+
 import { PhotoProvider } from '@/contexts/photos-upload/context';
 import { ThemeProvider } from '@t8pro/design-system';
 

@@ -1,5 +1,4 @@
-import { GrTechnology } from 'react-icons/gr';
-import { Button, Logo, ThemeToggle } from '@t8pro/design-system';
+import { Button, Logo, ThemeToggle, Icon } from '@t8pro/design-system';
 import { StaggeredMenu } from '../gsap/staggered-menu';
 import styles from './styles.module.scss';
 
@@ -14,7 +13,11 @@ export const Header = ({ onCtaClick }: HeaderProps) => {
         <Logo variant="header" size="medium" />
 
         <div className={styles.secondary}>
-          <Button size="large" onClick={onCtaClick} iconLeft={<GrTechnology />}>
+          <Button
+            size="large"
+            onClick={onCtaClick}
+            iconLeft={<Icon name="build" size={20} />}
+          >
             BE PRO!
           </Button>
 
