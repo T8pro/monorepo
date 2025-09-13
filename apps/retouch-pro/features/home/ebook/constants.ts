@@ -1,9 +1,9 @@
 import type { EbookButton } from './types';
 
 export const DEFAULT_EBOOK_CONTENT = {
-  title: 'Tenha conhecimento de como as fotos podem melhorar suas vendas',
-  subtitle: 'Faça o download GRÁTIS E-book',
-  imageAlt: 'E-book sobre fotos para vendas',
+  title: 'Learn how photos can improve your sales',
+  subtitle: 'Download FREE E-book',
+  imageAlt: 'E-book about photos for sales',
 };
 
 export const EBOOK_BUTTONS: EbookButton[] = [
@@ -21,7 +21,7 @@ export const EBOOK_BUTTONS: EbookButton[] = [
   },
   {
     id: 'download-now',
-    text: 'Baixar Agora',
+    text: 'Download Now',
     variant: '3',
     icon: 'download',
   },

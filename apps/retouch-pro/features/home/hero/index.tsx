@@ -27,15 +27,15 @@ export const Hero = () => {
                 stroke="var(--color-secondary)"
                 strokeWidth="2"
                 strokeDasharray="16 16"
-                rx="16"
-                ry="16"
+                rx="0"
+                ry="0"
               />
             </svg>
 
             <Icon name="image" size={48} className={styles.heroIcon} />
 
             <Heading as="h1" className={styles.heroTitle} weight="bold">
-              Transforme suas fotos comuns em fotos profissionais.
+              Transform your ordinary photos into professional photos.
             </Heading>
 
             <Link
@@ -47,7 +47,7 @@ export const Hero = () => {
                 router.push('/#before-after');
               }}
             >
-              Veja o que é possível fazer
+              See what&apos;s possible
             </Link>
 
             <Button
@@ -60,11 +60,11 @@ export const Hero = () => {
                 handleClick();
               }}
             >
-              Selecione suas fotos
+              Select your photos
             </Button>
 
             <Text className={styles.heroSubtext}>
-              Você pode enviar até 24 fotos de uma vez
+              You can send up to 24 photos at once
             </Text>
           </div>
 

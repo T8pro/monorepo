@@ -81,23 +81,14 @@
 }
 
 .label {
-  background: rgb(from var(--color-black) r g b / 0.7);
-  color: var(--color-white);
   padding: var(--spacing-100) var(--spacing-150);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-lg);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   letter-spacing: 0.5px;
   backdrop-filter: blur(4px);
-  mix-blend-mode: difference;
-}
-
-// Dark theme adjustments
-:global(.dark) .container {
-  background: var(--color-gray-800);
-}
-
-:global(.dark) .label {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--color-white);
+  background-color: rgb(from var(--color-black) r g b / 0.2);
+  transition: color 0.2s ease;
+  color: var(--color-black);
+  mix-blend-mode: normal;
 }

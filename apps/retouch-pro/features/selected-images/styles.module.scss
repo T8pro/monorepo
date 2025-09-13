@@ -1,8 +1,15 @@
+.container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
 .imageGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   width: 100%;
+  padding: var(--spacing-900) var(--spacing-200);
 }
 
 .photoCard {

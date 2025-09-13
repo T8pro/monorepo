@@ -17,4 +17,5 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   iconRight?: IconName;
   theme?: ButtonTheme;
   style?: ButtonStyle;
+  fullWidth?: boolean;
 };

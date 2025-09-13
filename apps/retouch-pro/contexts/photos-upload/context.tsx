@@ -1,3 +1,5 @@
+'use client';
+
 import { createContext, useCallback, useContext, useReducer } from 'react';
 import { INITIAL_STATE } from './constants';
 import { Photo, PhotoContextValues, PhotoProviderProps } from './types';
@@ -62,7 +64,7 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
   );
 };
 
-export const usePhotos = (): PhotoContextValues => {
+export const usePhotosContext = (): PhotoContextValues => {
   const context = useContext(PhotoContext);
 
   if (context === undefined) {

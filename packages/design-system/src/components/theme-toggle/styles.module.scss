@@ -15,11 +15,3 @@
     display: none;
   }
 }
-
-// Dark theme adjustments
-:global(.dark) .themeToggle {
-  &:hover {
-    background-color: var(--color-gray-800);
-  }
-}
-

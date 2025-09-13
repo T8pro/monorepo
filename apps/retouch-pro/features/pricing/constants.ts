@@ -1,7 +1,7 @@
 import type { PricingCard } from './types';
 
 export const DEFAULT_PRICING_CONTENT = {
-  title: 'COMO FUNCIONAM OS PREÇOS',
+  title: 'HOW PRICING WORKS',
 };
 
 export const PRICING_CARDS: PricingCard[] = [

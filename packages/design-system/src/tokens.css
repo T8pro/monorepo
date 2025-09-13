@@ -8,13 +8,13 @@
   --color-primary-light: #88b87d;
   --color-primary-dark: #457a3e;
 
-  --color-secondary: #20231c;
-  --color-secondary-light: #3b4237;
-  --color-secondary-dark: #0c0d0c;
+  --color-secondary: #cbd4c6;
+  --color-secondary-light: #a4ae9f;
+  --color-secondary-dark: #eff3ed;
 
-  --color-secondary-invert: #cbd4c6;
-  --color-secondary-invert-light: #a4ae9f;
-  --color-secondary-invert-dark: #eff3ed;
+  --color-secondary-invert: #20231c;
+  --color-secondary-invert-light: #3b4237;
+  --color-secondary-invert-dark: #0c0d0c;
 
   /* Semantic Colors */
   --color-informative: #3b82f6;
@@ -34,7 +34,7 @@
   --color-attention-dark: #d97706;
 
   /* Neutral Colors */
-  --color-white: #ffffff;
+  --color-white: #dcdcdc;
   --color-gray-50: #f9fafb;
   --color-gray-100: #f3f4f6;
   --color-gray-200: #e5e7eb;
@@ -45,7 +45,7 @@
   --color-gray-700: #374151;
   --color-gray-800: #1f2937;
   --color-gray-900: #111827;
-  --color-black: #000000;
+  --color-black: #181818;
 
   /* Font Families */
   --font-primary: 'Montserrat', sans-serif;
@@ -157,54 +157,4 @@
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
-}
-
-/* Dark Theme Overrides */
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    --color-secondary: #cbd4c6;
-    --color-secondary-light: #a4ae9f;
-    --color-secondary-dark: #eff3ed;
-
-    --color-secondary-invert: #20231c;
-    --color-secondary-invert-light: #3b4237;
-    --color-secondary-invert-dark: #0c0d0c;
-
-    --color-black: #dcdcdc;
-    --color-gray-900: #f9fafb;
-    --color-gray-800: #f3f4f6;
-    --color-gray-700: #e5e7eb;
-    --color-gray-600: #d1d5db;
-    --color-gray-500: #9ca3af;
-    --color-gray-400: #6b7280;
-    --color-gray-300: #4b5563;
-    --color-gray-200: #374151;
-    --color-gray-100: #1f2937;
-    --color-gray-50: #111827;
-    --color-white: #181818;
-  }
-}
-
-/* Manual Dark Theme */
-.dark {
-  --color-secondary: #cbd4c6;
-  --color-secondary-light: #a4ae9f;
-  --color-secondary-dark: #eff3ed;
-
-  --color-secondary-invert: #20231c;
-  --color-secondary-invert-light: #3b4237;
-  --color-secondary-invert-dark: #0c0d0c;
-
-  --color-black: #dcdcdc;
-  --color-gray-900: #f9fafb;
-  --color-gray-800: #f3f4f6;
-  --color-gray-700: #e5e7eb;
-  --color-gray-600: #d1d5db;
-  --color-gray-500: #9ca3af;
-  --color-gray-400: #6b7280;
-  --color-gray-300: #4b5563;
-  --color-gray-200: #374151;
-  --color-gray-100: #1f2937;
-  --color-gray-50: #111827;
-  --color-white: #181818;
 }

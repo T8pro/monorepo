@@ -47,5 +47,11 @@ export type {
   TextMargin,
 } from './components/text/types.js';
 
+export { EmptyState } from './components/empty-state/index.js';
+export type {
+  EmptyStateProps,
+  EmptyStateSize,
+} from './components/empty-state/types.js';
+
 // Hooks
 export { useTheme, ThemeProvider, useThemeContext } from './contexts/theme.js';

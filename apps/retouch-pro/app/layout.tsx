@@ -3,6 +3,8 @@ import { JetBrains_Mono, Montserrat } from 'next/font/google';
 import '@t8pro/design-system/styles';
 import './global.css';
 import { Providers } from './providers';
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -33,7 +35,11 @@ export default function RootLayout({
         className={montserrat.variable + ' ' + jetBrainsMono.variable}
         style={{ backgroundColor: 'var(--color-secondary-invert)' }}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

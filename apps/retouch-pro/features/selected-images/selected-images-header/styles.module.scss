@@ -1,0 +1,92 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 40px;
+  padding: 0 var(--spacing-200);
+  background: transparent;
+  border-bottom: 1px solid rgba(203, 212, 198, 0.2);
+  margin-bottom: var(--spacing-200);
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+  flex: 1;
+}
+
+.icon {
+  font-size: 18px;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.text {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-secondary);
+  line-height: var(--line-height-normal);
+  white-space: nowrap;
+
+  &.textLimit {
+    color: var(--color-attention);
+    font-weight: var(--font-weight-semibold);
+  }
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-200);
+  flex-shrink: 0;
+}
+
+.beProButton {
+  min-width: 120px;
+  height: 40px;
+}
+
+.processButton {
+  min-width: 120px;
+  height: 40px;
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    height: auto;
+    gap: var(--spacing-200);
+    padding: var(--spacing-200) 0;
+  }
+
+  .leftSection {
+    justify-content: center;
+  }
+
+  .rightSection {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .beProButton,
+  .processButton {
+    flex: 1;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .text {
+    font-size: var(--font-size-sm);
+  }
+
+  .beProButton,
+  .processButton {
+    font-size: var(--font-size-sm);
+    padding: 0 var(--spacing-150);
+  }
+}

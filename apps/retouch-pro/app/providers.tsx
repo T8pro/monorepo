@@ -6,7 +6,7 @@ import { PhotoProvider } from '@/contexts/photos-upload/context';
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <ThemeProvider>
-      <PhotoProvider> {children}</PhotoProvider>
+      <PhotoProvider>{children}</PhotoProvider>
     </ThemeProvider>
   );
 };

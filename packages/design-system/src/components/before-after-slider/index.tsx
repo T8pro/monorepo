@@ -151,6 +151,7 @@ export const BeforeAfterSlider = ({
       <div ref={beforeRef} className={styles.beforeImage}>
         <img src={beforeImage.imageUrl} alt={beforeImage.alt} />
       </div>
+
       <div
         ref={handleRef}
         className={styles.handle}
@@ -158,6 +159,7 @@ export const BeforeAfterSlider = ({
       >
         <div className={styles.handleIcon} />
       </div>
+
       <div className={styles.labels}>
         <div className={styles.label}>{beforeLabel}</div>
         <div className={styles.label}>{afterLabel}</div>

@@ -65,7 +65,7 @@ export const BeforeAfter = () => {
               afterImage={item.afterImage}
               beforeLabel={item.beforeLabel}
               afterLabel={item.afterLabel}
-              delimiterColor="#fff"
+              delimiterColor="var(--color-white)"
               currentPercentPosition={50}
               withResizeFeel={true}
               feelsOnlyTheDelimiter={false}

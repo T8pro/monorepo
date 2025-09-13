@@ -40,50 +40,7 @@
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-.primaryButton {
-  height: 40px;
-  border-radius: 4px;
-  font-family: var(--font-montserrat);
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-base);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 24px;
-  background: #67a15a;
-  border: none;
-  color: var(--color-secondary-invert);
-  transition: all 0.3s ease;
-  min-width: 283px;
-
-  &:hover {
-    background: #5a8f4d;
-    transform: translateY(-1px);
-  }
-}
-
-.secondaryButton {
-  height: 40px;
-  border-radius: 4px;
-  font-family: var(--font-montserrat);
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-base);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 24px;
-  background: transparent;
-  border: 1px solid var(--color-secondary);
-  color: var(--color-secondary);
-  transition: all 0.3s ease;
-  min-width: 194px;
-
-  &:hover {
-    background: var(--color-secondary);
-    color: var(--color-secondary-invert);
-  }
+  width: 100%;
 }
 
 .businessHours {
@@ -142,7 +99,6 @@
 
   .primaryButton,
   .secondaryButton {
-    min-width: 280px;
     width: 100%;
   }
 }
@@ -165,14 +121,5 @@
   .badge {
     min-width: 200px;
     max-width: none;
-  }
-
-  .buttonGroup {
-    width: 100%;
-  }
-
-  .primaryButton,
-  .secondaryButton {
-    min-width: 100%;
   }
 }

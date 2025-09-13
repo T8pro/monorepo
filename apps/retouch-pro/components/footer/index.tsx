@@ -1,5 +1,3 @@
-'use client';
-
 import { Button, Icon, Text } from '@t8pro/design-system';
 import { DEFAULT_FOOTER_CONTENT, TRUST_BADGES } from './constants';
 import styles from './styles.module.scss';
@@ -26,8 +24,8 @@ export const Footer = (props: FooterProps = {}) => {
               variant="1"
               size="medium"
               iconLeft="upload"
-              className={styles.primaryButton}
               onClick={onPrimaryButtonClick}
+              fullWidth
             >
               {primaryButtonText}
             </Button>
@@ -37,8 +35,8 @@ export const Footer = (props: FooterProps = {}) => {
               style="outline"
               size="medium"
               iconLeft="download"
-              className={styles.secondaryButton}
               onClick={onSecondaryButtonClick}
+              fullWidth
             >
               {secondaryButtonText}
             </Button>

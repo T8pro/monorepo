@@ -11,6 +11,7 @@ export const Button = ({
   iconRight,
   theme = 'dark',
   style = 'solid',
+  fullWidth = false,
   ...props
 }: ButtonProps) => {
   const classes = [
@@ -19,6 +20,7 @@ export const Button = ({
     styles[size],
     styles[`theme-${theme}`],
     styles[`${style}`],
+    fullWidth && styles.fullWidth,
     className,
   ]
     .filter(Boolean)
