@@ -1,5 +1,5 @@
 import { Button, Heading, Text } from '@t8pro/design-system';
-import { FaCheck, FaWhatsapp, FaGift, FaStar } from 'react-icons/fa';
+import { FaCheck, FaGift, FaStar } from 'react-icons/fa';
 import styles from './styles.module.scss';
 
 const trialPlan = {
@@ -8,7 +8,7 @@ const trialPlan = {
   period: 'No credit card required',
   description: 'Send us 1 real photo and see how it works',
   buttonText: 'Get 1 Photo FREE',
-  buttonVariant: 'primary' as const,
+  buttonVariant: '1' as const,
   features: [
     '1 enhanced photo',
     '48-hour turnaround',
@@ -29,7 +29,7 @@ const revenuePackages = [
     price: '$60',
     description: 'Perfect for testing top performers',
     buttonText: 'START WITH QUICK FIX - $60',
-    buttonVariant: 'primary' as const,
+    buttonVariant: '1' as const,
     features: [
       '48-hour turnaround',
       '1 revision included',
@@ -47,7 +47,7 @@ const revenuePackages = [
     price: '$115',
     description: 'Cover your core menu items',
     buttonText: 'Choose Growth Accelerator',
-    buttonVariant: 'secondary' as const,
+    buttonVariant: '2' as const,
     features: [
       '48-hour turnaround',
       '1 revision included',
@@ -64,7 +64,7 @@ const revenuePackages = [
     price: '$220',
     description: 'Complete menu transformation',
     buttonText: 'Choose Profit Maximizer',
-    buttonVariant: 'secondary' as const,
+    buttonVariant: '2' as const,
     features: [
       '3 business day turnaround',
       '2 revision rounds',

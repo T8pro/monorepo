@@ -1,10 +1,10 @@
 'use client';
 
 import { Icon, Heading, Button, Text } from '@t8pro/design-system';
-import styles from './styles.module.scss';
-import { useHero } from './hooks';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useHero } from './hooks';
+import styles from './styles.module.scss';
 
 export const Hero = () => {
   const { handleFileSelect, handleClick, fileInputRef } = useHero();

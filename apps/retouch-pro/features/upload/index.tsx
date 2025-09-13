@@ -30,7 +30,7 @@ export const Upload = () => {
           <Text className={styles.uploadDescription}>
             You can drag photos straight from your desktop or paste a link
           </Text>
-          <Button variant="primary" size="large">
+          <Button variant="1" size="large">
             Browse Files
           </Button>
           <Text className={styles.uploadInfo}>

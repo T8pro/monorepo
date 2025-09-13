@@ -11,7 +11,7 @@ A versatile button component with multiple variants and sizes.
 ```tsx
 import { Button } from '@t8pro/design-system';
 
-<Button variant="primary" size="large" iconLeft={<Icon />}>
+<Button variant="1" size="large" iconLeft={<Icon />}>
   Click me
 </Button>;
 ```
@@ -43,7 +43,7 @@ import { Header } from '@t8pro/design-system';
 
 <Header
   ctaLabel="Get Started"
-  ctaVariant="primary"
+  ctavariant="1"
   onCtaClick={() => console.log('Clicked')}
 />;
 ```
@@ -78,7 +78,7 @@ function App() {
       <Header ctaLabel="Get Started" />
       <main>
         <Card variant="service">
-          <Button variant="primary">Click me</Button>
+          <Button variant="1">Click me</Button>
         </Card>
       </main>
     </div>

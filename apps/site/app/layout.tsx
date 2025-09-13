@@ -1,8 +1,8 @@
+import { ThemeProvider } from '@t8pro/design-system';
 import type { Metadata } from 'next';
 import { Geist_Mono, Montserrat } from 'next/font/google';
 import '@t8pro/design-system/styles';
 import { TargetCursor } from '@/components/gsap/target-cursor';
-import { ThemeProvider } from '@t8pro/design-system';
 
 const geistSans = Montserrat({
   variable: '--font-montserrat',

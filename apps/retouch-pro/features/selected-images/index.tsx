@@ -10,7 +10,6 @@ interface PhotoCardProps {
 }
 
 const PhotoCard = ({
-  id: _id,
   imageUrl,
   name,
   isPlaceholder = false,
@@ -37,7 +36,7 @@ const PhotoCard = ({
       <span className={styles.photoName}>{name}</span>
     </div>
     <Button
-      variant="primary"
+      variant="1"
       size="small"
       className={styles.proButton}
       iconLeft="star"

@@ -1,9 +1,9 @@
 'use client';
 
 import { Button, Icon, Text } from '@t8pro/design-system';
+import { DEFAULT_FOOTER_CONTENT, TRUST_BADGES } from './constants';
 import styles from './styles.module.scss';
 import type { FooterProps, TrustBadge } from './types';
-import { DEFAULT_FOOTER_CONTENT, TRUST_BADGES } from './constants';
 
 export const Footer = (props: FooterProps = {}) => {
   const {

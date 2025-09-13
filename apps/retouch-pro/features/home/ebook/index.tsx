@@ -1,10 +1,10 @@
 'use client';
 
-import Image from 'next/image';
 import { Button, Icon, Heading, Text } from '@t8pro/design-system';
+import Image from 'next/image';
+import { DEFAULT_EBOOK_CONTENT, EBOOK_BUTTONS } from './constants';
 import styles from './styles.module.scss';
 import type { EbookProps } from './types';
-import { DEFAULT_EBOOK_CONTENT, EBOOK_BUTTONS } from './constants';
 
 export const Ebook = (props: EbookProps = {}) => {
   const {

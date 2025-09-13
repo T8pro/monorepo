@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useReducer } from 'react';
-import { Photo, PhotoContextValues, PhotoProviderProps } from './types';
 import { INITIAL_STATE } from './constants';
+import { Photo, PhotoContextValues, PhotoProviderProps } from './types';
 import { photoReducer } from './utils';
 
 const PhotoContext = createContext<PhotoContextValues>(

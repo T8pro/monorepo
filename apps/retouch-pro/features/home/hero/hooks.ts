@@ -1,7 +1,8 @@
-import { useCallback, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+/* eslint-disable no-console */
 import { useTheme } from '@t8pro/design-system';
-import { usePhotos } from '../../contexts/photos-upload/context';
+import { useRouter } from 'next/navigation';
+import { useCallback, useRef } from 'react';
+import { usePhotos } from '../../../contexts/photos-upload/context';
 
 /**
  * Custom hook for Hero component logic
@@ -42,7 +43,7 @@ export const useHero = () => {
         return;
       }
       if (validFiles.length >= 24) {
-        console.warn(`Maximum 24 photos allowed.`);
+        console.warn('Maximum 24 photos allowed.');
         return;
       }
       validFiles.push(file);

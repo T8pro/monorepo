@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { Heading, Text } from '@t8pro/design-system';
+import Image from 'next/image';
 import styles from './styles.module.scss';
 import { TerminalAnimated } from './terminal-animated';
 

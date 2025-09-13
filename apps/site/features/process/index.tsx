@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { Heading, Text } from '@t8pro/design-system';
+import Image from 'next/image';
 import { processSteps } from './constants';
 import styles from './styles.module.scss';
 

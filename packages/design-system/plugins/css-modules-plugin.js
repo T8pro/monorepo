@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-console */
 import { writeFileSync } from 'fs';
 import { dirname, basename } from 'path';
 import postcss from 'postcss';

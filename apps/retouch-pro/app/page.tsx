@@ -1,8 +1,8 @@
-import { BeforeAfter } from '@/features/before-after';
-import { Hero } from '@/features/hero';
+import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
-import { Ebook } from '@/features/ebook';
-import { Footer } from '@/features/footer';
+import { BeforeAfter } from '@/features/home/before-after';
+import { Ebook } from '@/features/home/ebook';
+import { Hero } from '@/features/home/hero';
 
 export default function Home() {
   return (

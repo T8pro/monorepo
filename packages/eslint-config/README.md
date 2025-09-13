@@ -1,75 +1,58 @@
-# `@t8pro/eslint-config`
+# @hfsa/eslint-config
 
-Collection of internal ESLint configurations for the monorepo.
+Shared ESLint configuration for HFSA monorepo.
 
-## Available Configurations
+## Installation
 
-### `@t8pro/eslint-config/base`
+```bash
+# Install the package
+yarn add -D @hfsa/eslint-config
 
-Base configuration with TypeScript, Prettier integration, and Turbo support.
-
-### `@t8pro/eslint-config/next-js`
-
-Next.js-specific configuration extending the base config with React and Next.js rules.
-
-### `@t8pro/eslint-config/react-internal`
-
-React configuration for internal libraries, optimized for component development.
-
-### `@t8pro/eslint-config/comprehensive`
-
-Comprehensive configuration that combines modern flat config with legacy compatibility. Includes all rules from the reference configuration with enhanced TypeScript, React, and Next.js support.
-
-## Features
-
-- **TypeScript Support**: Full TypeScript integration with strict rules
-- **Prettier Integration**: Seamless code formatting with error-level enforcement
-- **React/Next.js Rules**: Optimized for modern React development
-- **Performance**: Optimized ignore patterns for faster linting
-- **Monorepo Support**: Works with Turborepo and workspace references
-- **Self-Linting**: Configuration files are themselves linted for consistency
+# Install peer dependencies
+yarn add -D eslint prettier typescript
+```
 
 ## Usage
 
-```javascript
-// For Next.js apps
-import { nextJsConfig } from '@t8pro/eslint-config/next-js';
+### Base Configuration
 
-export default nextJsConfig;
+```js
+// eslint.config.js
+import { base } from '@hfsa/eslint-config';
 
-// For React libraries
-import { config as reactConfig } from '@t8pro/eslint-config/react-internal';
-
-export default reactConfig;
-
-// For comprehensive setup
-import { comprehensiveConfig } from '@t8pro/eslint-config/comprehensive';
-
-export default comprehensiveConfig;
+export default base;
 ```
 
-## Configuration Notes
+### React Configuration
 
-- **Next.js v15 Compatibility**: Optimized for Next.js v15 with ESLint v9 support
-- **Import rules are disabled** due to TypeScript resolver conflicts
-- **TypeScript compiler handles** import resolution and validation
-- **All configurations include** Prettier integration
-- **Self-linting ensures** configuration consistency
-- **ESLint v9 flat config** format for modern compatibility
+```js
+// eslint.config.js
+import { react } from '@hfsa/eslint-config';
 
-## Next.js v15 + ESLint v9 Compatibility
+export default react;
+```
 
-This configuration addresses multiple known issues with Next.js v15 and ESLint v9:
+### Next.js Configuration
 
-### Issue #71763: ESLint v8 vs v9
+```js
+// eslint.config.js
+import { next } from '@hfsa/eslint-config';
 
-- Uses ESLint v9 flat config format
-- Includes compatibility layer for Next.js v15
-- Maintains all Next.js core web vitals rules
-- Provides seamless migration from ESLint v8 to v9
+export default next;
+```
 
-### Issue #73655: Plugin Detection with Flat Config
+## Configurations Available
 
-- Includes `.mjs` files in plugin configurations to fix "Next.js plugin was not detected" warnings
-- Ensures proper plugin detection when using ESLint flat config with `.mjs` files
-- Resolves compatibility issues with Next.js linting detection
+- **base**: Base TypeScript and Node.js rules
+- **react**: Adds React and React Hooks rules
+- **next**: Adds Next.js and Storybook rules
+
+## Rules Included
+
+- TypeScript ESLint recommended rules
+- Prettier integration
+- Import ordering and organization
+- React and React Hooks best practices
+- Next.js core web vitals
+- Storybook support
+- Turbo monorepo support

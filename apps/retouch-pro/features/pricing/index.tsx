@@ -1,9 +1,9 @@
 'use client';
 
 import { Button, Icon, Heading, Text } from '@t8pro/design-system';
+import { DEFAULT_PRICING_CONTENT, PRICING_CARDS } from './constants';
 import styles from './styles.module.scss';
 import type { PricingProps, PricingCard } from './types';
-import { DEFAULT_PRICING_CONTENT, PRICING_CARDS } from './constants';
 
 export const Pricing = (props: PricingProps = {}) => {
   const { title = DEFAULT_PRICING_CONTENT.title, cards = PRICING_CARDS } =
