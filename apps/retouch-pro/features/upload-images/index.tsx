@@ -1,3 +1,5 @@
+'use client';
+
 import { EmptyState } from '@t8pro/design-system';
 import { usePhotosContext } from './context';
 import { PhotoCard } from './photo-card';
