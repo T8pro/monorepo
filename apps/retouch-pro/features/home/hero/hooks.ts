@@ -2,7 +2,7 @@
 import { useTheme } from '@t8pro/design-system';
 import { useRouter } from 'next/navigation';
 import { useCallback, useRef } from 'react';
-import { usePhotosContext } from '@/contexts/photos-upload/context';
+import { usePhotosContext } from '@/features/upload-images/context';
 
 /**
  * Custom hook for Hero component logic

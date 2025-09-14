@@ -5,8 +5,6 @@ import type { FooterProps, TrustBadge } from './types';
 
 export const Footer = (props: FooterProps = {}) => {
   const {
-    primaryButtonText = DEFAULT_FOOTER_CONTENT.primaryButtonText,
-    secondaryButtonText = DEFAULT_FOOTER_CONTENT.secondaryButtonText,
     businessHours = DEFAULT_FOOTER_CONTENT.businessHours,
     trustBadges = TRUST_BADGES,
     onPrimaryButtonClick,
@@ -18,32 +16,28 @@ export const Footer = (props: FooterProps = {}) => {
       <div className={styles.container}>
         <div className={styles.divider} />
 
-        <div className={styles.buttonSection}>
-          <div className={styles.buttonGroup}>
-            <Button
-              variant="1"
-              size="medium"
-              iconLeft="upload"
-              onClick={onPrimaryButtonClick}
-              fullWidth
-            >
-              {primaryButtonText}
-            </Button>
+        <div className={styles.buttonGroup}>
+          <Button
+            variant="1"
+            size="medium"
+            iconLeft="chat"
+            onClick={onPrimaryButtonClick}
+          >
+            Chat on whatsapp
+          </Button>
 
-            <Button
-              variant="4"
-              style="outline"
-              size="medium"
-              iconLeft="download"
-              onClick={onSecondaryButtonClick}
-              fullWidth
-            >
-              {secondaryButtonText}
-            </Button>
-          </div>
-
-          <Text className={styles.businessHours}>{businessHours}</Text>
+          <Button
+            variant="4"
+            style="outline"
+            size="medium"
+            iconLeft="mail"
+            onClick={onSecondaryButtonClick}
+          >
+            Send email
+          </Button>
         </div>
+
+        <Text className={styles.businessHours}>{businessHours}</Text>
 
         <div className={styles.trustBadges}>
           {trustBadges.map((badge: TrustBadge, index: number) => (

@@ -1,0 +1,10 @@
+.photoCard {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-300);
+  padding: var(--spacing-100);
+  background: var(--color-secondary);
+  border-radius: var(--radius-xl);
+  height: 96px;
+  position: relative;
+}

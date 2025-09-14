@@ -1,7 +1,7 @@
 .pricing {
   min-height: 701px;
-  padding: 40px 0;
-  background: #181a14;
+  padding: var(--spacing-500) 0;
+  background: var(--color-secondary-invert);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,15 +14,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: var(--spacing-500);
   width: 100%;
 }
 
 .title {
   font-family: var(--font-montserrat);
-  font-size: 48px;
+  font-size: 40px;
   font-weight: var(--font-weight-bold);
-  color: #cbd4c6;
+  color: var(--color-secondary);
   text-align: center;
   margin: 0;
   line-height: 1.2;
@@ -32,7 +32,7 @@
 
 .cardsContainer {
   display: flex;
-  gap: 40px;
+  gap: var(--spacing-500);
   align-items: flex-start;
   justify-content: center;
   width: 1366px;
@@ -41,18 +41,18 @@
 
 .card {
   background: transparent;
-  border: 2px solid #cbd4c6;
-  border-radius: 16px;
-  padding: 32px 16px;
+  border: 2px solid var(--color-secondary);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-400) var(--spacing-200);
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: var(--spacing-300);
   position: relative;
-  transition: all 0.3s ease;
+  transition: all var(--transition-slow);
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-xl);
   }
 
   // First and third cards (320px width)
@@ -66,12 +66,21 @@
   &:nth-child(2) {
     width: 360px;
     height: 532px;
-    border-color: #67a15a;
+    border-color: var(--color-primary);
     box-shadow: 0 4px 20px rgba(103, 161, 90, 0.2);
 
     .badge {
-      background: #67a15a;
+      background: var(--color-primary);
     }
+  }
+}
+
+.featured {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 20px rgba(103, 161, 90, 0.2);
+
+  .badge {
+    background: var(--color-primary);
   }
 }
 
@@ -79,30 +88,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-100);
   text-align: center;
 }
 
 .badge {
   width: 48px;
   height: 48px;
-  background: #67a15a;
+  background: var(--color-primary);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-100);
 }
 
 .badgeIcon {
-  color: #181a14;
+  color: var(--color-secondary);
 }
 
 .cardTitle {
   font-family: var(--font-montserrat);
   font-size: 24px;
   font-weight: var(--font-weight-bold);
-  color: #cbd4c6;
+  color: var(--color-secondary);
   margin: 0;
   line-height: 1.2;
 }
@@ -111,33 +120,76 @@
   font-family: var(--font-montserrat);
   font-size: 48px;
   font-weight: var(--font-weight-bold);
-  color: #cbd4c6;
+  color: var(--color-secondary);
   margin: 0;
   line-height: 1;
+}
+
+.priceDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-50);
+  margin-top: var(--spacing-100);
+}
+
+.pricePerPhoto {
+  font-family: var(--font-montserrat);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-secondary);
+  margin: 0;
+  line-height: 1.2;
+  opacity: 0.8;
+}
+
+.photoCount {
+  font-family: var(--font-montserrat);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-secondary);
+  margin: 0;
+  line-height: 1.2;
+  opacity: 0.8;
 }
 
 .cardContent {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--spacing-200);
   text-align: center;
   flex: 1;
 }
 
 .description {
   font-family: var(--font-montserrat);
-  font-size: 16px;
+  font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
-  color: #cbd4c6;
+  color: var(--color-secondary);
   margin: 0;
   line-height: 1.4;
 }
 
-.features {
+.featuresList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featureText {
   font-family: var(--font-montserrat);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
-  color: #cbd4c6;
+  color: var(--color-secondary);
   margin: 0;
   line-height: 1.4;
   opacity: 0.9;
@@ -145,18 +197,18 @@
 
 .cardButton {
   height: 40px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-family: var(--font-montserrat);
   font-weight: var(--font-weight-semibold);
   font-size: var(--font-size-base);
-  background: #67a15a;
+  background: var(--color-primary);
   border: none;
-  color: #181a14;
-  transition: all 0.3s ease;
+  color: var(--color-secondary);
+  transition: all var(--transition-slow);
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 0 24px;
+  gap: var(--spacing-100);
+  padding: 0 var(--spacing-300);
   justify-content: center;
   margin-top: auto;
 
@@ -184,7 +236,7 @@
   .cardsContainer {
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: var(--spacing-300);
     width: 100%;
     height: auto;
   }
@@ -206,11 +258,11 @@
 
 @media (max-width: 768px) {
   .pricing {
-    padding: 32px 0;
+    padding: var(--spacing-400) 0;
   }
 
   .container {
-    gap: 32px;
+    gap: var(--spacing-400);
   }
 
   .title {
@@ -218,7 +270,7 @@
   }
 
   .card {
-    padding: 24px 16px;
+    padding: var(--spacing-300) var(--spacing-200);
     height: auto;
   }
 
@@ -231,10 +283,10 @@
   }
 
   .description {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
   }
 
-  .features {
-    font-size: 12px;
+  .featureText {
+    font-size: var(--font-size-xs);
   }
 }

@@ -1,36 +1,38 @@
-import type { PricingCard } from './types';
-
-export const DEFAULT_PRICING_CONTENT = {
-  title: 'HOW PRICING WORKS',
-};
-
-export const PRICING_CARDS: PricingCard[] = [
+export const pricingCards = [
   {
-    id: 'free-trial-1',
-    title: 'FREE TRIAL',
-    price: '$0',
-    description: 'Send us 1 real photo and see how it works',
-    features:
-      '1 enhanced photo 48-hour turnaround Platform crops included No credit card required',
-    buttonText: 'Be Pro',
+    id: 'quick-fix',
+    title: 'QUICK FIX',
+    price: '$60',
+    pricePerPhoto: '$10 per photo',
+    photoCount: '6 photos',
+    description: '',
+    features: ['24-hour turnaround', '1 revision included'],
+    buttonText: 'ADD PHOTOS',
+    icon: 'redeem',
+    featured: false,
   },
   {
-    id: 'free-trial-2',
-    title: 'FREE TRIAL',
-    price: '$0',
-    description: 'Send us 1 real photo and see how it works',
-    features:
-      '1 enhanced photo 48-hour turnaround Platform crops included No credit card required',
-    buttonText: 'Be Pro',
+    id: 'growth-accelerator',
+    title: 'GROWTH ACCELERATOR',
+    price: '$100',
+    pricePerPhoto: '$8.33 per photo',
+    photoCount: '12 photos',
+    description: '',
+    features: ['3 business day turnaround', '2 revision round'],
+    buttonText: 'ADD PHOTOS',
+    icon: 'rocket_launch',
     featured: true,
   },
   {
-    id: 'free-trial-3',
+    id: 'free-trial',
     title: 'FREE TRIAL',
     price: '$0',
+    pricePerPhoto: '',
+    photoCount: '',
     description: 'Send us 1 real photo and see how it works',
-    features:
-      '1 enhanced photo 48-hour turnaround Platform crops included No credit card required',
-    buttonText: 'Be Pro',
+    features: ['1 enhanced photo', '48-hour turnaround'],
+    buttonText: 'GET 1 PHOTO FREE',
+    icon: 'redeem',
+    featured: false,
   },
 ];

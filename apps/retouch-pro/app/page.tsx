@@ -7,7 +7,7 @@ export default function Home() {
     <main id="home">
       <Hero />
       <BeforeAfter />
-      <Ebook />
+      <Ebook imageUrl="/ebook.png" />
     </main>
   );
 }

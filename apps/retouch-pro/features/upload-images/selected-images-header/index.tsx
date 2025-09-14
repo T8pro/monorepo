@@ -1,21 +1,20 @@
 import { Button, Icon } from '@t8pro/design-system';
-import { usePhotosContext } from '../../../contexts/photos-upload/context';
+import { usePhotosContext } from '../context';
 import styles from './styles.module.scss';
 
 const MAX_PHOTOS = 10;
 
 export const SelectedImagesHeader = () => {
-  const { photos } = usePhotosContext();
+  const { photos, openFileSelector, viewPricing, finalizeOrder } =
+    usePhotosContext();
   const selectedCount = photos.length;
 
   const handleBeProClick = () => {
-    // TODO: Implement Be Pro functionality
-    // This could open a modal, navigate to pricing, etc.
+    viewPricing();
   };
 
   const handleProcessClick = () => {
-    // TODO: Implement photo processing functionality
-    // This could start the retouching process
+    finalizeOrder();
   };
 
   return (
@@ -33,20 +32,30 @@ export const SelectedImagesHeader = () => {
         <Button
           variant="2"
           style="outline"
+          onClick={openFileSelector}
+          iconLeft="add_photo_alternate"
+          className={styles.addPhotosButton}
+        >
+          Add Photos
+        </Button>
+
+        <Button
+          variant="2"
+          style="outline"
           onClick={handleBeProClick}
-          iconLeft="animation"
+          iconLeft="attach_money"
           className={styles.beProButton}
         >
-          Be Pro
+          View Pricing
         </Button>
 
         <Button
           variant="1"
           onClick={handleProcessClick}
-          iconLeft="animation"
+          iconLeft="credit_card"
           className={styles.processButton}
         >
-          Process
+          Finalize
         </Button>
       </div>
     </header>

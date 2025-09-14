@@ -1,19 +1,39 @@
 'use client';
 
-import { Button, Icon, Heading, Text } from '@t8pro/design-system';
+import { Button, Icon, Heading, Text, Input } from '@t8pro/design-system';
 import Image from 'next/image';
-import { DEFAULT_EBOOK_CONTENT, EBOOK_BUTTONS } from './constants';
+import { useState } from 'react';
 import styles from './styles.module.scss';
 import type { EbookProps } from './types';
 
 export const Ebook = (props: EbookProps = {}) => {
   const {
-    title = DEFAULT_EBOOK_CONTENT.title,
-    subtitle = DEFAULT_EBOOK_CONTENT.subtitle,
+    title = 'Learn how photos can improve your sales',
+    subtitle = 'Download FREE E-book',
     imageUrl,
-    imageAlt = DEFAULT_EBOOK_CONTENT.imageAlt,
-    buttons = EBOOK_BUTTONS,
+    imageAlt = 'E-book about photos for sales',
+    onDownloadAction,
   } = props;
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (onDownloadAction) {
+      onDownloadAction(formData);
+    }
+  };
 
   return (
     <section className={styles.ebook}>
@@ -41,20 +61,40 @@ export const Ebook = (props: EbookProps = {}) => {
 
           <Text className={styles.ebookSubtitle}>{subtitle}</Text>
 
-          <div className={styles.buttonGroup}>
-            {buttons.map(button => (
-              <Button
-                key={button.id}
-                variant={button.variant}
-                size="medium"
-                iconLeft={button.icon}
-                className={styles.button}
-                onClick={button.onClick}
-              >
-                {button.text}
-              </Button>
-            ))}
-          </div>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.inputGroup}>
+              <Input
+                type="text"
+                name="name"
+                placeholder="Seu nome"
+                value={formData.name}
+                onChange={handleInputChange}
+                size="large"
+                fullWidth
+                required
+              />
+              <Input
+                type="email"
+                name="email"
+                placeholder="Seu email"
+                value={formData.email}
+                onChange={handleInputChange}
+                size="large"
+                fullWidth
+                required
+              />
+            </div>
+
+            <Button
+              type="submit"
+              variant="3"
+              size="medium"
+              iconLeft="download"
+              className={styles.downloadButton}
+            >
+              Download E-book
+            </Button>
+          </form>
         </div>
       </div>
     </section>

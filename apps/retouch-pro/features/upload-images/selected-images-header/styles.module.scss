@@ -3,8 +3,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 40px;
-  padding: 0 var(--spacing-200);
+  padding: var(--spacing-400);
   background: transparent;
   border-bottom: 1px solid rgba(203, 212, 198, 0.2);
   margin-bottom: var(--spacing-200);
@@ -44,6 +43,11 @@
   flex-shrink: 0;
 }
 
+.addPhotosButton {
+  min-width: 120px;
+  height: 40px;
+}
+
 .beProButton {
   min-width: 120px;
   height: 40px;
@@ -72,6 +76,7 @@
     justify-content: center;
   }
 
+  .addPhotosButton,
   .beProButton,
   .processButton {
     flex: 1;
@@ -84,6 +89,7 @@
     font-size: var(--font-size-sm);
   }
 
+  .addPhotosButton,
   .beProButton,
   .processButton {
     font-size: var(--font-size-sm);

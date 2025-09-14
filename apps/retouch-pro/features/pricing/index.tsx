@@ -1,13 +1,12 @@
 'use client';
 
-import { Button, Icon, Heading, Text } from '@t8pro/design-system';
-import { DEFAULT_PRICING_CONTENT, PRICING_CARDS } from './constants';
+import { Button, Icon, Heading, Text, IconName } from '@t8pro/design-system';
+import { pricingCards } from './constants';
 import styles from './styles.module.scss';
-import type { PricingProps, PricingCard } from './types';
+import type { PricingProps } from './types';
 
 export const Pricing = (props: PricingProps = {}) => {
-  const { title = DEFAULT_PRICING_CONTENT.title, cards = PRICING_CARDS } =
-    props;
+  const { title = 'HOW PRICING WORKS', onCardClickAction } = props;
 
   return (
     <section className={styles.pricing}>
@@ -17,27 +16,51 @@ export const Pricing = (props: PricingProps = {}) => {
         </Heading>
 
         <div className={styles.cardsContainer}>
-          {cards.map((card: PricingCard, index: number) => (
-            <div key={index} className={styles.card}>
+          {pricingCards.map(card => (
+            <div
+              key={card.id}
+              className={`${styles.card} ${card.featured ? styles.featured : ''}`}
+            >
               <div className={styles.cardHeader}>
                 <div className={styles.badge}>
-                  <Icon name="star" size={24} className={styles.badgeIcon} />
+                  <Icon
+                    name={card.icon as IconName}
+                    size={24}
+                    className={styles.badgeIcon}
+                  />
                 </div>
                 <Text className={styles.cardTitle}>{card.title}</Text>
                 <Text className={styles.price}>{card.price}</Text>
+                {card.pricePerPhoto && (
+                  <div className={styles.priceDetails}>
+                    <Text className={styles.pricePerPhoto}>
+                      {card.pricePerPhoto}
+                    </Text>
+                    <Text className={styles.photoCount}>{card.photoCount}</Text>
+                  </div>
+                )}
               </div>
 
               <div className={styles.cardContent}>
-                <Text className={styles.description}>{card.description}</Text>
-                <Text className={styles.features}>{card.features}</Text>
+                {card.description && (
+                  <Text className={styles.description}>{card.description}</Text>
+                )}
+                <ul className={styles.featuresList}>
+                  {card.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className={styles.featureItem}>
+                      <Text className={styles.featureText}>{feature}</Text>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
               <Button
                 variant="1"
                 size="medium"
-                iconLeft="upload"
+                iconLeft="redeem"
+                fullWidth
                 className={styles.cardButton}
-                onClick={card.onClick}
+                onClick={() => onCardClickAction?.(card.id)}
               >
                 {card.buttonText}
               </Button>

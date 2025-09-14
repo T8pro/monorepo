@@ -1,0 +1,100 @@
+.input {
+  width: 100%;
+  padding: 0 var(--spacing-300);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-montserrat);
+  font-size: var(--font-size-base);
+  color: var(--color-secondary);
+  background: var(--color-secondary-invert);
+  transition: all var(--transition-base);
+  outline: none;
+
+  &::placeholder {
+    color: var(--color-gray-500);
+  }
+
+  &:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(103, 154, 88, 0.1);
+  }
+
+  &:disabled {
+    background: var(--color-gray-100);
+    color: var(--color-gray-400);
+    cursor: not-allowed;
+    border-color: var(--color-gray-200);
+  }
+
+  // Size variants
+  &.size-small {
+    height: 32px;
+    padding: 0 var(--spacing-200);
+    font-size: var(--font-size-sm);
+  }
+
+  &.size-medium {
+    height: 40px;
+    padding: 0 var(--spacing-300);
+    font-size: var(--font-size-base);
+  }
+
+  &.size-large {
+    height: 48px;
+    padding: 0 var(--spacing-400);
+    font-size: var(--font-size-lg);
+  }
+
+  // Variant styles
+  &.variant-default {
+    background: var(--color-secondary-invert);
+    border-color: var(--color-gray-300);
+    color: var(--color-secondary);
+
+    &:focus {
+      border-color: var(--color-primary);
+    }
+  }
+
+  &.variant-outline {
+    background: transparent;
+    border-color: var(--color-primary);
+    color: var(--color-secondary);
+
+    &:focus {
+      background: var(--color-secondary-invert);
+      border-color: var(--color-primary);
+    }
+  }
+
+  &.variant-filled {
+    background: var(--color-gray-100);
+    border-color: var(--color-gray-200);
+    color: var(--color-secondary);
+
+    &:focus {
+      background: var(--color-secondary-invert);
+      border-color: var(--color-primary);
+    }
+  }
+
+  // Error state
+  &.error {
+    border-color: var(--color-error);
+    color: var(--color-error);
+
+    &:focus {
+      border-color: var(--color-error);
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+
+    &::placeholder {
+      color: var(--color-error);
+    }
+  }
+
+  // Full width
+  &.fullWidth {
+    width: 100%;
+  }
+}

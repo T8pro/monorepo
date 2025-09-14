@@ -12,17 +12,6 @@
   padding: var(--spacing-900) var(--spacing-200);
 }
 
-.photoCard {
-  display: flex;
-  align-items: center;
-  gap: 21px;
-  padding: 8px;
-  background: #cbd4c6;
-  border-radius: 16px;
-  height: 96px;
-  position: relative;
-}
-
 .placeholder {
   background: rgba(203, 212, 198, 0.2);
   border: 2px solid #cbd4c6;

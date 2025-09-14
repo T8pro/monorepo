@@ -26,14 +26,6 @@
   border-radius: 50px;
 }
 
-.buttonSection {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  max-width: 501px;
-}
-
 .buttonGroup {
   display: flex;
   gap: 24px;
@@ -41,6 +33,7 @@
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
+  max-width: 800px;
 }
 
 .businessHours {

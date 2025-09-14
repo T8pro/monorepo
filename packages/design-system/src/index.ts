@@ -53,5 +53,12 @@ export type {
   EmptyStateSize,
 } from './components/empty-state/types.js';
 
+export { Input } from './components/input/index.js';
+export type {
+  InputProps,
+  InputSize,
+  InputVariant,
+} from './components/input/types.js';
+
 // Hooks
 export { useTheme, ThemeProvider, useThemeContext } from './contexts/theme.js';

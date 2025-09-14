@@ -1,5 +1,5 @@
 import { Pricing } from '@/features/pricing';
-import { SelectedImages } from '@/features/selected-images';
+import { SelectedImages } from '@/features/upload-images';
 
 export default function UploadPage() {
   return (
