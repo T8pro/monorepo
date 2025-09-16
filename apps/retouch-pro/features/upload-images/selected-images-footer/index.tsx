@@ -1,17 +1,11 @@
 'use client';
 
 import { Button, Text } from '@t8pro/design-system';
-import Link from 'next/link';
 import { usePhotosContext } from '../context';
 import styles from './styles.module.scss';
 
 export const SelectedImagesFooter = () => {
-  const {
-    photos = [],
-    openFileSelector,
-    viewPricing,
-    finalizeOrder,
-  } = usePhotosContext();
+  const { photos = [], openFileSelector, finalizeOrder } = usePhotosContext();
 
   const selectedCount = photos.length;
 
@@ -19,29 +13,37 @@ export const SelectedImagesFooter = () => {
   const getPackageInfo = () => {
     if (selectedCount === 0) return null;
 
-    if (selectedCount <= 6) {
+    if (selectedCount <= 5) {
+      return {
+        name: 'No Package',
+        unitPrice: 15,
+        maxUnits: 5,
+        totalPrice: selectedCount * 15,
+        discountedPrice: selectedCount * 15, // No discount
+      };
+    } else if (selectedCount <= 11) {
       return {
         name: 'Quick Fix',
         unitPrice: 10,
-        maxUnits: 6,
-        totalPrice: selectedCount * 10,
-        discountedPrice: selectedCount * 10 * 0.9, // 10% discount
+        maxUnits: 11,
+        totalPrice: selectedCount * 15, // Preço original sem desconto
+        discountedPrice: selectedCount * 10, // Preço com desconto do plano
       };
-    } else if (selectedCount <= 12) {
+    } else if (selectedCount <= 23) {
       return {
         name: 'Growth Accelerator',
         unitPrice: 8.33,
-        maxUnits: 12,
-        totalPrice: selectedCount * 8.33,
-        discountedPrice: selectedCount * 8.33 * 0.9, // 10% discount
+        maxUnits: 23,
+        totalPrice: selectedCount * 15, // Preço original sem desconto
+        discountedPrice: selectedCount * 8.33, // Preço com desconto do plano
       };
     } else {
       return {
-        name: 'Custom Package',
-        unitPrice: 8.33,
+        name: 'Premium',
+        unitPrice: 6,
         maxUnits: selectedCount,
-        totalPrice: selectedCount * 8.33,
-        discountedPrice: selectedCount * 8.33 * 0.9, // 10% discount
+        totalPrice: selectedCount * 15, // Preço original sem desconto
+        discountedPrice: selectedCount * 6, // Preço com desconto do plano
       };
     }
   };
@@ -57,13 +59,12 @@ export const SelectedImagesFooter = () => {
       <div className={styles.leftSection}>
         <div className={styles.packageSummary}>
           <Text>Selected package:</Text>
+
           <Text color="secondary">
             {packageInfo?.name}: up to {packageInfo?.maxUnits} units
           </Text>
-          <Text color="secondary">
-            Unit value: R${packageInfo?.unitPrice} - Total value: R${' '}
-            {packageInfo?.totalPrice.toFixed(0)}
-          </Text>
+
+          <Text color="secondary">Unit value: R${packageInfo?.unitPrice}</Text>
         </div>
 
         <Button
@@ -75,32 +76,28 @@ export const SelectedImagesFooter = () => {
         >
           ADD MORE PHOTOS
         </Button>
-
-        <Link href="#pricing">
-          <Button
-            variant="2"
-            size="medium"
-            iconLeft="attach_money"
-            style="outline"
-            onClick={viewPricing}
-          >
-            SEE HOW PRICING WORKS
-          </Button>
-        </Link>
       </div>
 
       <div className={styles.rightSection}>
         <Text color="secondary">
-          Discounted value: R$ {packageInfo?.discountedPrice.toFixed(0)}
+          <s>Original value: R$ {packageInfo?.totalPrice.toFixed(0)}</s>
         </Text>
 
+        {packageInfo?.name !== 'No Package' && (
+          <Text color="secondary">
+            <strong>
+              Total value with discount: R${' '}
+              {packageInfo?.discountedPrice.toFixed(0)}
+            </strong>
+          </Text>
+        )}
         <Button
           variant="1"
           size="medium"
           iconLeft="credit_card"
           onClick={finalizeOrder}
         >
-          FINALIZE
+          Checkout
         </Button>
       </div>
     </div>

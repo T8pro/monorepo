@@ -3,8 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 1000;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+  gap: var(--spacing-200);
 }
 
 .leftSection {
@@ -17,7 +16,9 @@
 .packageSummary {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-50);
+  p {
+    margin: 0;
+  }
 }
 
 .packageLabel {
@@ -75,8 +76,15 @@
 
 .rightSection {
   display: flex;
-  align-items: center;
-  gap: var(--spacing-300);
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 100%;
+  gap: var(--spacing-100);
+  align-self: flex-end;
+  p {
+    margin: 0;
+  }
 }
 
 .discountedPrice {

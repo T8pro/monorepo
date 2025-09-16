@@ -2,7 +2,7 @@ import { Button, Icon } from '@t8pro/design-system';
 import { usePhotosContext } from '../context';
 import styles from './styles.module.scss';
 
-const MAX_PHOTOS = 10;
+const MAX_PHOTOS = 24;
 
 export const SelectedImagesHeader = () => {
   const { photos, openFileSelector, finalizeOrder } = usePhotosContext();

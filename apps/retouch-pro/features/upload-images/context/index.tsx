@@ -59,26 +59,33 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
     const selectedCount = state.photos.length;
     let packageInfo;
 
-    if (selectedCount <= 6) {
+    if (selectedCount <= 5) {
+      packageInfo = {
+        name: 'No Package',
+        unitPrice: 15,
+        totalPrice: selectedCount * 15,
+        discountedPrice: selectedCount * 15, // No discount
+      };
+    } else if (selectedCount <= 11) {
       packageInfo = {
         name: 'Quick Fix',
         unitPrice: 10,
-        totalPrice: selectedCount * 10,
-        discountedPrice: selectedCount * 10 * 0.9,
+        totalPrice: selectedCount * 15, // Preço original sem desconto
+        discountedPrice: selectedCount * 10, // Preço com desconto do plano
       };
-    } else if (selectedCount <= 12) {
+    } else if (selectedCount <= 23) {
       packageInfo = {
         name: 'Growth Accelerator',
         unitPrice: 8.33,
-        totalPrice: selectedCount * 8.33,
-        discountedPrice: selectedCount * 8.33 * 0.9,
+        totalPrice: selectedCount * 15, // Preço original sem desconto
+        discountedPrice: selectedCount * 8.33, // Preço com desconto do plano
       };
     } else {
       packageInfo = {
-        name: 'Custom Package',
-        unitPrice: 8.33,
-        totalPrice: selectedCount * 8.33,
-        discountedPrice: selectedCount * 8.33 * 0.9,
+        name: 'Premium',
+        unitPrice: 6,
+        totalPrice: selectedCount * 15, // Preço original sem desconto
+        discountedPrice: selectedCount * 6, // Preço com desconto do plano
       };
     }
 

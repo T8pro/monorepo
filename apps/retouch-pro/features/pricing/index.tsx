@@ -67,6 +67,24 @@ export const Pricing = (props: PricingProps = {}) => {
             </div>
           ))}
         </div>
+
+        <div className={styles.freeTrialSection}>
+          <div className={styles.freeTrialContent}>
+            <Text className={styles.freeTrialText}>
+              Not confident in our product yet? Try it for free. Send us 1 image
+              and test it now!
+            </Text>
+            <Button
+              variant="1"
+              size="large"
+              iconLeft="image"
+              className={styles.freeTrialButton}
+              onClick={() => (window.location.href = '/upload-free')}
+            >
+              Test free 1 image
+            </Button>
+          </div>
+        </div>
       </div>
     </section>
   );
