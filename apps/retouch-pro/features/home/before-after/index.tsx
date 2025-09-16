@@ -1,46 +1,8 @@
 'use client';
 
 import { Heading, BeforeAfterSlider, Text } from '@t8pro/design-system';
+import { BEFORE_AFTER_ITEMS } from './constants';
 import styles from './styles.module.scss';
-
-const beforeAfterItems = [
-  {
-    beforeImage: {
-      imageUrl: '/before-after/001-before.jpg',
-      alt: 'Before - Phone photo',
-    },
-    afterImage: {
-      imageUrl: '/before-after/001-after.jpg',
-      alt: 'After - Enhanced',
-    },
-    beforeLabel: 'BEFORE',
-    afterLabel: 'AFTER',
-  },
-  {
-    beforeImage: {
-      imageUrl: '/before-after/002-before.jpg',
-      alt: 'Before - Dark lighting',
-    },
-    afterImage: {
-      imageUrl: '/before-after/002-after.jpg',
-      alt: 'After - Bright & clear',
-    },
-    beforeLabel: 'BEFORE',
-    afterLabel: 'AFTER',
-  },
-  {
-    beforeImage: {
-      imageUrl: '/before-after/003-before.jpg',
-      alt: 'Before - Poor composition',
-    },
-    afterImage: {
-      imageUrl: '/before-after/003-after.jpg',
-      alt: 'After - Perfect crop',
-    },
-    beforeLabel: 'BEFORE',
-    afterLabel: 'AFTER',
-  },
-];
 
 export const BeforeAfter = () => {
   return (
@@ -58,7 +20,7 @@ export const BeforeAfter = () => {
         </Heading>
 
         <div className={styles.grid}>
-          {beforeAfterItems.map((item, index) => (
+          {BEFORE_AFTER_ITEMS.map((item, index) => (
             <BeforeAfterSlider
               key={index}
               beforeImage={item.beforeImage}
