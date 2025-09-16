@@ -5,13 +5,8 @@ import styles from './styles.module.scss';
 const MAX_PHOTOS = 10;
 
 export const SelectedImagesHeader = () => {
-  const { photos, openFileSelector, viewPricing, finalizeOrder } =
-    usePhotosContext();
+  const { photos, openFileSelector, finalizeOrder } = usePhotosContext();
   const selectedCount = photos.length;
-
-  const handleBeProClick = () => {
-    viewPricing();
-  };
 
   const handleProcessClick = () => {
     finalizeOrder();
@@ -40,22 +35,12 @@ export const SelectedImagesHeader = () => {
         </Button>
 
         <Button
-          variant="2"
-          style="outline"
-          onClick={handleBeProClick}
-          iconLeft="attach_money"
-          className={styles.beProButton}
-        >
-          View Pricing
-        </Button>
-
-        <Button
           variant="1"
           onClick={handleProcessClick}
           iconLeft="credit_card"
           className={styles.processButton}
         >
-          Finalize
+          Checkout
         </Button>
       </div>
     </header>

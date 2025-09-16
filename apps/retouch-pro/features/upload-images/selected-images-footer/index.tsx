@@ -56,11 +56,11 @@ export const SelectedImagesFooter = () => {
     <div className={styles.footer}>
       <div className={styles.leftSection}>
         <div className={styles.packageSummary}>
-          <Text className={styles.packageLabel}>Selected package:</Text>
-          <Text className={styles.packageName}>
+          <Text>Selected package:</Text>
+          <Text color="secondary">
             {packageInfo?.name}: up to {packageInfo?.maxUnits} units
           </Text>
-          <Text className={styles.packageDetails}>
+          <Text color="secondary">
             Unit value: R${packageInfo?.unitPrice} - Total value: R${' '}
             {packageInfo?.totalPrice.toFixed(0)}
           </Text>
@@ -70,7 +70,7 @@ export const SelectedImagesFooter = () => {
           variant="2"
           size="medium"
           iconLeft="add_photo_alternate"
-          className={styles.addPhotosButton}
+          style="outline"
           onClick={openFileSelector}
         >
           ADD MORE PHOTOS
@@ -81,7 +81,7 @@ export const SelectedImagesFooter = () => {
             variant="2"
             size="medium"
             iconLeft="attach_money"
-            className={styles.pricingButton}
+            style="outline"
             onClick={viewPricing}
           >
             SEE HOW PRICING WORKS
@@ -90,7 +90,7 @@ export const SelectedImagesFooter = () => {
       </div>
 
       <div className={styles.rightSection}>
-        <Text className={styles.discountedPrice}>
+        <Text color="secondary">
           Discounted value: R$ {packageInfo?.discountedPrice.toFixed(0)}
         </Text>
 
@@ -98,7 +98,6 @@ export const SelectedImagesFooter = () => {
           variant="1"
           size="medium"
           iconLeft="credit_card"
-          className={styles.finalizeButton}
           onClick={finalizeOrder}
         >
           FINALIZE

@@ -1,31 +1,37 @@
 import { Button } from '@t8pro/design-system';
 import Image from 'next/image';
+import { usePhotosContext } from '../context';
 import { PhotoCardProps } from '../types';
 import styles from './styles.module.scss';
 
-export const PhotoCard = ({ preview, name }: PhotoCardProps) => (
-  <div className={styles.photoCard}>
-    <div className={styles.imageContainer}>
-      <Image
-        src={preview}
-        alt={name}
-        className={styles.image}
-        width={80}
-        height={80}
-      />
-    </div>
+export const PhotoCard = ({ id, preview, name, index }: PhotoCardProps) => {
+  const { removePhoto } = usePhotosContext();
 
-    <div className={styles.photoInfo}>
-      <span className={styles.photoName}>{name}</span>
-    </div>
+  const handleRemove = () => {
+    removePhoto(id);
+  };
 
-    <Button
-      variant="1"
-      size="small"
-      className={styles.proButton}
-      iconLeft="star"
-    >
-      Be Pro
-    </Button>
-  </div>
-);
+  return (
+    <div className={styles.photoCard}>
+      <div className={styles.primaryContainer}>
+        <div className={styles.imageContainer}>
+          <Image
+            src={preview}
+            alt={name}
+            className={styles.image}
+            width={80}
+            height={80}
+          />
+        </div>
+
+        <div className={styles.photoInfo}>
+          <span className={styles.photoName}>Photo {index + 1}</span>
+        </div>
+      </div>
+
+      <Button variant="4" size="small" iconLeft="delete" onClick={handleRemove}>
+        Remove
+      </Button>
+    </div>
+  );
+};

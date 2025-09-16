@@ -34,8 +34,8 @@ export const SelectedImages = () => {
       <SelectedImagesHeader />
 
       <div className={styles.imageGrid}>
-        {photos.map(photo => (
-          <PhotoCard key={photo.id} {...photo} />
+        {photos.map((photo, index) => (
+          <PhotoCard key={photo.id} {...photo} index={index} />
         ))}
       </div>
 

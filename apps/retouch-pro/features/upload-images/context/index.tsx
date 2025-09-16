@@ -54,12 +54,6 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
     dispatch({ type: 'SET_ERROR', payload: error });
   }, []);
 
-  const viewPricing = useCallback(() => {
-    // Scroll to pricing section or open pricing modal
-    // TODO: Implement pricing navigation
-    console.log('View pricing clicked');
-  }, []);
-
   const finalizeOrder = useCallback(() => {
     // Calculate package info and prepare for payment
     const selectedCount = state.photos.length;
@@ -149,7 +143,6 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
     setUploading,
     setUploadProgress,
     setError,
-    viewPricing,
     finalizeOrder,
     processPayment,
     openFileSelector,

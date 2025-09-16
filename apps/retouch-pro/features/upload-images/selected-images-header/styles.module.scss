@@ -7,6 +7,7 @@
   background: transparent;
   border-bottom: 1px solid rgba(203, 212, 198, 0.2);
   margin-bottom: var(--spacing-200);
+  gap: var(--spacing-200);
 }
 
 .leftSection {
@@ -41,6 +42,7 @@
   align-items: center;
   gap: var(--spacing-200);
   flex-shrink: 0;
+  flex-wrap: wrap;
 }
 
 .addPhotosButton {
@@ -61,6 +63,8 @@
 // Responsive design
 @media (max-width: 768px) {
   .header {
+    display: flex;
+    gap: var(--spacing-200);
     flex-direction: column;
     height: auto;
     gap: var(--spacing-200);

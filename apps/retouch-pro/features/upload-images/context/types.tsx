@@ -23,7 +23,6 @@ export type PhotoActions = {
   setUploading: (isUploading: boolean) => void;
   setUploadProgress: (progress: number) => void;
   setError: (error: string | null) => void;
-  viewPricing: () => void;
   finalizeOrder: () => void;
   processPayment: (paymentData: PaymentData) => Promise<void>;
   openFileSelector: () => void;
