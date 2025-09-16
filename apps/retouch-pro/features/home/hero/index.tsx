@@ -7,13 +7,27 @@ import { useHero } from './hooks';
 import styles from './styles.module.scss';
 
 export const Hero = () => {
-  const { handleFileSelect, handleClick, fileInputRef } = useHero();
+  const {
+    handleFileSelect,
+    handleClick,
+    handleDragOver,
+    handleDragLeave,
+    handleDrop,
+    isDragOver,
+    fileInputRef,
+  } = useHero();
   const router = useRouter();
 
   return (
     <section className={styles.hero}>
       <div className={styles.container}>
-        <div className={styles.heroContent}>
+        <div
+          className={`${styles.heroContent} ${isDragOver ? styles.dragOver : ''}`}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+          onClick={handleClick}
+        >
           <div className={styles.contentFrame}>
             <svg
               className={styles.borderSvg}
@@ -64,7 +78,9 @@ export const Hero = () => {
             </Button>
 
             <Text className={styles.heroSubtext}>
-              You can send up to 24 photos at once
+              {isDragOver
+                ? 'Drop your photos here'
+                : 'You can send up to 24 photos at once'}
             </Text>
           </div>
 

@@ -33,6 +33,39 @@
   width: 100%;
   max-width: 800px;
   position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover:not(.dragOver) {
+    .contentFrame {
+      .borderSvg rect {
+        stroke-width: 2.5;
+        transition: stroke-width 0.3s ease;
+      }
+    }
+  }
+
+  &.dragOver {
+    transform: scale(1.02);
+
+    .contentFrame {
+      border-color: var(--color-primary);
+      background: rgba(var(--color-primary-rgb), 0.05);
+
+      .borderSvg rect {
+        stroke: var(--color-primary);
+        stroke-width: 3;
+        stroke-dasharray: 8 8;
+        animation: dash 1s linear infinite;
+      }
+    }
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -24;
+  }
 }
 
 .custom-border {

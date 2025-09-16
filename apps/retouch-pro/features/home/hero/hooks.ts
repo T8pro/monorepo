@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { useTheme } from '@t8pro/design-system';
 import { useRouter } from 'next/navigation';
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { usePhotosContext } from '@/features/upload-images/context';
 
 /**
@@ -14,6 +14,7 @@ export const useHero = () => {
   const router = useRouter();
   const { addPhotos } = usePhotosContext();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isDragOver, setIsDragOver] = useState(false);
 
   const terminalConfig = {
     scale: 3,
@@ -77,11 +78,41 @@ export const useHero = () => {
     fileInputRef.current?.click();
   }, []);
 
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(true);
+  }, []);
+
+  const handleDragLeave = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(false);
+  }, []);
+
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsDragOver(false);
+
+      const files = e.dataTransfer.files;
+      if (files && files.length > 0) {
+        handleFileSelect(files);
+      }
+    },
+    [handleFileSelect],
+  );
+
   return {
     terminalConfig,
     theme,
     handleFileSelect,
     handleClick,
+    handleDragOver,
+    handleDragLeave,
+    handleDrop,
+    isDragOver,
     fileInputRef,
   };
 };
