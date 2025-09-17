@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@t8pro/design-system": "*",
+    "@tanstack/react-query": "^5.62.7",
     "material-symbols": "^0.35.1",
     "next": "^15.5.0",
     "ogl": "^1.0.11",
