@@ -7,6 +7,8 @@ export type Photo = {
   name: string;
   size: number;
   type: string;
+  width: number;
+  height: number;
 };
 
 export type PhotoState = {
@@ -14,6 +16,8 @@ export type PhotoState = {
   isUploading: boolean;
   uploadProgress: number;
   error: string | null;
+  isCheckoutOpen: boolean;
+  clientSecret: string | null;
 };
 
 export type PhotoActions = {
@@ -26,6 +30,9 @@ export type PhotoActions = {
   finalizeOrder: () => void;
   processPayment: (paymentData: PaymentData) => Promise<void>;
   openFileSelector: () => void;
+  openCheckout: () => void;
+  closeCheckout: () => void;
+  processPhotosAfterPayment: (paymentIntentId: string) => Promise<void>;
 };
 
 export type PaymentData = {
@@ -33,6 +40,25 @@ export type PaymentData = {
   currency: string;
   packageType: string;
   photos: Photo[];
+  photoCount: number;
+};
+
+export type PendingUploadPhoto = {
+  name: string;
+  type: string;
+  size: number;
+  width: number;
+  height: number;
+  dataUrl: string;
+};
+
+export type PendingUploadPayload = {
+  amount: number;
+  currency: string;
+  packageType: string;
+  photoCount: number;
+  photos: PendingUploadPhoto[];
+  createdAt: string;
 };
 
 export type PhotoContextValues = PhotoState & PhotoActions;
@@ -43,6 +69,8 @@ export type PhotoAction =
   | { type: 'CLEAR_PHOTOS' }
   | { type: 'SET_UPLOADING'; payload: boolean }
   | { type: 'SET_UPLOAD_PROGRESS'; payload: number }
-  | { type: 'SET_ERROR'; payload: string | null };
+  | { type: 'SET_ERROR'; payload: string | null }
+  | { type: 'OPEN_CHECKOUT'; payload: string }
+  | { type: 'CLOSE_CHECKOUT' };
 
 export type PhotoProviderProps = PropsWithChildren;

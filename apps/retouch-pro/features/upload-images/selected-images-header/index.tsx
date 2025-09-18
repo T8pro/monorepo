@@ -5,12 +5,15 @@ import styles from './styles.module.scss';
 const MAX_PHOTOS = 24;
 
 export const SelectedImagesHeader = () => {
-  const { photos, openFileSelector, finalizeOrder } = usePhotosContext();
+  const { photos, openFileSelector, finalizeOrder, isUploading } = usePhotosContext();
   const selectedCount = photos.length;
 
   const handleProcessClick = () => {
     finalizeOrder();
   };
+
+  const checkoutIcon = isUploading ? 'hourglass_bottom' : 'credit_card';
+  const checkoutLabel = isUploading ? 'Processing...' : 'Checkout';
 
   return (
     <header className={styles.header}>
@@ -37,10 +40,11 @@ export const SelectedImagesHeader = () => {
         <Button
           variant="1"
           onClick={handleProcessClick}
-          iconLeft="credit_card"
+          iconLeft={checkoutIcon}
           className={styles.processButton}
+          disabled={isUploading}
         >
-          Checkout
+          {checkoutLabel}
         </Button>
       </div>
     </header>

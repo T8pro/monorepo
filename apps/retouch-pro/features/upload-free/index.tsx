@@ -10,7 +10,6 @@ export const UploadFree = () => {
     formState,
     fieldErrors,
     formError,
-    formSuccess,
     handleInputChange,
     handleSubmit,
     handleFileSelect,
@@ -192,9 +191,6 @@ export const UploadFree = () => {
               </Button>
 
               <div className={styles.feedback}>
-                {formSuccess && (
-                  <span className={styles.success}>{formSuccess}</span>
-                )}
                 {formError && (
                   <span className={styles.globalError}>{formError}</span>
                 )}

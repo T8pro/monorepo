@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { JetBrains_Mono, Montserrat } from 'next/font/google';
+import localFont from 'next/font/local';
 import '@t8pro/design-system/styles';
-import './global.css';
 import { Providers } from './providers';
 import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
@@ -18,6 +18,12 @@ const jetBrainsMono = JetBrains_Mono({
   weight: ['300', '400', '500', '600', '700'],
 });
 
+const materialSymbols = localFont({
+  src: './fonts/MaterialSymbolsRounded-VariableFont_FILL,GRAD,opsz,wght.ttf',
+  variable: '--font-material-symbols',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   title: '24-Hour Menu Visual Upgrade - Landing Page (US)',
   description:
@@ -32,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={montserrat.variable + ' ' + jetBrainsMono.variable}
+        className={`${montserrat.variable} ${jetBrainsMono.variable} ${materialSymbols.variable}`}
         style={{ backgroundColor: 'var(--color-secondary-invert)' }}
       >
         <Providers>

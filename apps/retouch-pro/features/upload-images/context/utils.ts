@@ -37,6 +37,19 @@ export const photoReducer = (
         ...state,
         error: action.payload,
       };
+    case 'OPEN_CHECKOUT':
+      return {
+        ...state,
+        isCheckoutOpen: true,
+        clientSecret: action.payload,
+        error: null,
+      };
+    case 'CLOSE_CHECKOUT':
+      return {
+        ...state,
+        isCheckoutOpen: false,
+        clientSecret: null,
+      };
     default:
       return state;
   }

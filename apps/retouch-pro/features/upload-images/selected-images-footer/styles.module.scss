@@ -163,3 +163,18 @@
     font-size: var(--font-size-sm);
   }
 }
+.resizeHint {
+  margin-top: var(--spacing-100);
+  color: rgba(var(--color-secondary-invert-rgb, 24, 26, 20), 0.7);
+}
+
+.status {
+  color: var(--color-secondary-invert);
+  font-style: italic;
+}
+
+.error {
+  color: var(--color-danger, #d64545);
+  font-weight: var(--font-weight-medium);
+}
+

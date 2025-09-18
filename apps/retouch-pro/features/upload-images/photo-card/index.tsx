@@ -4,7 +4,22 @@ import { usePhotosContext } from '../context';
 import { PhotoCardProps } from '../types';
 import styles from './styles.module.scss';
 
-export const PhotoCard = ({ id, preview, name, index }: PhotoCardProps) => {
+const formatFileSize = (bytes: number) => {
+  const megaBytes = bytes / (1024 * 1024);
+  return megaBytes < 0.1
+    ? `${(bytes / 1024).toFixed(0)} KB`
+    : `${megaBytes.toFixed(1)} MB`;
+};
+
+export const PhotoCard = ({
+  id,
+  preview,
+  name,
+  width,
+  height,
+  size,
+  index,
+}: PhotoCardProps) => {
   const { removePhoto } = usePhotosContext();
 
   const handleRemove = () => {
@@ -26,6 +41,9 @@ export const PhotoCard = ({ id, preview, name, index }: PhotoCardProps) => {
 
         <div className={styles.photoInfo}>
           <span className={styles.photoName}>Photo {index + 1}</span>
+          <span className={styles.photoMeta}>
+            {width} × {height}px · {formatFileSize(size)}
+          </span>
         </div>
       </div>
 

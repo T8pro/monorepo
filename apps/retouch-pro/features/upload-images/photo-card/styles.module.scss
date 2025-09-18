@@ -57,7 +57,9 @@
 .photoInfo {
   flex: 1;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-50);
 }
 
 .photoName {
@@ -65,6 +67,12 @@
   font-size: 16px;
   font-weight: var(--font-weight-medium);
   color: #181a14;
+}
+
+.photoMeta {
+  font-family: var(--font-montserrat);
+  font-size: 12px;
+  color: rgba(24, 26, 20, 0.65);
 }
 
 // Responsive design

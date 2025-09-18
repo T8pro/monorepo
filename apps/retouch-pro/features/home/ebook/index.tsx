@@ -3,6 +3,7 @@
 import { Button, Icon, Heading, Text, Input } from '@t8pro/design-system';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useMutationDownloadEbook } from './api/mutation';
 import styles from './styles.module.scss';
 import type { EbookProps } from './types';
 
@@ -19,6 +20,7 @@ export const Ebook = (props: EbookProps = {}) => {
     name: '',
     email: '',
   });
+  const { mutate, isPending } = useMutationDownloadEbook();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -32,7 +34,14 @@ export const Ebook = (props: EbookProps = {}) => {
     e.preventDefault();
     if (onDownloadAction) {
       onDownloadAction(formData);
+      return;
     }
+
+    mutate(formData, {
+      onSuccess: () => {
+        setFormData({ name: '', email: '' });
+      },
+    });
   };
 
   return (
@@ -66,22 +75,24 @@ export const Ebook = (props: EbookProps = {}) => {
               <Input
                 type="text"
                 name="name"
-                placeholder="Seu nome"
+                placeholder="Your name"
                 value={formData.name}
                 onChange={handleInputChange}
                 size="large"
                 fullWidth
                 required
+                disabled={isPending}
               />
               <Input
                 type="email"
                 name="email"
-                placeholder="Seu email"
+                placeholder="Your best email"
                 value={formData.email}
                 onChange={handleInputChange}
                 size="large"
                 fullWidth
                 required
+                disabled={isPending}
               />
             </div>
 
@@ -91,8 +102,9 @@ export const Ebook = (props: EbookProps = {}) => {
               size="medium"
               iconLeft="download"
               className={styles.downloadButton}
+              disabled={isPending}
             >
-              Download E-book
+              {isPending ? 'Sending e-mail...' : 'Click here to download'}
             </Button>
           </form>
         </div>

@@ -11,15 +11,19 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^4.0.2",
+    "@stripe/stripe-js": "^7.9.0",
     "@t8pro/design-system": "*",
     "@tanstack/react-query": "^5.62.7",
     "material-symbols": "^0.35.1",
     "next": "^15.5.0",
     "ogl": "^1.0.11",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
     "react-icons": "^5.5.0",
-    "sass": "^1.92.1"
+    "react-toastify": "^11.0.5",
+    "sass": "^1.92.1",
+    "stripe": "^18.5.0"
   },
   "devDependencies": {
     "@t8pro/eslint-config": "*",

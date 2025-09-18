@@ -5,8 +5,6 @@ export type FooterProps = {
   secondaryButtonText?: string;
   businessHours?: string;
   trustBadges?: TrustBadge[];
-  onPrimaryButtonClick?: () => void;
-  onSecondaryButtonClick?: () => void;
 };
 
 export type TrustBadge = {

@@ -2,6 +2,7 @@
 
 import { EmptyState } from '@t8pro/design-system';
 import { usePhotosContext } from './context';
+import { CheckoutModal } from './checkout-modal';
 import { PhotoCard } from './photo-card';
 import { SelectedImagesFooter } from './selected-images-footer';
 import { SelectedImagesHeader } from './selected-images-header';
@@ -30,16 +31,20 @@ export const SelectedImages = () => {
   }
 
   return (
-    <div className={styles.container}>
-      <SelectedImagesHeader />
+    <>
+      <div className={styles.container}>
+        <SelectedImagesHeader />
 
-      <div className={styles.imageGrid}>
-        {photos.map((photo, index) => (
-          <PhotoCard key={photo.id} {...photo} index={index} />
-        ))}
+        <div className={styles.imageGrid}>
+          {photos.map((photo, index) => (
+            <PhotoCard key={photo.id} {...photo} index={index} />
+          ))}
+        </div>
+
+        <SelectedImagesFooter />
       </div>
 
-      <SelectedImagesFooter />
-    </div>
+      <CheckoutModal />
+    </>
   );
 };

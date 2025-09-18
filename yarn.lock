@@ -1034,6 +1034,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stripe/react-stripe-js@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "@stripe/react-stripe-js@npm:4.0.2"
+  dependencies:
+    prop-types: "npm:^15.7.2"
+  peerDependencies:
+    "@stripe/stripe-js": ">=1.44.1 <8.0.0"
+    react: ">=16.8.0 <20.0.0"
+    react-dom: ">=16.8.0 <20.0.0"
+  checksum: 10c0/b37b6fb76733a8b007b4d1266301dd6478aba7f44879ee51ddb62bf254ac7557d1feb6f969e18ca62d65b24aebd8515181362d5687a4dc304edd9986bf60446c
+  languageName: node
+  linkType: hard
+
+"@stripe/stripe-js@npm:^7.9.0":
+  version: 7.9.0
+  resolution: "@stripe/stripe-js@npm:7.9.0"
+  checksum: 10c0/ca7dd386df944ed05be115422dde9f5a2b04846e508f482d996db273d95bf8ac8ab5078e58480534b8bc6e29c26c67e16c7e75e478c3112813f971ec6aba49f8
+  languageName: node
+  linkType: hard
+
 "@swc/helpers@npm:0.5.15":
   version: 0.5.15
   resolution: "@swc/helpers@npm:0.5.15"
@@ -1097,6 +1117,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@t8pro/retouch-pro@workspace:apps/retouch-pro"
   dependencies:
+    "@stripe/react-stripe-js": "npm:^4.0.2"
+    "@stripe/stripe-js": "npm:^7.9.0"
     "@t8pro/design-system": "npm:*"
     "@t8pro/eslint-config": "npm:*"
     "@t8pro/typescript-config": "npm:*"
@@ -1108,10 +1130,12 @@ __metadata:
     material-symbols: "npm:^0.35.1"
     next: "npm:^15.5.0"
     ogl: "npm:^1.0.11"
-    react: "npm:^19.1.0"
-    react-dom: "npm:^19.1.0"
+    react: "npm:19.1.1"
+    react-dom: "npm:19.1.1"
     react-icons: "npm:^5.5.0"
+    react-toastify: "npm:^11.0.5"
     sass: "npm:^1.92.1"
+    stripe: "npm:^18.5.0"
     typescript: "npm:5.9.2"
   languageName: unknown
   linkType: soft
@@ -4384,7 +4408,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.8.1":
+"prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -4402,6 +4426,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"qs@npm:^6.11.0":
+  version: 6.14.0
+  resolution: "qs@npm:6.14.0"
+  dependencies:
+    side-channel: "npm:^1.1.0"
+  checksum: 10c0/8ea5d91bf34f440598ee389d4a7d95820e3b837d3fd9f433871f7924801becaa0cd3b3b4628d49a7784d06a8aea9bc4554d2b6d8d584e2d221dc06238a42909c
+  languageName: node
+  linkType: hard
+
 "queue-microtask@npm:^1.2.2":
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
@@ -4409,7 +4442,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^19.1.0":
+"react-dom@npm:19.1.1, react-dom@npm:^19.1.0":
   version: 19.1.1
   resolution: "react-dom@npm:19.1.1"
   dependencies:
@@ -4436,7 +4469,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^19.1.0":
+"react-toastify@npm:^11.0.5":
+  version: 11.0.5
+  resolution: "react-toastify@npm:11.0.5"
+  dependencies:
+    clsx: "npm:^2.1.1"
+  peerDependencies:
+    react: ^18 || ^19
+    react-dom: ^18 || ^19
+  checksum: 10c0/50f5b81323ebb1957b2efd0963fac24aa1407155d16ab756ffd6d0f42f8af17e796b3958a9fce13e9d1b945d6c3a5a9ebf13529478474d8a2af4bf1dd0db67d2
+  languageName: node
+  linkType: hard
+
+"react@npm:19.1.1, react@npm:^19.1.0":
   version: 19.1.1
   resolution: "react@npm:19.1.1"
   checksum: 10c0/8c9769a2dfd02e603af6445058325e6c8a24b47b185d0e461f66a6454765ddcaecb3f0a90184836c68bb509f3c38248359edbc42f0d07c23eb500a5c30c87b4e
@@ -5129,6 +5174,20 @@ __metadata:
   version: 3.1.1
   resolution: "strip-json-comments@npm:3.1.1"
   checksum: 10c0/9681a6257b925a7fa0f285851c0e613cc934a50661fa7bb41ca9cbbff89686bb4a0ee366e6ecedc4daafd01e83eee0720111ab294366fe7c185e935475ebcecd
+  languageName: node
+  linkType: hard
+
+"stripe@npm:^18.5.0":
+  version: 18.5.0
+  resolution: "stripe@npm:18.5.0"
+  dependencies:
+    qs: "npm:^6.11.0"
+  peerDependencies:
+    "@types/node": ">=12.x.x"
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+  checksum: 10c0/59dfab7310f10fe579766f6f2d3572818437e4adcc7291704ad4f362d74dc422128c0fdaae8ebfcdef6448c235da674cb4684d041a56199739afd81d2a33f999
   languageName: node
   linkType: hard
 

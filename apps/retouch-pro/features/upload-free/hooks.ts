@@ -1,6 +1,7 @@
 'use client';
 
 import { useMutation } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 import {
   ChangeEvent,
   DragEvent,
@@ -49,8 +50,8 @@ export const useUploadFree = () => {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [formError, setFormError] = useState<string | null>(null);
-  const [formSuccess, setFormSuccess] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const router = useRouter();
 
   const verifyMutation = useMutation<VerifyResponse, Error, { email: string }>({
     mutationKey: ['upload-free', 'verify'],
@@ -227,7 +228,6 @@ export const useUploadFree = () => {
     async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       setFormError(null);
-      setFormSuccess(null);
 
       if (!validateForm() || !selectedPhoto) {
         if (!selectedPhoto) {
@@ -264,7 +264,7 @@ export const useUploadFree = () => {
         });
 
         resetForm();
-        setFormSuccess('Thanks! Your free retouch request is on the way.');
+        router.push('/upload-free/thank-you');
       } catch (error) {
         setFormError(
           error instanceof Error
@@ -280,6 +280,7 @@ export const useUploadFree = () => {
       submitMutation,
       validateForm,
       verifyMutation,
+      router,
     ],
   );
 
@@ -292,7 +293,6 @@ export const useUploadFree = () => {
     formState,
     fieldErrors,
     formError,
-    formSuccess,
     handleInputChange,
     handleSubmit,
     handleFileSelect,

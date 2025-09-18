@@ -1,0 +1,128 @@
+.checkoutModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-1000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-200);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(from var(--color-gray-600) r g b / 0.5);
+  backdrop-filter: blur(var(--blur-md));
+}
+
+.modalContent {
+  position: relative;
+  background: var(--color-secondary-invert-dark);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-2xl);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-300) var(--spacing-300) 0 var(--spacing-300);
+  border-bottom: 1px solid var(--color-gray-200);
+  margin-bottom: var(--spacing-300);
+}
+
+.title {
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: var(--font-size-xl);
+  cursor: pointer;
+  color: var(--color-gray-200);
+  padding: var(--spacing-50);
+  line-height: 1;
+  transition: color var(--transition-fast);
+
+  &:hover {
+    color: var(--color-gray-400);
+  }
+}
+
+.summary {
+  padding: 0 var(--spacing-300);
+  margin-bottom: var(--spacing-300);
+}
+
+.packageDetails {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+  padding: var(--spacing-200);
+  background: var(--color-gray-800);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-200);
+
+  p {
+    margin: 0;
+  }
+}
+
+.total {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-lg);
+  margin-top: var(--spacing-100);
+  padding-top: var(--spacing-100);
+  border-top: 1px solid var(--color-gray-100);
+}
+
+.paymentForm {
+  padding: 0 var(--spacing-300) var(--spacing-300) var(--spacing-300);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+}
+
+.paymentElement {
+  padding: var(--spacing-200);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-lg);
+  background: var(--color-gray-50);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-200);
+  justify-content: flex-end;
+}
+
+.payButton {
+  min-width: 140px;
+}
+
+@media (max-width: 640px) {
+  .modalContent {
+    margin: var(--spacing-200);
+    max-height: calc(100vh - var(--spacing-400));
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .payButton {
+    min-width: auto;
+  }
+}
