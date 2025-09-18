@@ -25,7 +25,7 @@ interface CheckoutFormProps {
 const CheckoutForm = ({ onSuccess, onError, onClose }: CheckoutFormProps) => {
   const stripe = useStripe();
   const elements = useElements();
-  const { photos, processPhotosAfterPayment, clearPhotos } = usePhotosContext();
+  const { photos } = usePhotosContext();
   const [isProcessing, setIsProcessing] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -38,23 +38,20 @@ const CheckoutForm = ({ onSuccess, onError, onClose }: CheckoutFormProps) => {
     setIsProcessing(true);
 
     try {
-      const { error, paymentIntent } = await stripe.confirmPayment({
+      const result = await stripe.confirmPayment({
         elements,
         confirmParams: {
-          return_url: `${window.location.origin}/upload/thank-you`,
+          return_url: `${window.location.origin}/upload?payment_intent={PAYMENT_INTENT_ID}`,
         },
         redirect: 'if_required',
       });
 
-      if (error) {
-        onError(error.message || 'Payment failed. Please try again.');
-      } else if (paymentIntent?.id) {
-        // Process photos after successful payment
-        await processPhotosAfterPayment(paymentIntent.id);
-        clearPhotos();
-        onSuccess(paymentIntent.id);
+      if (result.error) {
+        onError(result.error.message || 'Payment failed. Please try again.');
+      } else if (result.paymentIntent?.status === 'succeeded') {
+        onSuccess(result.paymentIntent.id);
       } else {
-        onError('Payment successful but could not retrieve payment details.');
+        onError('Payment was not completed successfully.');
       }
     } catch {
       onError('An unexpected error occurred. Please try again.');
@@ -161,8 +158,14 @@ const CheckoutForm = ({ onSuccess, onError, onClose }: CheckoutFormProps) => {
 };
 
 export const CheckoutModal = () => {
-  const { isCheckoutOpen, clientSecret, closeCheckout, setError } =
-    usePhotosContext();
+  const {
+    isCheckoutOpen,
+    clientSecret,
+    closeCheckout,
+    setError,
+    processPhotosAfterPayment,
+    clearPhotos,
+  } = usePhotosContext();
 
   if (!isCheckoutOpen || !clientSecret) {
     return null;
@@ -175,15 +178,24 @@ export const CheckoutModal = () => {
     },
   };
 
-  const handleSuccess = () => {
-    // Photos are already processed and cleared in CheckoutForm
-    closeCheckout();
-    // Redirect to thank you page
-    window.location.href = '/upload/thank-you';
+  const handleSuccess = async (paymentIntentId: string) => {
+    // For direct payments (not redirect), process immediately
+    try {
+      await processPhotosAfterPayment(paymentIntentId);
+      clearPhotos();
+      closeCheckout();
+      window.location.href = '/upload/thank-you';
+    } catch (error) {
+      setError(
+        'Payment successful but failed to process photos. Please contact support.',
+      );
+      closeCheckout();
+    }
   };
 
   const handleError = (errorMessage: string) => {
     setError(errorMessage);
+    closeCheckout();
   };
 
   return (

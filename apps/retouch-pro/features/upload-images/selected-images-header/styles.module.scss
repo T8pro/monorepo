@@ -1,12 +1,37 @@
 .header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
   padding: var(--spacing-400);
   background: transparent;
   border-bottom: 1px solid rgba(203, 212, 198, 0.2);
   margin-bottom: var(--spacing-200);
+  gap: var(--spacing-300);
+}
+
+.userFormSection {
+  width: 100%;
+  margin-bottom: var(--spacing-200);
+}
+
+.inputGroup {
+  display: flex;
+  gap: var(--spacing-200);
+  width: 100%;
+  max-width: 500px;
+}
+
+.nameInput,
+.emailInput {
+  flex: 1;
+  min-width: 0;
+}
+
+.contentRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   gap: var(--spacing-200);
 }
 
@@ -63,12 +88,18 @@
 // Responsive design
 @media (max-width: 768px) {
   .header {
-    display: flex;
+    padding: var(--spacing-200);
     gap: var(--spacing-200);
+  }
+
+  .inputGroup {
     flex-direction: column;
-    height: auto;
+    max-width: 100%;
+  }
+
+  .contentRow {
+    flex-direction: column;
     gap: var(--spacing-200);
-    padding: var(--spacing-200) 0;
   }
 
   .leftSection {

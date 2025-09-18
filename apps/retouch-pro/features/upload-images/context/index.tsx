@@ -1,14 +1,17 @@
 'use client';
 
 import { createContext, useCallback, useContext, useReducer } from 'react';
+import { toast } from 'react-toastify';
 import { INITIAL_STATE, PENDING_UPLOAD_STORAGE_KEY } from './constants';
 import { fileToDataUrl, processPhotoForUpload } from './image-utils';
+import { photoStorage } from './storage-utils';
 import {
   PendingUploadPayload,
   PaymentData,
   Photo,
   PhotoContextValues,
   PhotoProviderProps,
+  UserData,
 } from './types';
 import { photoReducer } from './utils';
 
@@ -108,6 +111,17 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
 
   const setError = useCallback((error: string | null) => {
     dispatch({ type: 'SET_ERROR', payload: error });
+    if (error) {
+      toast.error(error);
+    }
+  }, []);
+
+  const setUserData = useCallback((userData: UserData) => {
+    dispatch({ type: 'SET_USER_DATA', payload: userData });
+    // Save to storage whenever user data changes
+    if (typeof window !== 'undefined') {
+      photoStorage.saveUserData(userData);
+    }
   }, []);
 
   const setUploading = useCallback((isUploading: boolean) => {
@@ -162,6 +176,27 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
     [setError],
   );
 
+  const restorePhotosFromStorage = useCallback(async () => {
+    if (typeof window === 'undefined') return;
+
+    try {
+      // Restore photos
+      const restoredPhotos = await photoStorage.loadPhotos();
+      if (restoredPhotos.length > 0) {
+        // Replace existing photos with restored ones
+        dispatch({ type: 'SET_PHOTOS', payload: restoredPhotos });
+      }
+
+      // Restore user data
+      const restoredUserData = await photoStorage.loadUserData();
+      if (restoredUserData) {
+        dispatch({ type: 'SET_USER_DATA', payload: restoredUserData });
+      }
+    } catch {
+      // Silently fail if restoration doesn't work
+    }
+  }, []);
+
   const removePhoto = useCallback(
     (id: string) => {
       const target = state.photos.find(photo => photo.id === id);
@@ -179,35 +214,47 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
       URL.revokeObjectURL(photo.preview);
     });
     dispatch({ type: 'CLEAR_PHOTOS' });
+    // Also clear user data when clearing photos
+    if (typeof window !== 'undefined') {
+      photoStorage.clearUserData();
+    }
   }, [state.photos]);
 
-  const processPayment = useCallback(async (paymentData: PaymentData) => {
-    try {
-      const response = await fetch('/api/payment-intent', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          amount: paymentData.amount,
-          currency: paymentData.currency,
-          packageType: paymentData.packageType,
-          photoCount: paymentData.photoCount,
-        }),
-      });
+  const processPayment = useCallback(
+    async (paymentData: PaymentData) => {
+      try {
+        // Save photos to storage before payment
+        if (typeof window !== 'undefined') {
+          await photoStorage.savePhotos(state.photos);
+        }
 
-      if (!response.ok) {
-        throw new Error('Failed to create payment intent');
+        const response = await fetch('/api/payment-intent', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            amount: paymentData.amount,
+            currency: paymentData.currency,
+            packageType: paymentData.packageType,
+            photoCount: paymentData.photoCount,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to create payment intent');
+        }
+
+        const { clientSecret } = await response.json();
+        dispatch({ type: 'OPEN_CHECKOUT', payload: clientSecret });
+      } catch (error) {
+        throw error instanceof Error
+          ? error
+          : new Error('Payment failed. Please try again.');
       }
-
-      const { clientSecret } = await response.json();
-      dispatch({ type: 'OPEN_CHECKOUT', payload: clientSecret });
-    } catch (error) {
-      throw error instanceof Error
-        ? error
-        : new Error('Payment failed. Please try again.');
-    }
-  }, []);
+    },
+    [state.photos],
+  );
 
   const finalizeOrder = useCallback(() => {
     const selectedCount = state.photos.length;
@@ -215,6 +262,24 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
 
     if (!packageInfo) {
       setError('Select at least one photo before continuing.');
+      return;
+    }
+
+    // Validate user data
+    if (!state.userData.name.trim()) {
+      setError('Please enter your name before proceeding.');
+      return;
+    }
+
+    if (!state.userData.email.trim()) {
+      setError('Please enter your email before proceeding.');
+      return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(state.userData.email)) {
+      setError('Please enter a valid email address.');
       return;
     }
 
@@ -266,14 +331,13 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
         setUploadProgress(0);
       }
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    clearPhotos,
     processPayment,
     setError,
     setUploadProgress,
     setUploading,
     state.photos,
+    state.userData,
   ]);
 
   const openFileSelector = useCallback(() => {
@@ -301,10 +365,12 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
   }, []);
 
   const processPhotosAfterPayment = useCallback(
-    async (paymentIntentId: string) => {
+    async (paymentIntentId: string, photosToProcess?: Photo[]) => {
       try {
+        const photos = photosToProcess || state.photos;
+
         // Calculate package info
-        const selectedCount = state.photos.length;
+        const selectedCount = photos.length;
         let packageType;
         if (selectedCount <= 5) {
           packageType = 'No Package';
@@ -318,7 +384,7 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
 
         // Prepare photos data for upload
         const photosData = await Promise.all(
-          state.photos.map(async photo => {
+          photos.map(async photo => {
             const dataUrl = await new Promise<string>(resolve => {
               const reader = new FileReader();
               reader.onload = () => resolve(reader.result as string);
@@ -371,12 +437,14 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
     setUploading,
     setUploadProgress,
     setError,
+    setUserData,
     finalizeOrder,
     processPayment,
     openFileSelector,
     openCheckout,
     closeCheckout,
     processPhotosAfterPayment,
+    restorePhotosFromStorage,
   };
 
   return (

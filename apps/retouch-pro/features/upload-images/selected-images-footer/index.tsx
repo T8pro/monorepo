@@ -95,9 +95,15 @@ export const SelectedImagesFooter = () => {
       </div>
 
       <div className={styles.rightSection}>
-        <Text color="secondary">
-          <s>Original value: ${packageInfo?.totalPrice.toFixed(0)}</s>
-        </Text>
+        {packageInfo?.discountedPrice !== packageInfo?.totalPrice ? (
+          <Text color="secondary">
+            <s>Original value: ${packageInfo?.totalPrice.toFixed(0)}</s>
+          </Text>
+        ) : (
+          <Text color="secondary">
+            <strong>Total: ${packageInfo?.totalPrice.toFixed(0)}</strong>
+          </Text>
+        )}
 
         {packageInfo?.name !== 'No Package' && (
           <Text color="secondary">

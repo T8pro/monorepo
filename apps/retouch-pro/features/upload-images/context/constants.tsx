@@ -7,6 +7,10 @@ export const INITIAL_STATE: PhotoState = {
   error: null,
   isCheckoutOpen: false,
   clientSecret: null,
+  userData: {
+    name: '',
+    email: '',
+  },
 };
 
 export const PENDING_UPLOAD_STORAGE_KEY = 'retouchPro.pendingUpload';

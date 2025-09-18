@@ -11,6 +11,12 @@ export const photoReducer = (
         photos: [...state.photos, ...action.payload],
         error: null,
       };
+    case 'SET_PHOTOS':
+      return {
+        ...state,
+        photos: action.payload,
+        error: null,
+      };
     case 'REMOVE_PHOTO':
       return {
         ...state,
@@ -36,6 +42,11 @@ export const photoReducer = (
       return {
         ...state,
         error: action.payload,
+      };
+    case 'SET_USER_DATA':
+      return {
+        ...state,
+        userData: action.payload,
       };
     case 'OPEN_CHECKOUT':
       return {
