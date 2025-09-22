@@ -64,7 +64,7 @@ export const Pricing = ({ title = 'HOW PRICING WORKS' }: PricingProps = {}) => {
                 iconLeft="redeem"
                 fullWidth
                 className={styles.cardButton}
-                onClick={() => onCardClickAction?.(card.id)}
+                onClick={onCardClickAction}
               >
                 {card.buttonText}
               </Button>
