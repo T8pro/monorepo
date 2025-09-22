@@ -1,4 +1,4 @@
-import { Photo, UserData } from './types';
+import { Photo, UserData } from '../types';
 
 const DB_NAME = 'RetouchProDB';
 const DB_VERSION = 1;
@@ -88,7 +88,7 @@ class PhotoStorage {
       }
 
       // Also save to sessionStorage as fallback (without dataUrl to avoid quota)
-      const fallbackData = photosData.map(({ dataUrl, ...rest }) => rest);
+      const fallbackData = photosData.map(({ ...rest }) => rest);
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify(fallbackData));
     } catch (error) {
       // Fallback to sessionStorage without dataUrl
@@ -136,7 +136,7 @@ class PhotoStorage {
                 width: photoData.width,
                 height: photoData.height,
               });
-            } catch (error) {
+            } catch {
               // Skip invalid photos
               continue;
             }
@@ -145,7 +145,7 @@ class PhotoStorage {
           resolve(photos);
         };
       });
-    } catch (error) {
+    } catch {
       // Fallback to sessionStorage
       return this.loadPhotosFromSessionStorage();
     }
@@ -167,7 +167,7 @@ class PhotoStorage {
         const request = store.get(photoData.id);
 
         const storedPhoto = await new Promise<StoredPhotoData | null>(
-          (resolve, reject) => {
+          resolve => {
             request.onerror = () => resolve(null);
             request.onsuccess = () => resolve(request.result);
           },
@@ -219,7 +219,7 @@ class PhotoStorage {
 
     try {
       sessionStorage.setItem(USER_DATA_KEY, JSON.stringify(userData));
-    } catch (error) {
+    } catch {
       // Silently fail if storage is full
     }
   }

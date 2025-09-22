@@ -3,8 +3,6 @@
 import { createContext, useCallback, useContext, useReducer } from 'react';
 import { toast } from 'react-toastify';
 import { INITIAL_STATE, PENDING_UPLOAD_STORAGE_KEY } from './constants';
-import { fileToDataUrl, processPhotoForUpload } from './image-utils';
-import { photoStorage } from './storage-utils';
 import {
   PendingUploadPayload,
   PaymentData,
@@ -13,7 +11,9 @@ import {
   PhotoProviderProps,
   UserData,
 } from './types';
-import { photoReducer } from './utils';
+import { fileToDataUrl, processPhotoForUpload } from './utils/image';
+import { photoReducer } from './utils/photo-reducer';
+import { photoStorage } from './utils/photo-storage';
 
 const PhotoContext = createContext<PhotoContextValues>(
   {} as PhotoContextValues,

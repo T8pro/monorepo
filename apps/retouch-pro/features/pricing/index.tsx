@@ -1,12 +1,16 @@
 'use client';
 
 import { Button, Icon, Heading, Text, IconName } from '@t8pro/design-system';
+import { useRouter } from 'next/navigation';
 import { pricingCards } from './constants';
 import styles from './styles.module.scss';
 import type { PricingProps } from './types';
 
-export const Pricing = (props: PricingProps = {}) => {
-  const { title = 'HOW PRICING WORKS', onCardClickAction } = props;
+export const Pricing = ({ title = 'HOW PRICING WORKS' }: PricingProps = {}) => {
+  const router = useRouter();
+  const onCardClickAction = () => {
+    router.push('/upload');
+  };
 
   return (
     <section className={styles.pricing}>

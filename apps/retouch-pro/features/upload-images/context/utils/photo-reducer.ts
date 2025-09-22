@@ -1,4 +1,4 @@
-import { PhotoAction, PhotoState } from './types';
+import { PhotoAction, PhotoState } from '../types';
 
 export const photoReducer = (
   state: PhotoState,

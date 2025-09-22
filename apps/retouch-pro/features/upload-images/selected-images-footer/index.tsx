@@ -2,7 +2,7 @@
 
 import { Button, Text } from '@t8pro/design-system';
 import { usePhotosContext } from '../context';
-import { MAX_IMAGE_DIMENSION } from '../context/image-utils';
+import { MAX_IMAGE_DIMENSION } from '../context/utils/image';
 import styles from './styles.module.scss';
 
 export const SelectedImagesFooter = () => {

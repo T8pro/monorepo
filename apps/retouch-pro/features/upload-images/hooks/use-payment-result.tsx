@@ -3,7 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { usePhotosContext } from '../context';
-import { photoStorage } from '../context/storage-utils';
+import { photoStorage } from '../context/utils/photo-storage';
 
 export const usePaymentResult = () => {
   const searchParams = useSearchParams();
