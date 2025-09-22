@@ -19,9 +19,11 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 const materialSymbols = localFont({
-  src: './fonts/MaterialSymbolsRounded-VariableFont_FILL,GRAD,opsz,wght.ttf',
+  src: './fonts/material-symbols-rounded.woff2',
   variable: '--font-material-symbols',
   display: 'swap',
+  preload: true,
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
