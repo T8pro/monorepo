@@ -1,6 +1,7 @@
 'use client';
 
 import { Button, Card, Heading, Icon, Input, Text } from '@t8pro/design-system';
+import Image from 'next/image';
 import { useRef } from 'react';
 import { useUploadFree } from './hooks';
 import styles from './styles.module.scss';
@@ -33,8 +34,8 @@ export const UploadFree = () => {
           </Heading>
           <Text size="lg" color="secondary">
             Put our retouching team to the test. Share a single image and your
-            contact details—we&apos;ll send a polished result within one business
-            day.
+            contact details—we&apos;ll send a polished result within one
+            business day.
           </Text>
         </div>
 
@@ -132,13 +133,16 @@ export const UploadFree = () => {
               >
                 {previewUrl && selectedPhoto ? (
                   <div className={styles.preview}>
-                    <img
+                    <Image
                       src={previewUrl}
                       alt="Selected preview"
                       className={styles.previewImage}
+                      width={200}
+                      height={200}
                     />
                     <Text size="sm" color="secondary">
-                      {selectedPhoto.name} · {(selectedPhoto.size / 1024).toFixed(0)} KB
+                      {selectedPhoto.name} ·{' '}
+                      {(selectedPhoto.size / 1024).toFixed(0)} KB
                     </Text>
                     <Button
                       type="button"
@@ -158,7 +162,8 @@ export const UploadFree = () => {
                   <div className={styles.preview}>
                     <Icon name="add_a_photo" size={40} />
                     <Text size="sm" color="secondary">
-                      Drag &amp; drop or click to upload a single image (10MB max).
+                      Drag &amp; drop or click to upload a single image (10MB
+                      max).
                     </Text>
                   </div>
                 )}

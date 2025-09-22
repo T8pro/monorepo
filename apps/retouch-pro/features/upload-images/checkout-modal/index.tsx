@@ -185,7 +185,7 @@ export const CheckoutModal = () => {
       clearPhotos();
       closeCheckout();
       window.location.href = '/upload/thank-you';
-    } catch (error) {
+    } catch {
       setError(
         'Payment successful but failed to process photos. Please contact support.',
       );

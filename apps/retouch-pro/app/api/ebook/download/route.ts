@@ -54,9 +54,7 @@ export async function POST(request: Request) {
       message:
         'Thank you! The e-book download link has been sent to your email.',
     });
-  } catch (error) {
-    console.error('Error sending email:', error);
-
+  } catch {
     return NextResponse.json(
       {
         success: false,

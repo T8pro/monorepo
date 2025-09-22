@@ -1,5 +1,4 @@
 import fs from 'node:fs';
-import handlebars from 'handlebars';
 import nodemailer from 'nodemailer';
 
 type EmailData = {
@@ -40,12 +39,14 @@ export async function sendEmail(
 ): Promise<void> {
   const transporterInstance = getTransporter();
 
+  const handlebars = await import('handlebars');
+
   const source = fs.readFileSync(templatePath, 'utf8');
   const template = handlebars.compile<EmailData>(source);
   const html = template(data);
 
   await transporterInstance.sendMail({
-    from: `[E-BOOK] - Retouch Pro <${emailUser}>`,
+    from: `Retouch Pro <${emailUser}>`,
     to,
     subject,
     html,

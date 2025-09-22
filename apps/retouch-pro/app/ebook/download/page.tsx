@@ -2,10 +2,10 @@
 
 import { Button, Heading, Text } from '@t8pro/design-system';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
-export default function EbookDownloadPage() {
+function EbookDownloadContent() {
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
   const [isValid, setIsValid] = useState<boolean | null>(null);
@@ -82,5 +82,19 @@ export default function EbookDownloadPage() {
         Thank you for trusting us! If you have any questions, please contact us.
       </Text>
     </div>
+  );
+}
+
+export default function EbookDownloadPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className={styles.container}>
+          <Text>Loading...</Text>
+        </div>
+      }
+    >
+      <EbookDownloadContent />
+    </Suspense>
   );
 }
