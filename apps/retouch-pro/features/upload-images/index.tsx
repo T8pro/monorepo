@@ -1,6 +1,6 @@
 'use client';
 
-import { EmptyState } from '@t8pro/design-system';
+import { Button, EmptyState } from '@t8pro/design-system';
 import { Suspense } from 'react';
 import { CheckoutModal } from './checkout-modal';
 import { usePhotosContext } from './context';
@@ -24,6 +24,7 @@ export const SelectedImages = () => {
         <Suspense fallback={null}>
           <PaymentResultHandler />
         </Suspense>
+
         <EmptyState
           title="No photos selected"
           description="Select photos to start the retouching process"
@@ -47,6 +48,7 @@ export const SelectedImages = () => {
       <Suspense fallback={null}>
         <PaymentResultHandler />
       </Suspense>
+
       <div className={styles.container}>
         <SelectedImagesHeader />
 
@@ -55,6 +57,16 @@ export const SelectedImages = () => {
             <PhotoCard key={photo.id} {...photo} index={index} />
           ))}
         </div>
+
+        <Button
+          variant="2"
+          size="medium"
+          iconLeft="add_photo_alternate"
+          style="outline"
+          onClick={openFileSelector}
+        >
+          Add more photos
+        </Button>
 
         <SelectedImagesFooter />
       </div>

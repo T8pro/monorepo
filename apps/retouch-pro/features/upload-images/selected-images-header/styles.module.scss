@@ -9,24 +9,6 @@
   gap: var(--spacing-300);
 }
 
-.userFormSection {
-  width: 100%;
-  margin-bottom: var(--spacing-200);
-}
-
-.inputGroup {
-  display: flex;
-  gap: var(--spacing-200);
-  width: 100%;
-  max-width: 500px;
-}
-
-.nameInput,
-.emailInput {
-  flex: 1;
-  min-width: 0;
-}
-
 .contentRow {
   display: flex;
   align-items: center;

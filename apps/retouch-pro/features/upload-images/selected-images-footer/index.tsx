@@ -1,21 +1,29 @@
 'use client';
 
-import { Button, Text } from '@t8pro/design-system';
+import { Button, Input, Text } from '@t8pro/design-system';
 import { usePhotosContext } from '../context';
-import { MAX_IMAGE_DIMENSION } from '../context/utils/image';
 import styles from './styles.module.scss';
 
 export const SelectedImagesFooter = () => {
   const {
     photos = [],
-    openFileSelector,
     finalizeOrder,
     isUploading,
     uploadProgress,
     error,
+    userData,
+    setUserData,
   } = usePhotosContext();
 
   const selectedCount = photos.length;
+
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUserData({ ...userData, name: event.target.value });
+  };
+
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUserData({ ...userData, email: event.target.value });
+  };
 
   const getPackageInfo = () => {
     if (selectedCount === 0) return null;
@@ -61,81 +69,93 @@ export const SelectedImagesFooter = () => {
     return null;
   }
 
-  const checkoutIcon = isUploading ? 'hourglass_bottom' : 'credit_card';
-  const checkoutLabel = isUploading ? 'Processing...' : 'Checkout';
+  const checkoutIcon = isUploading ? 'hourglass_bottom' : 'shield_lock';
+  const checkoutLabel = isUploading ? 'Processing...' : 'Safe Checkout';
 
   return (
-    <div className={styles.footer}>
-      <div className={styles.leftSection}>
-        <div className={styles.packageSummary}>
-          <Text>Selected package:</Text>
+    <>
+      <div className={styles.footer}>
+        <div className={styles.leftSection}>
+          <div className={styles.packageSummary}>
+            <Text>Selected package:</Text>
 
-          <Text color="secondary">
-            {packageInfo?.name}: up to {packageInfo?.maxUnits} units
-          </Text>
+            <Text color="secondary">
+              {packageInfo?.name}: up to {packageInfo?.maxUnits} units
+            </Text>
 
-          <Text color="secondary">Unit value: ${packageInfo?.unitPrice}</Text>
-
-          <Text size="sm" className={styles.resizeHint}>
-            We resize every photo to {MAX_IMAGE_DIMENSION}px on the longest side
-            before uploading.
-          </Text>
+            <Text color="secondary">Unit value: ${packageInfo?.unitPrice}</Text>
+          </div>
         </div>
 
-        <Button
-          variant="2"
-          size="medium"
-          iconLeft="add_photo_alternate"
-          style="outline"
-          onClick={openFileSelector}
-          disabled={isUploading}
-        >
-          Add more photos
-        </Button>
+        <div className={styles.rightSection}>
+          {packageInfo?.discountedPrice !== packageInfo?.totalPrice ? (
+            <Text color="secondary">
+              <s>Original value: ${packageInfo?.totalPrice.toFixed(0)}</s>
+            </Text>
+          ) : (
+            <Text color="secondary">
+              <strong>Total: ${packageInfo?.totalPrice.toFixed(0)}</strong>
+            </Text>
+          )}
+
+          {packageInfo?.name !== 'No Package' && (
+            <Text color="secondary">
+              <strong>
+                Total value with discount: ${' '}
+                {packageInfo?.discountedPrice.toFixed(0)}
+              </strong>
+            </Text>
+          )}
+
+          {isUploading && (
+            <Text size="sm" className={styles.status}>
+              Preparing photos {uploadProgress}%
+            </Text>
+          )}
+
+          {error && (
+            <Text size="sm" className={styles.error}>
+              {error}
+            </Text>
+          )}
+        </div>
       </div>
 
-      <div className={styles.rightSection}>
-        {packageInfo?.discountedPrice !== packageInfo?.totalPrice ? (
-          <Text color="secondary">
-            <s>Original value: ${packageInfo?.totalPrice.toFixed(0)}</s>
-          </Text>
-        ) : (
-          <Text color="secondary">
-            <strong>Total: ${packageInfo?.totalPrice.toFixed(0)}</strong>
-          </Text>
-        )}
+      <div className={styles.userFormSection}>
+        <Text>
+          Please provide your contact information so we can send you the
+          processed photos via email.
+        </Text>
 
-        {packageInfo?.name !== 'No Package' && (
-          <Text color="secondary">
-            <strong>
-              Total value with discount: ${' '}
-              {packageInfo?.discountedPrice.toFixed(0)}
-            </strong>
-          </Text>
-        )}
+        <div className={styles.inputGroup}>
+          <Input
+            placeholder="Your name"
+            value={userData.name}
+            onChange={handleNameChange}
+            className={styles.nameInput}
+            required
+          />
 
-        {isUploading && (
-          <Text size="sm" className={styles.status}>
-            Preparing photos {uploadProgress}%
-          </Text>
-        )}
-
-        {error && (
-          <Text size="sm" className={styles.error}>
-            {error}
-          </Text>
-        )}
-
-        <Button
-          variant="1"
-          size="medium"
-          iconLeft={checkoutIcon}
-          onClick={finalizeOrder}
-          disabled={isUploading}
-        >
-          {checkoutLabel}
-        </Button>
+          <Input
+            placeholder="Your email"
+            type="email"
+            value={userData.email}
+            onChange={handleEmailChange}
+            className={styles.emailInput}
+            required
+          />
+        </div>
       </div>
-    </div>
+
+      <Button
+        variant="1"
+        size="medium"
+        iconLeft={checkoutIcon}
+        onClick={finalizeOrder}
+        disabled={isUploading}
+      >
+        {checkoutLabel}
+      </Button>
+    </>
   );
 };
