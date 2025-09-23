@@ -1,5 +1,4 @@
 .footer {
-  padding: var(--spacing-300) var(--spacing-400);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -119,7 +118,6 @@
   .footer {
     flex-direction: column;
     gap: var(--spacing-200);
-    padding: var(--spacing-200);
   }
 
   .leftSection {
@@ -139,10 +137,6 @@
 }
 
 @media (max-width: 480px) {
-  .footer {
-    padding: var(--spacing-150);
-  }
-
   .packageSummary {
     gap: var(--spacing-25);
   }
@@ -187,11 +181,18 @@
   display: flex;
   gap: var(--spacing-200);
   width: 100%;
-  max-width: 500px;
+  max-width: 800px;
 }
 
 .nameInput,
 .emailInput {
   flex: 1;
   min-width: 0;
+}
+
+.checkoutButton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+  padding: var(--spacing-200) 0;
 }

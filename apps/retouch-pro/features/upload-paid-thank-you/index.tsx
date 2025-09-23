@@ -53,70 +53,111 @@ export const UploadPaidThankYou = () => {
       return;
     }
 
-    const stored = sessionStorage.getItem(PENDING_UPLOAD_STORAGE_KEY);
+    const loadPendingUpload = async () => {
+      // Load metadata from sessionStorage and photos from IndexedDB
+      const stored = sessionStorage.getItem(PENDING_UPLOAD_STORAGE_KEY);
+      if (!stored) {
+        return;
+      }
 
-    if (!stored) {
-      return;
-    }
+      let pendingUpload: PendingUploadPayload | null = null;
+      try {
+        const metadata = JSON.parse(stored);
 
-    try {
-      const parsed = JSON.parse(stored) as PendingUploadPayload;
-      setPendingUpload(parsed);
-      const controller = new AbortController();
+        // Load photos from IndexedDB
+        const { photoStorage } = await import(
+          '@/features/upload-images/context/utils/photo-storage'
+        );
+        const photos = await photoStorage.loadPhotos();
 
-      const uploadPhotos = async () => {
-        setUploadStatus('uploading');
-        try {
-          const response = await fetch('/api/orders/upload', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(parsed),
-            signal: controller.signal,
-          });
+        // Reconstruct pendingUpload with photos from IndexedDB
+        pendingUpload = {
+          amount: metadata.amount,
+          currency: metadata.currency,
+          packageType: metadata.packageType,
+          photoCount: metadata.photoCount,
+          createdAt: metadata.createdAt,
+          photos: photos.map(photo => ({
+            name: photo.name,
+            type: photo.type,
+            size: photo.size,
+            width: photo.width,
+            height: photo.height,
+            dataUrl: photo.preview, // Use preview as dataUrl
+          })),
+        };
+      } catch (error) {
+        console.error('Failed to load pending upload data:', error);
+        return;
+      }
 
-          if (response.ok) {
-            setUploadStatus('success');
-            sessionStorage.removeItem(PENDING_UPLOAD_STORAGE_KEY);
-            return;
+      if (!pendingUpload) {
+        return;
+      }
+
+      try {
+        const parsed = pendingUpload;
+        setPendingUpload(parsed);
+        const controller = new AbortController();
+
+        const uploadPhotos = async () => {
+          setUploadStatus('uploading');
+          try {
+            const response = await fetch('/api/orders/upload', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(parsed),
+              signal: controller.signal,
+            });
+
+            if (response.ok) {
+              setUploadStatus('success');
+              // Clear only sessionStorage metadata, photos stay in IndexedDB
+              sessionStorage.removeItem(PENDING_UPLOAD_STORAGE_KEY);
+              return;
+            }
+
+            if (response.status === 404) {
+              setUploadStatus('success');
+              // Clear only sessionStorage metadata, photos stay in IndexedDB
+              sessionStorage.removeItem(PENDING_UPLOAD_STORAGE_KEY);
+              return;
+            }
+
+            const message = await parseError(response);
+            throw new Error(message);
+          } catch (error) {
+            if (controller.signal.aborted) {
+              return;
+            }
+
+            setErrorMessage(
+              error instanceof Error
+                ? error.message
+                : 'We could not deliver your photos automatically. Please contact our team.',
+            );
+            setUploadStatus('error');
           }
+        };
 
-          if (response.status === 404) {
-            setUploadStatus('success');
-            sessionStorage.removeItem(PENDING_UPLOAD_STORAGE_KEY);
-            return;
-          }
+        void uploadPhotos();
 
-          const message = await parseError(response);
-          throw new Error(message);
-        } catch (error) {
-          if (controller.signal.aborted) {
-            return;
-          }
+        return () => {
+          controller.abort();
+        };
+      } catch (error) {
+        setErrorMessage(
+          error instanceof Error
+            ? error.message
+            : 'We could not resume your upload. Please contact support.',
+        );
+        setUploadStatus('error');
+      }
+    };
 
-          setErrorMessage(
-            error instanceof Error
-              ? error.message
-              : 'We could not deliver your photos automatically. Please contact our team.',
-          );
-          setUploadStatus('error');
-        }
-      };
-
-      void uploadPhotos();
-
-      return () => {
-        controller.abort();
-      };
-    } catch (error) {
-      setErrorMessage(
-        error instanceof Error
-          ? error.message
-          : 'We could not resume your upload. Please contact support.',
-      );
-      setUploadStatus('error');
-    }
+    void loadPendingUpload();
   }, []);
 
   const statusMessage = useMemo(() => {

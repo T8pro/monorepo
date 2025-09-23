@@ -74,6 +74,13 @@ export const SelectedImagesFooter = () => {
 
   return (
     <>
+      <hr
+        style={{
+          margin: 'var(--spacing-300) 0',
+          borderColor: 'var(--color-gray-600)',
+        }}
+      />
+
       <div className={styles.footer}>
         <div className={styles.leftSection}>
           <div className={styles.packageSummary}>
@@ -112,14 +119,15 @@ export const SelectedImagesFooter = () => {
               Preparing photos {uploadProgress}%
             </Text>
           )}
-
-          {error && (
-            <Text size="sm" className={styles.error}>
-              {error}
-            </Text>
-          )}
         </div>
       </div>
+
+      <hr
+        style={{
+          margin: 'var(--spacing-300) 0',
+          borderColor: 'var(--color-gray-600)',
+        }}
+      />
 
       <div className={styles.userFormSection}>
         <Text>
@@ -145,17 +153,25 @@ export const SelectedImagesFooter = () => {
             required
           />
         </div>
-      </div>
 
-      <Button
-        variant="1"
-        size="medium"
-        iconLeft={checkoutIcon}
-        onClick={finalizeOrder}
-        disabled={isUploading}
-      >
-        {checkoutLabel}
-      </Button>
+        <div className={styles.checkoutButton}>
+          {error && (
+            <Text size="sm" className={styles.error}>
+              {error}
+            </Text>
+          )}
+
+          <Button
+            variant="1"
+            size="medium"
+            iconLeft={checkoutIcon}
+            onClick={finalizeOrder}
+            disabled={isUploading}
+          >
+            {checkoutLabel}
+          </Button>
+        </div>
+      </div>
     </>
   );
 };

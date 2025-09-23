@@ -11,7 +11,7 @@ import {
   PhotoProviderProps,
   UserData,
 } from './types';
-import { fileToDataUrl, processPhotoForUpload } from './utils/image';
+import { processPhotoForUpload } from './utils/image';
 import { photoReducer } from './utils/photo-reducer';
 import { photoStorage } from './utils/photo-storage';
 
@@ -20,6 +20,7 @@ const PhotoContext = createContext<PhotoContextValues>(
 );
 
 const MAX_FREE_PACKAGE = 5;
+const MAX_PHOTOS_LIMIT = 24;
 
 const getPackageDetails = (selectedCount: number) => {
   if (selectedCount === 0) {
@@ -78,14 +79,16 @@ const buildPendingUploadPayload = async (
     if (!photo) {
       continue;
     }
-    const dataUrl = await fileToDataUrl(photo.file);
+
+    // Store only metadata, not the actual image data
     photoPayloads.push({
       name: photo.name,
       type: photo.type,
       size: photo.size,
       width: photo.width,
       height: photo.height,
-      dataUrl,
+      // Remove dataUrl to prevent localStorage quota exceeded
+      dataUrl: '',
     });
 
     if (onProgress) {
@@ -132,9 +135,33 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
     dispatch({ type: 'SET_UPLOAD_PROGRESS', payload: progress });
   }, []);
 
+  const setProcessingPayment = useCallback((isProcessing: boolean) => {
+    dispatch({ type: 'SET_PROCESSING_PAYMENT', payload: isProcessing });
+  }, []);
+
   const addPhotos = useCallback(
     (files: File[]) => {
       if (!files.length) {
+        return;
+      }
+
+      // Check if adding these files would exceed the limit
+      const currentPhotoCount = state.photos.length;
+      const newPhotoCount = files.length;
+      const totalAfterAdd = currentPhotoCount + newPhotoCount;
+
+      if (totalAfterAdd > MAX_PHOTOS_LIMIT) {
+        const remainingSlots = MAX_PHOTOS_LIMIT - currentPhotoCount;
+        if (remainingSlots <= 0) {
+          setError(
+            `You can only upload up to ${MAX_PHOTOS_LIMIT} photos. Please remove some photos before adding new ones.`,
+          );
+          return;
+        }
+
+        setError(
+          `You can only upload up to ${MAX_PHOTOS_LIMIT} photos. You can add ${remainingSlots} more photo${remainingSlots === 1 ? '' : 's'}.`,
+        );
         return;
       }
 
@@ -173,7 +200,7 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
         }
       })();
     },
-    [setError],
+    [setError, state.photos.length],
   );
 
   const restorePhotosFromStorage = useCallback(async () => {
@@ -298,10 +325,26 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
         );
 
         if (typeof window !== 'undefined') {
-          sessionStorage.setItem(
-            PENDING_UPLOAD_STORAGE_KEY,
-            JSON.stringify(pendingUpload),
-          );
+          // Store photos in IndexedDB (they're already there from savePhotos)
+          // Store only metadata in sessionStorage for middleware
+          const metadataForMiddleware = {
+            amount: pendingUpload.amount,
+            currency: pendingUpload.currency,
+            packageType: pendingUpload.packageType,
+            photoCount: pendingUpload.photoCount,
+            createdAt: pendingUpload.createdAt,
+            // Store only photo IDs, not the actual data
+            photoIds: pendingUpload.photos.map(photo => photo.name), // Use name as ID reference
+          };
+
+          try {
+            sessionStorage.setItem(
+              PENDING_UPLOAD_STORAGE_KEY,
+              JSON.stringify(metadataForMiddleware),
+            );
+          } catch (error) {
+            console.error('Failed to save pending upload metadata:', error);
+          }
         }
 
         const paymentData: PaymentData = {
@@ -324,6 +367,7 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
             : 'Unable to finalize your order. Please try again.',
         );
         if (typeof window !== 'undefined') {
+          // Clear only sessionStorage metadata, photos stay in IndexedDB
           sessionStorage.removeItem(PENDING_UPLOAD_STORAGE_KEY);
         }
       } finally {
@@ -438,6 +482,7 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
     setUploadProgress,
     setError,
     setUserData,
+    setProcessingPayment,
     finalizeOrder,
     processPayment,
     openFileSelector,

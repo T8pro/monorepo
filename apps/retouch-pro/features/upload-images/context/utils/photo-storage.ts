@@ -42,7 +42,7 @@ class PhotoStorage {
 
   async savePhotos(photos: Photo[]): Promise<void> {
     try {
-      // Prepare photos data first
+      // Prepare photos data with dataUrl for IndexedDB storage
       const photosData = await Promise.all(
         photos.map(async photo => {
           const dataUrl = await new Promise<string>(resolve => {
@@ -87,20 +87,9 @@ class PhotoStorage {
         });
       }
 
-      // Also save to sessionStorage as fallback (without dataUrl to avoid quota)
-      const fallbackData = photosData.map(({ ...rest }) => rest);
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(fallbackData));
+      // Only save to IndexedDB, no sessionStorage fallback to avoid quota issues
     } catch (error) {
-      // Fallback to sessionStorage without dataUrl
-      const fallbackData = photos.map(photo => ({
-        id: photo.id,
-        name: photo.name,
-        type: photo.type,
-        size: photo.size,
-        width: photo.width,
-        height: photo.height,
-      }));
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(fallbackData));
+      console.error('Failed to save photos to IndexedDB:', error);
       throw error;
     }
   }
@@ -119,6 +108,11 @@ class PhotoStorage {
           const photos: Photo[] = [];
 
           for (const photoData of photosData) {
+            // Skip pending upload data
+            if (photoData.type === 'pending-upload') {
+              continue;
+            }
+
             try {
               const response = await fetch(photoData.dataUrl);
               const blob = await response.blob();
@@ -145,59 +139,10 @@ class PhotoStorage {
           resolve(photos);
         };
       });
-    } catch {
-      // Fallback to sessionStorage
-      return this.loadPhotosFromSessionStorage();
+    } catch (error) {
+      console.error('Failed to load photos from IndexedDB:', error);
+      return [];
     }
-  }
-
-  private async loadPhotosFromSessionStorage(): Promise<Photo[]> {
-    const storedPhotos = sessionStorage.getItem(STORAGE_KEY);
-    if (!storedPhotos) return [];
-
-    const photosData = JSON.parse(storedPhotos);
-    const photos: Photo[] = [];
-
-    for (const photoData of photosData) {
-      // Try to get dataUrl from IndexedDB first
-      try {
-        const db = await this.openDB();
-        const transaction = db.transaction([STORE_NAME], 'readonly');
-        const store = transaction.objectStore(STORE_NAME);
-        const request = store.get(photoData.id);
-
-        const storedPhoto = await new Promise<StoredPhotoData | null>(
-          resolve => {
-            request.onerror = () => resolve(null);
-            request.onsuccess = () => resolve(request.result);
-          },
-        );
-
-        if (storedPhoto?.dataUrl) {
-          const response = await fetch(storedPhoto.dataUrl);
-          const blob = await response.blob();
-          const file = new File([blob], photoData.name, {
-            type: photoData.type,
-          });
-
-          photos.push({
-            id: photoData.id,
-            file,
-            preview: storedPhoto.dataUrl,
-            name: photoData.name,
-            size: photoData.size,
-            type: photoData.type,
-            width: photoData.width,
-            height: photoData.height,
-          });
-        }
-      } catch {
-        // Skip this photo if we can't load it
-        continue;
-      }
-    }
-
-    return photos;
   }
 
   async clearPhotos(): Promise<void> {

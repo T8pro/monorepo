@@ -98,10 +98,9 @@ export const Ebook = (props: EbookProps = {}) => {
 
             <Button
               type="submit"
-              variant="3"
-              size="medium"
+              variant="1"
+              size="large"
               iconLeft="download"
-              className={styles.downloadButton}
               disabled={isPending}
             >
               {isPending ? 'Sending e-mail...' : 'Click here to download'}

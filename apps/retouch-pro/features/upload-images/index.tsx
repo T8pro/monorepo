@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, EmptyState } from '@t8pro/design-system';
+import { Button, EmptyState, Text } from '@t8pro/design-system';
 import { Suspense } from 'react';
 import { CheckoutModal } from './checkout-modal';
 import { usePhotosContext } from './context';
@@ -15,8 +15,42 @@ const PaymentResultHandler = () => {
   return null;
 };
 
+const PaymentLoadingState = () => {
+  return (
+    <div className={styles.loadingContainer}>
+      <div className={styles.loadingSpinner}></div>
+      <Text size="lg" className={styles.loadingText}>
+        Processing your payment...
+      </Text>
+      <Text size="sm" color="secondary" className={styles.loadingSubtext}>
+        Please wait while we prepare your photos for retouching.
+      </Text>
+    </div>
+  );
+};
+
+const MAX_PHOTOS_LIMIT = 24;
+
 export const SelectedImages = () => {
-  const { photos = [], openFileSelector } = usePhotosContext();
+  const {
+    photos = [],
+    openFileSelector,
+    isProcessingPayment,
+  } = usePhotosContext();
+
+  const isAtLimit = photos.length >= MAX_PHOTOS_LIMIT;
+
+  // Show loading state when processing payment
+  if (isProcessingPayment) {
+    return (
+      <>
+        <Suspense fallback={null}>
+          <PaymentResultHandler />
+        </Suspense>
+        <PaymentLoadingState />
+      </>
+    );
+  }
 
   if (photos.length === 0) {
     return (
@@ -58,15 +92,18 @@ export const SelectedImages = () => {
           ))}
         </div>
 
-        <Button
-          variant="2"
-          size="medium"
-          iconLeft="add_photo_alternate"
-          style="outline"
-          onClick={openFileSelector}
-        >
-          Add more photos
-        </Button>
+        <div className={styles.addPhotosButton}>
+          <Button
+            variant="2"
+            size="medium"
+            iconLeft="add_photo_alternate"
+            style="outline"
+            onClick={openFileSelector}
+            disabled={isAtLimit}
+          >
+            {isAtLimit ? 'Maximum photos reached' : 'Add more photos'}
+          </Button>
+        </div>
 
         <SelectedImagesFooter />
       </div>

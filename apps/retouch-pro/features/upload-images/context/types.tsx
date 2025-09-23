@@ -24,6 +24,7 @@ export type PhotoState = {
   isCheckoutOpen: boolean;
   clientSecret: string | null;
   userData: UserData;
+  isProcessingPayment: boolean;
 };
 
 export type PhotoActions = {
@@ -34,6 +35,7 @@ export type PhotoActions = {
   setUploadProgress: (progress: number) => void;
   setError: (error: string | null) => void;
   setUserData: (userData: UserData) => void;
+  setProcessingPayment: (isProcessing: boolean) => void;
   finalizeOrder: () => void;
   processPayment: (paymentData: PaymentData) => Promise<void>;
   openFileSelector: () => void;
@@ -83,6 +85,7 @@ export type PhotoAction =
   | { type: 'SET_UPLOAD_PROGRESS'; payload: number }
   | { type: 'SET_ERROR'; payload: string | null }
   | { type: 'SET_USER_DATA'; payload: UserData }
+  | { type: 'SET_PROCESSING_PAYMENT'; payload: boolean }
   | { type: 'OPEN_CHECKOUT'; payload: string }
   | { type: 'CLOSE_CHECKOUT' };
 

@@ -61,6 +61,11 @@ export const photoReducer = (
         isCheckoutOpen: false,
         clientSecret: null,
       };
+    case 'SET_PROCESSING_PAYMENT':
+      return {
+        ...state,
+        isProcessingPayment: action.payload,
+      };
     default:
       return state;
   }

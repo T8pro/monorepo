@@ -132,14 +132,17 @@ const CheckoutForm = ({ onSuccess, onError, onClose }: CheckoutFormProps) => {
           <div className={styles.actions}>
             <Button
               type="button"
-              variant="2"
+              variant="4"
               size="medium"
+              style="outline"
               onClick={onClose}
               disabled={isProcessing}
             >
               Cancel
             </Button>
+
             <Button
+              iconLeft="check_circle"
               type="submit"
               variant="1"
               size="medium"

@@ -12,6 +12,7 @@ export const usePaymentResult = () => {
     clearPhotos,
     setError,
     restorePhotosFromStorage,
+    setProcessingPayment,
   } = usePhotosContext();
 
   useEffect(() => {
@@ -19,6 +20,9 @@ export const usePaymentResult = () => {
     const redirectStatus = searchParams.get('redirect_status');
 
     if (paymentIntent && redirectStatus) {
+      // Set processing state to true
+      setProcessingPayment(true);
+
       if (redirectStatus === 'succeeded') {
         // Payment succeeded, get photos from storage and process
         const processPaymentSuccess = async () => {
@@ -36,9 +40,17 @@ export const usePaymentResult = () => {
             // Clean up storage after successful payment
             await photoStorage.clearPhotos();
             await photoStorage.clearUserData();
+
+            // Clean up URL parameters before redirect
+            const url = new URL(window.location.href);
+            url.searchParams.delete('payment_intent');
+            url.searchParams.delete('redirect_status');
+            window.history.replaceState({}, '', url.toString());
+
             // Redirect to thank you page
             window.location.href = '/upload/thank-you';
           } catch {
+            setProcessingPayment(false);
             setError(
               'Payment successful but failed to process photos. Please contact support.',
             );
@@ -48,17 +60,18 @@ export const usePaymentResult = () => {
         processPaymentSuccess();
       } else if (redirectStatus === 'failed') {
         // Payment failed, restore photos and show error
+        setProcessingPayment(false);
         restorePhotosFromStorage();
         setError(
           'Payment was declined. Please try again with a different payment method.',
         );
-      }
 
-      // Clean up URL parameters
-      const url = new URL(window.location.href);
-      url.searchParams.delete('payment_intent');
-      url.searchParams.delete('redirect_status');
-      window.history.replaceState({}, '', url.toString());
+        // Clean up URL parameters
+        const url = new URL(window.location.href);
+        url.searchParams.delete('payment_intent');
+        url.searchParams.delete('redirect_status');
+        window.history.replaceState({}, '', url.toString());
+      }
     }
     // Remove the else block that was causing duplicate restoration
   }, [
@@ -67,5 +80,6 @@ export const usePaymentResult = () => {
     clearPhotos,
     setError,
     restorePhotosFromStorage,
+    setProcessingPayment,
   ]);
 };
