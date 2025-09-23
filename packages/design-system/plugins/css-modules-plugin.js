@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-console */
-import { writeFileSync } from 'fs';
-import { dirname, basename } from 'path';
+import { writeFileSync, readFileSync, existsSync, mkdirSync } from 'fs';
+import { dirname, basename, join } from 'path';
 import postcss from 'postcss';
 import postcssModules from 'postcss-modules';
 import * as sass from 'sass';
@@ -63,23 +63,20 @@ export function cssModulesPlugin() {
       build.onEnd(async () => {
         try {
           // Read tokens and globals CSS files
-          const fs = await import('fs');
-          const path = await import('path');
-
-          const tokensPath = path.join(process.cwd(), 'src', 'tokens.css');
-          const globalsPath = path.join(process.cwd(), 'src', 'globals.css');
+          const tokensPath = join(process.cwd(), 'src', 'tokens.css');
+          const globalsPath = join(process.cwd(), 'src', 'globals.css');
 
           let tokensCss = '';
           let globalsCss = '';
 
           try {
-            tokensCss = fs.readFileSync(tokensPath, 'utf8');
+            tokensCss = readFileSync(tokensPath, 'utf8');
           } catch (error) {
             console.warn('⚠️  Could not read tokens.css:', error.message);
           }
 
           try {
-            globalsCss = fs.readFileSync(globalsPath, 'utf8');
+            globalsCss = readFileSync(globalsPath, 'utf8');
           } catch (error) {
             console.warn('⚠️  Could not read globals.css:', error.message);
           }
@@ -106,8 +103,8 @@ export function cssModulesPlugin() {
 
           // Ensure dist directory exists
           const distDir = 'dist';
-          if (!fs.existsSync(distDir)) {
-            fs.mkdirSync(distDir, { recursive: true });
+          if (!existsSync(distDir)) {
+            mkdirSync(distDir, { recursive: true });
           }
 
           writeFileSync('dist/styles.css', finalCss);
@@ -116,8 +113,8 @@ export function cssModulesPlugin() {
           console.error('❌ Error generating consolidated CSS:', error);
           // Create empty file as fallback
           const distDir = 'dist';
-          if (!fs.existsSync(distDir)) {
-            fs.mkdirSync(distDir, { recursive: true });
+          if (!existsSync(distDir)) {
+            mkdirSync(distDir, { recursive: true });
           }
           writeFileSync('dist/styles.css', '');
           console.log('✅ Empty CSS file created as fallback: dist/styles.css');

@@ -15,5 +15,14 @@ export default defineConfig({
       js: '"use client";',
     };
   },
-  onSuccess: 'cp src/tokens.css dist/ && cp src/globals.css dist/',
+  onSuccess: async () => {
+    const { execSync } = await import('child_process');
+    try {
+      execSync('cp src/tokens.css dist/ && cp src/globals.css dist/', {
+        stdio: 'inherit',
+      });
+    } catch (error) {
+      console.warn('Could not copy CSS files:', error.message);
+    }
+  },
 });
