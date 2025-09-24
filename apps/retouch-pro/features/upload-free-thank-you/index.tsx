@@ -8,7 +8,7 @@ const infoCards = [
   {
     icon: 'image_search',
     title: 'Explore Our Portfolio',
-    highlight: 'Give us up to 24 hours',
+    highlight: 'Give us up to 48 hours',
     description:
       'Our retouch artists are working on your photo and will email you as soon as it is ready.',
   },

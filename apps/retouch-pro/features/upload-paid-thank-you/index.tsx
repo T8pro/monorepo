@@ -237,9 +237,9 @@ export const UploadPaidThankYou = () => {
         </div>
         <div className={styles.social}>
           <Text className={styles.socialPrompt}>Need support?</Text>
-          <Link href="mailto:support@t8pro.com" className={styles.socialLink}>
+          <Link href="mailto:contact@t8pro.com" className={styles.socialLink}>
             <Icon name="support_agent" size={20} />
-            support@t8pro.com
+            contact@t8pro.com
           </Link>
         </div>
       </div>

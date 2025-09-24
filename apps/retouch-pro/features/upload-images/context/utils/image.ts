@@ -34,7 +34,7 @@ const getExportType = (originalType: string) => {
 const canvasToBlob = (
   canvas: HTMLCanvasElement,
   type: string,
-  quality = 0.9,
+  quality = 0.8, // Reduced quality for better compression
 ): Promise<Blob> => {
   return new Promise((resolve, reject) => {
     canvas.toBlob(
@@ -56,15 +56,8 @@ export const processPhotoForUpload = async (file: File) => {
   const { width, height } = image;
   const largestSide = Math.max(width, height);
 
-  if (largestSide <= MAX_DIMENSION) {
-    return {
-      file,
-      width,
-      height,
-    } as const;
-  }
-
-  const scale = MAX_DIMENSION / largestSide;
+  // Always compress for size reduction, even if dimensions are OK
+  const scale = Math.min(MAX_DIMENSION / largestSide, 1);
   const targetWidth = Math.round(width * scale);
   const targetHeight = Math.round(height * scale);
 
@@ -86,6 +79,13 @@ export const processPhotoForUpload = async (file: File) => {
   const compressedFile = new File([blob], file.name, {
     type: exportType,
     lastModified: Date.now(),
+  });
+
+  console.log('Image processed:', {
+    original: `${(file.size / 1024 / 1024).toFixed(2)}MB`,
+    compressed: `${(compressedFile.size / 1024 / 1024).toFixed(2)}MB`,
+    reduction: `${(((file.size - compressedFile.size) / file.size) * 100).toFixed(1)}%`,
+    dimensions: `${targetWidth}x${targetHeight}`,
   });
 
   return {

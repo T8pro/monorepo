@@ -1,6 +1,7 @@
 'use client';
 
 import { useMutation } from '@tanstack/react-query';
+import imageCompression from 'browser-image-compression';
 import { useRouter } from 'next/navigation';
 import {
   ChangeEvent,
@@ -11,9 +12,10 @@ import {
   useMemo,
   useState,
 } from 'react';
-import type { UploadFreeFormState, UploadFreeSubmitPayload } from './types';
+import type { UploadFreeFormState } from './types';
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+const MAX_COMPRESSED_SIZE = 2 * 1024 * 1024; // 2MB target after compression
 
 const initialFormState: UploadFreeFormState = {
   name: '',
@@ -74,19 +76,12 @@ export const useUploadFree = () => {
   });
 
   // TODO: Wire this mutation to a production API once backend support exists.
-  const submitMutation = useMutation<
-    SubmitResponse,
-    Error,
-    UploadFreeSubmitPayload
-  >({
+  const submitMutation = useMutation<SubmitResponse, Error, FormData>({
     mutationKey: ['upload-free', 'submit'],
-    mutationFn: async payload => {
+    mutationFn: async formData => {
       const response = await fetch('/api/upload-free/submit', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
+        body: formData,
       });
 
       if (!response.ok) {
@@ -120,8 +115,31 @@ export const useUploadFree = () => {
     [],
   );
 
+  const compressImage = useCallback(async (file: File): Promise<File> => {
+    try {
+      const options = {
+        maxSizeMB: MAX_COMPRESSED_SIZE / (1024 * 1024), // Convert to MB
+        maxWidthOrHeight: 1920, // Max dimension
+        useWebWorker: true,
+        fileType: 'image/jpeg', // Convert to JPEG for better compression
+      };
+
+      const compressedFile = await imageCompression(file, options);
+      console.log('Image compressed:', {
+        original: `${(file.size / 1024 / 1024).toFixed(2)}MB`,
+        compressed: `${(compressedFile.size / 1024 / 1024).toFixed(2)}MB`,
+        reduction: `${(((file.size - compressedFile.size) / file.size) * 100).toFixed(1)}%`,
+      });
+
+      return compressedFile;
+    } catch (error) {
+      console.warn('Image compression failed, using original:', error);
+      return file;
+    }
+  }, []);
+
   const attachPhoto = useCallback(
-    (file: File) => {
+    async (file: File) => {
       if (!file.type.startsWith('image/')) {
         setFieldErrors(prev => ({
           ...prev,
@@ -138,22 +156,34 @@ export const useUploadFree = () => {
         return;
       }
 
-      revokePreview(previewUrl);
-      setSelectedPhoto(file);
-      setPreviewUrl(URL.createObjectURL(file));
-      setFieldErrors(prev => ({ ...prev, photo: undefined }));
+      try {
+        // Show loading state
+        setFieldErrors(prev => ({ ...prev, photo: 'Compressing image...' }));
+
+        const compressedFile = await compressImage(file);
+
+        revokePreview(previewUrl);
+        setSelectedPhoto(compressedFile);
+        setPreviewUrl(URL.createObjectURL(compressedFile));
+        setFieldErrors(prev => ({ ...prev, photo: undefined }));
+      } catch {
+        setFieldErrors(prev => ({
+          ...prev,
+          photo: 'Failed to process image. Please try again.',
+        }));
+      }
     },
-    [previewUrl, revokePreview],
+    [previewUrl, revokePreview, compressImage],
   );
 
   const handleFileSelect = useCallback(
-    (files: FileList | null) => {
+    async (files: FileList | null) => {
       if (!files || files.length === 0) {
         return;
       }
 
       const [file] = files;
-      attachPhoto(file as File);
+      await attachPhoto(file as File);
     },
     [attachPhoto],
   );
@@ -177,11 +207,11 @@ export const useUploadFree = () => {
   }, []);
 
   const handleDrop = useCallback(
-    (event: DragEvent<HTMLDivElement>) => {
+    async (event: DragEvent<HTMLDivElement>) => {
       event.preventDefault();
       event.stopPropagation();
       setIsDragging(false);
-      handleFileSelect(event.dataTransfer.files);
+      await handleFileSelect(event.dataTransfer.files);
     },
     [handleFileSelect],
   );
@@ -254,14 +284,13 @@ export const useUploadFree = () => {
           return;
         }
 
-        await submitMutation.mutateAsync({
-          ...formState,
-          photo: {
-            name: selectedPhoto.name,
-            size: selectedPhoto.size,
-            type: selectedPhoto.type,
-          },
-        });
+        const formData = new FormData();
+        formData.append('name', formState.name);
+        formData.append('email', formState.email);
+        formData.append('phone', formState.phone);
+        formData.append('company', formState.company);
+        formData.append('photo', selectedPhoto);
+        await submitMutation.mutateAsync(formData);
 
         resetForm();
         router.push('/upload-free/thank-you');
