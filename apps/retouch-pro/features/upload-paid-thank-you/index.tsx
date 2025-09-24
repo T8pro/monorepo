@@ -31,15 +31,6 @@ const infoCards = [
   },
 ] as const;
 
-const parseError = async (response: Response) => {
-  try {
-    const data = await response.json();
-    return data?.message || 'Unexpected server response.';
-  } catch {
-    return response.statusText || 'Unexpected server response.';
-  }
-};
-
 export const UploadPaidThankYou = () => {
   const [pendingUpload, setPendingUpload] =
     useState<PendingUploadPayload | null>(null);
@@ -102,44 +93,6 @@ export const UploadPaidThankYou = () => {
 
         const uploadPhotos = async () => {
           setUploadStatus('uploading');
-          try {
-            const response = await fetch('/api/orders/upload', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(parsed),
-              signal: controller.signal,
-            });
-
-            if (response.ok) {
-              setUploadStatus('success');
-              // Clear only sessionStorage metadata, photos stay in IndexedDB
-              sessionStorage.removeItem(PENDING_UPLOAD_STORAGE_KEY);
-              return;
-            }
-
-            if (response.status === 404) {
-              setUploadStatus('success');
-              // Clear only sessionStorage metadata, photos stay in IndexedDB
-              sessionStorage.removeItem(PENDING_UPLOAD_STORAGE_KEY);
-              return;
-            }
-
-            const message = await parseError(response);
-            throw new Error(message);
-          } catch (error) {
-            if (controller.signal.aborted) {
-              return;
-            }
-
-            setErrorMessage(
-              error instanceof Error
-                ? error.message
-                : 'We could not deliver your photos automatically. Please contact our team.',
-            );
-            setUploadStatus('error');
-          }
         };
 
         void uploadPhotos();
