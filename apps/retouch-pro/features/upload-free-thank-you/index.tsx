@@ -7,8 +7,8 @@ import styles from './styles.module.scss';
 const infoCards = [
   {
     icon: 'image_search',
-    title: 'Explore Our Portfolio',
-    highlight: 'Give us up to 48 hours',
+    title: 'Congratulations!',
+    highlight: 'Give us up to 24 hours',
     description:
       'Our retouch artists are working on your photo and will email you as soon as it is ready.',
   },
@@ -53,6 +53,7 @@ export const UploadFreeThankYou = () => {
             </div>
           ))}
         </div>
+
         <div className={styles.social}>
           <Text className={styles.socialPrompt}>Follow us on social media</Text>
           <Link
@@ -61,7 +62,6 @@ export const UploadFreeThankYou = () => {
             rel="noreferrer"
             className={styles.socialLink}
           >
-            <Icon name="alternate_email" size={20} />
             @t8pro
           </Link>
         </div>
