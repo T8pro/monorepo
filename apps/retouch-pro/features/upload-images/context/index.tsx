@@ -247,6 +247,26 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
     }
   }, [state.photos]);
 
+  const setProcessingPhotos = useCallback((isProcessing: boolean) => {
+    dispatch({ type: 'SET_PROCESSING_PHOTOS', payload: isProcessing });
+  }, []);
+
+  const setProcessingStep = useCallback(
+    (
+      step:
+        | 'idle'
+        | 'compressing'
+        | 'uploading'
+        | 'drive_upload'
+        | 'sending_email'
+        | 'completed',
+      message?: string,
+    ) => {
+      dispatch({ type: 'SET_PROCESSING_STEP', payload: { step, message } });
+    },
+    [],
+  );
+
   const sendOrderEmail = useCallback(
     async (
       packageInfo: { name: string; discountedPrice: number },
@@ -481,6 +501,10 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
         const photos = photosToProcess || state.photos;
         console.log('processPhotosAfterPayment: Photos count:', photos.length);
 
+        // Set processing state
+        setProcessingPhotos(true);
+        setProcessingStep('compressing', 'Compressing images...');
+
         // Load user data from storage
         const userData = await photoStorage.loadUserData();
         console.log('processPhotosAfterPayment: User data loaded:', userData);
@@ -501,38 +525,47 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
           packageType = 'Premium';
         }
 
-        // Prepare photos data for upload
-        const photosData = await Promise.all(
-          photos.map(async photo => {
-            const dataUrl = await new Promise<string>(resolve => {
-              const reader = new FileReader();
-              reader.onload = () => resolve(reader.result as string);
-              reader.readAsDataURL(photo.file);
-            });
+        // Prepare photos for upload using FormData
+        const formData = new FormData();
+        formData.append('paymentIntentId', paymentIntentId);
+        formData.append('packageType', packageType);
 
-            return {
-              name: photo.name,
-              type: photo.type,
-              size: photo.size,
-              width: photo.width,
-              height: photo.height,
-              dataUrl,
-            };
+        // Process photos in parallel for better performance
+        setProcessingStep(
+          'compressing',
+          `Compressing ${photos.length} images...`,
+        );
+
+        const processedPhotos = await Promise.all(
+          photos.map(async (photo, i) => {
+            if (!photo) return null;
+            const processed = await processPhotoForUpload(photo.file);
+            return { ...processed, originalPhoto: photo, index: i };
           }),
         );
 
+        // Append processed photos to form data
+        processedPhotos.forEach((processed, i) => {
+          if (!processed) return;
+
+          formData.append(`photo_${i}`, processed.file);
+          formData.append(`photo_${i}_id`, processed.originalPhoto.id);
+          formData.append(`photo_${i}_name`, processed.originalPhoto.name);
+          formData.append(`photo_${i}_type`, processed.originalPhoto.type);
+          formData.append(
+            `photo_${i}_size`,
+            String(processed.originalPhoto.size),
+          );
+          formData.append(`photo_${i}_width`, String(processed.width));
+          formData.append(`photo_${i}_height`, String(processed.height));
+        });
+
         // Upload photos to API
+        setProcessingStep('uploading', 'Uploading photos to server...');
         console.log('processPhotosAfterPayment: Uploading photos to API...');
         const response = await fetch('/api/upload-photos', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            photos: photosData,
-            paymentIntentId,
-            packageType,
-          }),
+          body: formData,
         });
 
         if (!response.ok) {
@@ -570,7 +603,13 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
         } as const;
 
         // Upload to Google Drive, then send order email with link
-        console.log('processPhotosAfterPayment: Uploading to Google Drive...');
+        setProcessingStep(
+          'drive_upload',
+          'Your Payment was successful. \nUploading images. Do not close this window...',
+        );
+        console.log(
+          'processPhotosAfterPayment: Your Payment was successful. Uploading images. Do not close this window...',
+        );
         const driveForm = new FormData();
         driveForm.append('name', userData.name);
         driveForm.append('email', userData.email);
@@ -612,19 +651,31 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
         const folderLink: string | undefined = driveJson?.folderLink;
 
         // Send order email after successful photo processing
+        setProcessingStep('sending_email', 'Sending confirmation email...');
         console.log('processPhotosAfterPayment: Sending order email...');
         await sendOrderEmail(packageInfo, userData, photos, folderLink);
         console.log('processPhotosAfterPayment: Order email sent successfully');
+
+        // Mark as completed
+        setProcessingStep('completed', 'Processing completed successfully!');
+
+        // Reset processing state after a short delay
+        setTimeout(() => {
+          setProcessingPhotos(false);
+          setProcessingStep('idle');
+        }, 2000);
       } catch (error) {
         const message =
           error instanceof Error
             ? error.message
             : 'Failed to process photos after payment';
         console.error('processPhotosAfterPayment: Error:', message);
+        setProcessingPhotos(false);
+        setProcessingStep('idle');
         throw new Error(message);
       }
     },
-    [state.photos, sendOrderEmail],
+    [state.photos, sendOrderEmail, setProcessingPhotos, setProcessingStep],
   );
 
   const value: PhotoContextValues = {
@@ -637,6 +688,8 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
     setError,
     setUserData,
     setProcessingPayment,
+    setProcessingPhotos,
+    setProcessingStep,
     finalizeOrder,
     processPayment,
     sendOrderEmail,

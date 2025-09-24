@@ -1,4 +1,4 @@
-const MAX_DIMENSION = 2000;
+const MAX_DIMENSION = 1600; // Reduced from 2000 for faster processing
 
 const SUPPORTED_EXPORT_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 
@@ -34,7 +34,7 @@ const getExportType = (originalType: string) => {
 const canvasToBlob = (
   canvas: HTMLCanvasElement,
   type: string,
-  quality = 0.8, // Reduced quality for better compression
+  quality = 0.7, // Further reduced quality for faster uploads
 ): Promise<Blob> => {
   return new Promise((resolve, reject) => {
     canvas.toBlob(
@@ -56,6 +56,15 @@ export const processPhotoForUpload = async (file: File) => {
   const { width, height } = image;
   const largestSide = Math.max(width, height);
 
+  // Skip processing if already small enough
+  if (largestSide <= MAX_DIMENSION && file.size <= 2 * 1024 * 1024) {
+    return {
+      file,
+      width,
+      height,
+    } as const;
+  }
+
   // Always compress for size reduction, even if dimensions are OK
   const scale = Math.min(MAX_DIMENSION / largestSide, 1);
   const targetWidth = Math.round(width * scale);
@@ -70,6 +79,10 @@ export const processPhotoForUpload = async (file: File) => {
   if (!context) {
     throw new Error('Could not get canvas context.');
   }
+
+  // Optimize canvas settings for better performance
+  context.imageSmoothingEnabled = true;
+  context.imageSmoothingQuality = 'medium';
 
   context.drawImage(image, 0, 0, targetWidth, targetHeight);
 

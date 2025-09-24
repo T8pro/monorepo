@@ -6,6 +6,7 @@ import { CheckoutModal } from './checkout-modal';
 import { usePhotosContext } from './context';
 import { usePaymentResult } from './hooks/use-payment-result';
 import { PhotoCard } from './photo-card';
+import { ProcessingModal } from './processing-modal';
 import { SelectedImagesFooter } from './selected-images-footer';
 import { SelectedImagesHeader } from './selected-images-header';
 import styles from './styles.module.scss';
@@ -109,6 +110,7 @@ export const SelectedImages = () => {
       </div>
 
       <CheckoutModal />
+      <ProcessingModal />
     </>
   );
 };

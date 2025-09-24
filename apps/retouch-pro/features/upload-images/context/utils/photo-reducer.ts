@@ -66,6 +66,17 @@ export const photoReducer = (
         ...state,
         isProcessingPayment: action.payload,
       };
+    case 'SET_PROCESSING_PHOTOS':
+      return {
+        ...state,
+        isProcessingPhotos: action.payload,
+      };
+    case 'SET_PROCESSING_STEP':
+      return {
+        ...state,
+        processingStep: action.payload.step,
+        processingMessage: action.payload.message || '',
+      };
     default:
       return state;
   }

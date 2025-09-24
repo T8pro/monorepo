@@ -13,6 +13,9 @@ export const INITIAL_STATE: PhotoState = {
     environment: 'original' as const,
   },
   isProcessingPayment: false,
+  isProcessingPhotos: false,
+  processingStep: 'idle',
+  processingMessage: '',
 };
 
 export const PENDING_UPLOAD_STORAGE_KEY = 'retouchPro.pendingUpload';

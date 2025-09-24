@@ -26,6 +26,15 @@ export type PhotoState = {
   clientSecret: string | null;
   userData: UserData;
   isProcessingPayment: boolean;
+  isProcessingPhotos: boolean;
+  processingStep:
+    | 'idle'
+    | 'compressing'
+    | 'uploading'
+    | 'drive_upload'
+    | 'sending_email'
+    | 'completed';
+  processingMessage: string;
 };
 
 export type PhotoActions = {
@@ -37,6 +46,11 @@ export type PhotoActions = {
   setError: (error: string | null) => void;
   setUserData: (userData: UserData) => void;
   setProcessingPayment: (isProcessing: boolean) => void;
+  setProcessingPhotos: (isProcessing: boolean) => void;
+  setProcessingStep: (
+    step: PhotoState['processingStep'],
+    message?: string,
+  ) => void;
   finalizeOrder: () => void;
   processPayment: (paymentData: PaymentData) => Promise<void>;
   sendOrderEmail: (
@@ -96,6 +110,11 @@ export type PhotoAction =
   | { type: 'SET_ERROR'; payload: string | null }
   | { type: 'SET_USER_DATA'; payload: UserData }
   | { type: 'SET_PROCESSING_PAYMENT'; payload: boolean }
+  | { type: 'SET_PROCESSING_PHOTOS'; payload: boolean }
+  | {
+      type: 'SET_PROCESSING_STEP';
+      payload: { step: PhotoState['processingStep']; message?: string };
+    }
   | { type: 'OPEN_CHECKOUT'; payload: string }
   | { type: 'CLOSE_CHECKOUT' };
 
