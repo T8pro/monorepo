@@ -14,6 +14,7 @@ export type Photo = {
 export type UserData = {
   name: string;
   email: string;
+  environment: 'original' | 'white_studio' | 'restaurant';
 };
 
 export type PhotoState = {
@@ -38,6 +39,14 @@ export type PhotoActions = {
   setProcessingPayment: (isProcessing: boolean) => void;
   finalizeOrder: () => void;
   processPayment: (paymentData: PaymentData) => Promise<void>;
+  sendOrderEmail: (
+    packageInfo: {
+      name: string;
+      discountedPrice: number;
+    },
+    userData: UserData,
+    photos: Photo[],
+  ) => Promise<void>;
   openFileSelector: () => void;
   openCheckout: () => void;
   closeCheckout: () => void;

@@ -60,5 +60,17 @@ export type {
   InputVariant,
 } from './components/input/types.js';
 
+export { Toggle } from './components/toggle/index.js';
+export type { ToggleProps, ToggleSize } from './components/toggle/types.js';
+
+export { Radio } from './components/radio/index.js';
+export type { RadioProps, RadioSize } from './components/radio/types.js';
+
+export { Checkbox } from './components/checkbox/index.js';
+export type {
+  CheckboxProps,
+  CheckboxSize,
+} from './components/checkbox/types.js';
+
 // Hooks
 export { useTheme, ThemeProvider, useThemeContext } from './contexts/theme.js';

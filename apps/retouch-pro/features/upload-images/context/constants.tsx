@@ -10,6 +10,7 @@ export const INITIAL_STATE: PhotoState = {
   userData: {
     name: '',
     email: '',
+    environment: 'original' as const,
   },
   isProcessingPayment: false,
 };

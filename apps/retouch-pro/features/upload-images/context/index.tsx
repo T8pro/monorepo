@@ -247,12 +247,67 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
     }
   }, [state.photos]);
 
+  const sendOrderEmail = useCallback(
+    async (
+      packageInfo: { name: string; discountedPrice: number },
+      userData: UserData,
+      photos: Photo[],
+    ) => {
+      try {
+        console.log('sendOrderEmail: Starting...', {
+          packageInfo,
+          userData,
+          photosCount: photos.length,
+        });
+        const formData = new FormData();
+
+        // Add user data
+        formData.append('name', userData.name);
+        formData.append('email', userData.email);
+        formData.append('environment', userData.environment);
+        formData.append('packageType', packageInfo.name);
+        formData.append('totalAmount', packageInfo.discountedPrice.toString());
+        formData.append('photoCount', photos.length.toString());
+
+        // Add photo files
+        photos.forEach((photo, index) => {
+          formData.append(`photo_${index}`, photo.file);
+        });
+
+        console.log('sendOrderEmail: Sending request to API...');
+        const response = await fetch('/api/send-order-email', {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (!response.ok) {
+          console.error(
+            'sendOrderEmail: API request failed:',
+            response.status,
+            response.statusText,
+          );
+          throw new Error('Failed to send order email');
+        }
+
+        console.log('sendOrderEmail: Email sent successfully');
+        return await response.json();
+      } catch (error) {
+        console.error('sendOrderEmail: Error:', error);
+        throw error instanceof Error
+          ? error
+          : new Error('Failed to send order email');
+      }
+    },
+    [],
+  );
+
   const processPayment = useCallback(
     async (paymentData: PaymentData) => {
       try {
-        // Save photos to storage before payment
+        // Save photos and user data to storage before payment
         if (typeof window !== 'undefined') {
           await photoStorage.savePhotos(state.photos);
+          await photoStorage.saveUserData(state.userData);
         }
 
         const response = await fetch('/api/payment-intent', {
@@ -280,7 +335,7 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
           : new Error('Payment failed. Please try again.');
       }
     },
-    [state.photos],
+    [state.photos, state.userData],
   );
 
   const finalizeOrder = useCallback(() => {
@@ -307,6 +362,12 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(state.userData.email)) {
       setError('Please enter a valid email address.');
+      return;
+    }
+
+    // Validate environment selection
+    if (!state.userData.environment) {
+      setError('Please select your preferred environment.');
       return;
     }
 
@@ -411,7 +472,16 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
   const processPhotosAfterPayment = useCallback(
     async (paymentIntentId: string, photosToProcess?: Photo[]) => {
       try {
+        console.log('processPhotosAfterPayment: Starting...');
         const photos = photosToProcess || state.photos;
+        console.log('processPhotosAfterPayment: Photos count:', photos.length);
+
+        // Load user data from storage
+        const userData = await photoStorage.loadUserData();
+        console.log('processPhotosAfterPayment: User data loaded:', userData);
+        if (!userData) {
+          throw new Error('User data not found in storage');
+        }
 
         // Calculate package info
         const selectedCount = photos.length;
@@ -447,6 +517,7 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
         );
 
         // Upload photos to API
+        console.log('processPhotosAfterPayment: Uploading photos to API...');
         const response = await fetch('/api/upload-photos', {
           method: 'POST',
           headers: {
@@ -460,17 +531,41 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
         });
 
         if (!response.ok) {
+          console.error(
+            'processPhotosAfterPayment: API upload failed:',
+            response.status,
+            response.statusText,
+          );
           throw new Error('Failed to upload photos');
         }
 
+        console.log('processPhotosAfterPayment: Photos uploaded successfully');
         await response.json();
+
+        // Send order email after successful photo processing
+        console.log('processPhotosAfterPayment: Sending order email...');
+        const packageInfo = {
+          name: packageType,
+          discountedPrice:
+            selectedCount *
+            (selectedCount <= 5
+              ? 15
+              : selectedCount <= 11
+                ? 10
+                : selectedCount <= 23
+                  ? 8.33
+                  : 6),
+        };
+
+        await sendOrderEmail(packageInfo, userData, photos);
+        console.log('processPhotosAfterPayment: Order email sent successfully');
       } catch (error) {
         throw error instanceof Error
           ? error
           : new Error('Failed to process photos after payment');
       }
     },
-    [state.photos],
+    [state.photos, sendOrderEmail],
   );
 
   const value: PhotoContextValues = {
@@ -485,6 +580,7 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
     setProcessingPayment,
     finalizeOrder,
     processPayment,
+    sendOrderEmail,
     openFileSelector,
     openCheckout,
     closeCheckout,

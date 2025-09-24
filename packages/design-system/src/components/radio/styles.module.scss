@@ -1,0 +1,111 @@
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-200);
+  cursor: pointer;
+  user-select: none;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.indicator {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: var(--color-white);
+  border: 2px solid var(--color-gray-300);
+  border-radius: 50%;
+  transition: all var(--transition-fast);
+  box-shadow: inset 0 0 0 1px rgb(from var(--color-black) r g b / 0.08);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-white);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform var(--transition-fast);
+}
+
+// Checked state
+.input:checked + .indicator {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.input:checked + .indicator .dot {
+  transform: scale(1);
+}
+
+// Focus state
+.input:focus + .indicator {
+  box-shadow: 0 0 0 3px rgba(103, 154, 88, 0.1);
+}
+
+.label {
+  font-family: var(--font-montserrat);
+  color: var(--color-secondary);
+  font-size: var(--font-size-base);
+}
+
+// Sizes
+.size-small .indicator {
+  width: 16px;
+  height: 16px;
+  border-width: 1px;
+}
+.size-small .dot {
+  width: 6px;
+  height: 6px;
+}
+.size-small .label {
+  font-size: var(--font-size-sm);
+}
+
+.size-medium .indicator {
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
+}
+.size-medium .dot {
+  width: 8px;
+  height: 8px;
+}
+.size-medium .label {
+  font-size: var(--font-size-base);
+}
+
+.size-large .indicator {
+  width: 24px;
+  height: 24px;
+  border-width: 2px;
+}
+.size-large .dot {
+  width: 10px;
+  height: 10px;
+}
+.size-large .label {
+  font-size: var(--font-size-lg);
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.disabled .indicator {
+  background: var(--color-gray-100);
+  border-color: var(--color-gray-200);
+}
+
+.disabled .label {
+  color: var(--color-gray-400);
+}

@@ -1,0 +1,93 @@
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-200);
+  cursor: pointer;
+  user-select: none;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.track {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 44px;
+  height: 24px;
+  background: var(--color-gray-300);
+  border-radius: 9999px;
+  transition: background-color var(--transition-fast);
+  box-shadow: inset 0 0 0 1px rgb(from var(--color-black) r g b / 0.08);
+}
+
+.thumb {
+  position: absolute;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: var(--color-white);
+  border-radius: 9999px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast);
+}
+
+// Checked state
+.input:checked + .track {
+  background: var(--color-primary);
+}
+
+.input:checked + .track .thumb {
+  transform: translateX(20px);
+}
+
+.label {
+  font-family: var(--font-montserrat);
+  color: var(--color-secondary);
+  font-size: var(--font-size-base);
+}
+
+// Sizes
+.size-small .track {
+  width: 36px;
+  height: 20px;
+}
+.size-small .thumb {
+  width: 16px;
+  height: 16px;
+}
+.size-small .input:checked + .track .thumb {
+  transform: translateX(16px);
+}
+
+.size-medium .track {
+  width: 44px;
+  height: 24px;
+}
+.size-medium .thumb {
+  width: 20px;
+  height: 20px;
+}
+.size-medium .input:checked + .track .thumb {
+  transform: translateX(20px);
+}
+
+.size-large .track {
+  width: 56px;
+  height: 32px;
+}
+.size-large .thumb {
+  width: 28px;
+  height: 28px;
+}
+.size-large .input:checked + .track .thumb {
+  transform: translateX(24px);
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

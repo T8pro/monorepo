@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Input, Text } from '@t8pro/design-system';
+import { Button, Input, Radio, Text } from '@t8pro/design-system';
 import { usePhotosContext } from '../context';
 import styles from './styles.module.scss';
 
@@ -23,6 +23,18 @@ export const SelectedImagesFooter = () => {
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({ ...userData, email: event.target.value });
+  };
+
+  const handleEnvironmentChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setUserData({
+      ...userData,
+      environment: event.target.value as
+        | 'original'
+        | 'white_studio'
+        | 'restaurant',
+    });
   };
 
   const getPackageInfo = () => {
@@ -152,6 +164,41 @@ export const SelectedImagesFooter = () => {
             className={styles.emailInput}
             required
           />
+        </div>
+
+        <div className={styles.environmentSection}>
+          <Text size="sm" className={styles.environmentLabel}>
+            Choose your preferred environment:
+          </Text>
+
+          <div className={styles.radioGroup}>
+            <Radio
+              name="environment"
+              value="original"
+              checked={userData.environment === 'original'}
+              onChange={handleEnvironmentChange}
+              label="Maintain environment original photo"
+              size="medium"
+            />
+
+            <Radio
+              name="environment"
+              value="white_studio"
+              checked={userData.environment === 'white_studio'}
+              onChange={handleEnvironmentChange}
+              label="Use white infinity studio"
+              size="medium"
+            />
+
+            <Radio
+              name="environment"
+              value="restaurant"
+              checked={userData.environment === 'restaurant'}
+              onChange={handleEnvironmentChange}
+              label="Use a restaurant environment"
+              size="medium"
+            />
+          </div>
         </div>
 
         <div className={styles.checkoutButton}>
