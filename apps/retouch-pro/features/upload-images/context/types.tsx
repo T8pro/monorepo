@@ -46,6 +46,7 @@ export type PhotoActions = {
     },
     userData: UserData,
     photos: Photo[],
+    folderLink?: string,
   ) => Promise<void>;
   openFileSelector: () => void;
   openCheckout: () => void;

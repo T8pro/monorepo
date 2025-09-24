@@ -252,6 +252,7 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
       packageInfo: { name: string; discountedPrice: number },
       userData: UserData,
       photos: Photo[],
+      folderLink?: string,
     ) => {
       try {
         console.log('sendOrderEmail: Starting...', {
@@ -273,6 +274,10 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
         photos.forEach((photo, index) => {
           formData.append(`photo_${index}`, photo.file);
         });
+
+        if (folderLink) {
+          formData.append('folderLink', folderLink);
+        }
 
         console.log('sendOrderEmail: Sending request to API...');
         const response = await fetch('/api/send-order-email', {
@@ -531,19 +536,26 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
         });
 
         if (!response.ok) {
-          console.error(
-            'processPhotosAfterPayment: API upload failed:',
-            response.status,
-            response.statusText,
-          );
-          throw new Error('Failed to upload photos');
+          let serverMessage = '';
+          try {
+            serverMessage = await response.text();
+          } catch {
+            console.error(
+              'processPhotosAfterPayment: API upload failed:',
+              response.status,
+              response.statusText,
+              serverMessage,
+            );
+            throw new Error(
+              serverMessage || 'Failed to upload photos (server error)',
+            );
+          }
         }
 
         console.log('processPhotosAfterPayment: Photos uploaded successfully');
         await response.json();
 
-        // Send order email after successful photo processing
-        console.log('processPhotosAfterPayment: Sending order email...');
+        // Compute package info (used for Drive metadata + email)
         const packageInfo = {
           name: packageType,
           discountedPrice:
@@ -555,14 +567,61 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
                 : selectedCount <= 23
                   ? 8.33
                   : 6),
-        };
+        } as const;
 
-        await sendOrderEmail(packageInfo, userData, photos);
+        // Upload to Google Drive, then send order email with link
+        console.log('processPhotosAfterPayment: Uploading to Google Drive...');
+        const driveForm = new FormData();
+        driveForm.append('name', userData.name);
+        driveForm.append('email', userData.email);
+        driveForm.append('environment', userData.environment);
+        driveForm.append('packageType', packageType);
+        driveForm.append(
+          'totalAmount',
+          String(packageInfo.discountedPrice ?? 0),
+        );
+        driveForm.append('photoCount', String(selectedCount));
+        photos.forEach((p, i) => driveForm.append(`photo_${i}`, p.file));
+
+        const driveRes = await fetch('/api/google-drive/upload', {
+          method: 'POST',
+          body: driveForm,
+        });
+
+        if (!driveRes.ok) {
+          let driveMessage = '';
+          try {
+            driveMessage = await driveRes.text();
+          } catch {
+            throw new Error(
+              driveMessage || 'Failed to upload to Google Drive (server error)',
+            );
+          }
+          console.error(
+            'processPhotosAfterPayment: Drive upload failed:',
+            driveRes.status,
+            driveRes.statusText,
+            driveMessage,
+          );
+          throw new Error(
+            driveMessage || 'Failed to upload to Google Drive (server error)',
+          );
+        }
+
+        const driveJson = await driveRes.json();
+        const folderLink: string | undefined = driveJson?.folderLink;
+
+        // Send order email after successful photo processing
+        console.log('processPhotosAfterPayment: Sending order email...');
+        await sendOrderEmail(packageInfo, userData, photos, folderLink);
         console.log('processPhotosAfterPayment: Order email sent successfully');
       } catch (error) {
-        throw error instanceof Error
-          ? error
-          : new Error('Failed to process photos after payment');
+        const message =
+          error instanceof Error
+            ? error.message
+            : 'Failed to process photos after payment';
+        console.error('processPhotosAfterPayment: Error:', message);
+        throw new Error(message);
       }
     },
     [state.photos, sendOrderEmail],

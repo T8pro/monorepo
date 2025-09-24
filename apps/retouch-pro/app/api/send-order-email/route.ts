@@ -12,6 +12,7 @@ export async function POST(request: NextRequest) {
     const packageType = formData.get('packageType') as string;
     const totalAmount = formData.get('totalAmount') as string;
     const photoCount = formData.get('photoCount') as string;
+    const folderLink = (formData.get('folderLink') as string) || '';
 
     // Validate required fields
     if (
@@ -65,6 +66,7 @@ export async function POST(request: NextRequest) {
       <p><strong>Total Amount:</strong> $${totalAmount}</p>
       <p><strong>Number of Photos:</strong> ${photoCount}</p>
       <p><strong>Order Date:</strong> ${new Date().toLocaleString()}</p>
+      ${folderLink ? `<p><strong>Google Drive Folder:</strong> <a href="${folderLink}">${folderLink}</a></p>` : ''}
       
       <h3>Photos Attached:</h3>
       <ul>

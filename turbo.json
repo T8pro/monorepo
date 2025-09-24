@@ -7,13 +7,18 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**"],
       "env": [
-        "STRIPE_SECRET_KEY",
         "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+        "STRIPE_SECRET_KEY",
         "EMAIL_USER",
         "EMAIL_PASS",
-        "NEXT_PUBLIC_APP_URL",
         "APP_URL",
-        "NODE_ENV"
+        "GOOGLE_DRIVE_PARENT_FOLDER_ID",
+        "GCP_PRIVATE_KEY",
+        "GCP_PRIVATE_KEY_ID",
+        "GCP_PROJECT_ID",
+        "GCP_CLIENT_X509_CERT_URL",
+        "GCP_CLIENT_ID",
+        "GCP_CLIENT_EMAIL"
       ]
     },
     "lint": {
