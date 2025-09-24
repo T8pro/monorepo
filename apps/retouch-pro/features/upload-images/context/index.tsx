@@ -536,12 +536,56 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
           `Compressing ${photos.length} images...`,
         );
 
-        const processedPhotos = await Promise.all(
-          photos.map(async (photo, i) => {
-            if (!photo) return null;
-            const processed = await processPhotoForUpload(photo.file);
-            return { ...processed, originalPhoto: photo, index: i };
-          }),
+        console.log('processPhotosAfterPayment: Starting photo compression...');
+
+        // Process photos in batches to avoid memory issues with large numbers
+        const BATCH_SIZE = 10;
+        const processedPhotos = [];
+
+        for (let i = 0; i < photos.length; i += BATCH_SIZE) {
+          const batch = photos.slice(i, i + BATCH_SIZE);
+          console.log(
+            `processPhotosAfterPayment: Processing batch ${Math.floor(i / BATCH_SIZE) + 1}/${Math.ceil(photos.length / BATCH_SIZE)}`,
+          );
+
+          const batchResults = await Promise.all(
+            batch.map(async (photo, batchIndex) => {
+              const globalIndex = i + batchIndex;
+              if (!photo) {
+                console.log(
+                  `processPhotosAfterPayment: Photo ${globalIndex} is null, skipping`,
+                );
+                return null;
+              }
+              try {
+                console.log(
+                  `processPhotosAfterPayment: Processing photo ${globalIndex}: ${photo.name}`,
+                );
+                const processed = await processPhotoForUpload(photo.file);
+                console.log(
+                  `processPhotosAfterPayment: Photo ${globalIndex} processed successfully`,
+                );
+                return {
+                  ...processed,
+                  originalPhoto: photo,
+                  index: globalIndex,
+                };
+              } catch (error) {
+                console.error(
+                  `processPhotosAfterPayment: Error processing photo ${globalIndex}:`,
+                  error,
+                );
+                throw error;
+              }
+            }),
+          );
+
+          processedPhotos.push(...batchResults);
+        }
+
+        console.log(
+          'processPhotosAfterPayment: All photos processed, count:',
+          processedPhotos.length,
         );
 
         // Append processed photos to form data
@@ -563,6 +607,14 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
         // Upload photos to API
         setProcessingStep('uploading', 'Uploading photos to server...');
         console.log('processPhotosAfterPayment: Uploading photos to API...');
+        console.log(
+          'processPhotosAfterPayment: FormData entries:',
+          Array.from(formData.entries()).map(([key, value]) => [
+            key,
+            value instanceof File ? `File: ${value.name}` : value,
+          ]),
+        );
+
         const response = await fetch('/api/upload-photos', {
           method: 'POST',
           body: formData,
