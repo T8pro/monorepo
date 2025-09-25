@@ -588,57 +588,92 @@ export const PhotoProvider = ({ children }: PhotoProviderProps) => {
           processedPhotos.length,
         );
 
-        // Append processed photos to form data
-        processedPhotos.forEach((processed, i) => {
-          if (!processed) return;
-
-          formData.append(`photo_${i}`, processed.file);
-          formData.append(`photo_${i}_id`, processed.originalPhoto.id);
-          formData.append(`photo_${i}_name`, processed.originalPhoto.name);
-          formData.append(`photo_${i}_type`, processed.originalPhoto.type);
-          formData.append(
-            `photo_${i}_size`,
-            String(processed.originalPhoto.size),
-          );
-          formData.append(`photo_${i}_width`, String(processed.width));
-          formData.append(`photo_${i}_height`, String(processed.height));
-        });
-
-        // Upload photos to API
+        // Upload photos sequentially to avoid payload size issues
         setProcessingStep('uploading', 'Uploading photos to server...');
-        console.log('processPhotosAfterPayment: Uploading photos to API...');
         console.log(
-          'processPhotosAfterPayment: FormData entries:',
-          Array.from(formData.entries()).map(([key, value]) => [
-            key,
-            value instanceof File ? `File: ${value.name}` : value,
-          ]),
+          'processPhotosAfterPayment: Starting sequential photo upload...',
         );
 
-        const response = await fetch('/api/upload-photos', {
-          method: 'POST',
-          body: formData,
-        });
+        const uploadResults = [];
+        const totalPhotos = processedPhotos.filter(p => p !== null).length;
 
-        if (!response.ok) {
-          let serverMessage = '';
+        for (let i = 0; i < processedPhotos.length; i++) {
+          const processed = processedPhotos[i];
+          if (!processed) continue;
+
+          const photoIndex = uploadResults.length + 1;
+          setProcessingStep(
+            'uploading',
+            `Uploading photo ${photoIndex}/${totalPhotos}...`,
+          );
+
+          console.log(
+            `processPhotosAfterPayment: Uploading photo ${photoIndex}/${totalPhotos}: ${processed.originalPhoto.name}`,
+          );
+
+          // Create FormData for single photo
+          const singlePhotoFormData = new FormData();
+          singlePhotoFormData.append('paymentIntentId', paymentIntentId);
+          singlePhotoFormData.append('packageType', packageType);
+          singlePhotoFormData.append('photoIndex', String(photoIndex));
+          singlePhotoFormData.append('totalPhotos', String(totalPhotos));
+          singlePhotoFormData.append('photoId', processed.originalPhoto.id);
+          singlePhotoFormData.append('photoName', processed.originalPhoto.name);
+          singlePhotoFormData.append('photoType', processed.originalPhoto.type);
+          singlePhotoFormData.append(
+            'photoSize',
+            String(processed.originalPhoto.size),
+          );
+          singlePhotoFormData.append('photoWidth', String(processed.width));
+          singlePhotoFormData.append('photoHeight', String(processed.height));
+          singlePhotoFormData.append('photo', processed.file);
+
           try {
-            serverMessage = await response.text();
-          } catch {
+            const response = await fetch('/api/upload-single-photo', {
+              method: 'POST',
+              body: singlePhotoFormData,
+            });
+
+            if (!response.ok) {
+              let serverMessage = '';
+              try {
+                serverMessage = await response.text();
+              } catch {
+                console.error(
+                  `processPhotosAfterPayment: Photo ${photoIndex} upload failed:`,
+                  response.status,
+                  response.statusText,
+                  serverMessage,
+                );
+                throw new Error(
+                  serverMessage ||
+                    `Failed to upload photo ${photoIndex} (server error)`,
+                );
+              }
+            }
+
+            const result = await response.json();
+            uploadResults.push(result);
+            console.log(
+              `processPhotosAfterPayment: Photo ${photoIndex} uploaded successfully`,
+            );
+
+            // Small delay between uploads to avoid overwhelming the server
+            if (i < processedPhotos.length - 1) {
+              await new Promise(resolve => setTimeout(resolve, 500));
+            }
+          } catch (error) {
             console.error(
-              'processPhotosAfterPayment: API upload failed:',
-              response.status,
-              response.statusText,
-              serverMessage,
+              `processPhotosAfterPayment: Error uploading photo ${photoIndex}:`,
+              error,
             );
-            throw new Error(
-              serverMessage || 'Failed to upload photos (server error)',
-            );
+            throw error;
           }
         }
 
-        console.log('processPhotosAfterPayment: Photos uploaded successfully');
-        await response.json();
+        console.log(
+          'processPhotosAfterPayment: All photos uploaded successfully',
+        );
 
         // Compute package info (used for Drive metadata + email)
         const packageInfo = {

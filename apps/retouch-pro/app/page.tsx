@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { BeforeAfter } from '@/features/home/before-after';
 import { Ebook } from '@/features/home/ebook';
 import { Hero } from '@/features/home/hero';
+import { Pricing } from '@/features/pricing';
 
 export const metadata: Metadata = {
   title: '24-Hour Menu Visual Upgrade - Landing Page (US)',
@@ -15,6 +16,7 @@ export default function Home() {
       <Hero />
       <BeforeAfter />
       <Ebook imageUrl="/ebook.png" />
+      <Pricing />
     </main>
   );
 }

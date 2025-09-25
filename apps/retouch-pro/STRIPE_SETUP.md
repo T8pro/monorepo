@@ -38,7 +38,8 @@ STRIPE_SECRET_KEY=sk_test_your_secret_key_here
 
 - **`/app/providers.tsx`**: Wraps app with Stripe Elements provider
 - **`/app/api/payment-intent/route.ts`**: Creates Stripe payment intents
-- **`/app/api/upload-photos/route.ts`**: Processes photo uploads after payment
+- **`/app/api/upload-single-photo/route.ts`**: Processes individual photo uploads after payment (sequential queue)
+- **`/app/api/upload-photos/route.ts`**: Legacy bulk upload endpoint (deprecated)
 - **`/features/upload-images/checkout-modal/`**: Checkout modal component
 - **`/features/upload-images/context/`**: Updated context with checkout state management
 

@@ -1,17 +1,12 @@
 'use client';
 
 import { Button, Icon, Heading, Text, IconName } from '@t8pro/design-system';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { pricingCards } from './constants';
 import styles from './styles.module.scss';
 import type { PricingProps } from './types';
 
 export const Pricing = ({ title = 'HOW PRICING WORKS' }: PricingProps = {}) => {
-  const router = useRouter();
-  const onCardClickAction = () => {
-    router.push('/upload');
-  };
-
   return (
     <section className={styles.pricing}>
       <div className={styles.container}>
@@ -58,16 +53,17 @@ export const Pricing = ({ title = 'HOW PRICING WORKS' }: PricingProps = {}) => {
                 </ul>
               </div>
 
-              <Button
-                variant="1"
-                size="medium"
-                iconLeft="redeem"
-                fullWidth
-                className={styles.cardButton}
-                onClick={onCardClickAction}
-              >
-                {card.buttonText}
-              </Button>
+              <Link href="/upload">
+                <Button
+                  variant="1"
+                  size="medium"
+                  iconLeft="redeem"
+                  fullWidth
+                  className={styles.cardButton}
+                >
+                  {card.buttonText}
+                </Button>
+              </Link>
             </div>
           ))}
         </div>

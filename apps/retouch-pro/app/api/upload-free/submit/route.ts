@@ -58,6 +58,7 @@ export async function POST(request: Request) {
     const path = await import('node:path');
     const templatePath = path.join(
       process.cwd(),
+      'public',
       'templates',
       'upload-free.hbs',
     );

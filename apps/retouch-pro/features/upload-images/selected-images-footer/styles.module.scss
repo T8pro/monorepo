@@ -15,6 +15,7 @@
 .packageSummary {
   display: flex;
   flex-direction: column;
+  padding: 0 var(--spacing-200);
   p {
     margin: 0;
   }
@@ -81,6 +82,7 @@
   height: 100%;
   gap: var(--spacing-100);
   align-self: flex-end;
+  padding: 0 var(--spacing-200);
   p {
     margin: 0;
   }
@@ -175,6 +177,7 @@
 .userFormSection {
   width: 100%;
   margin-bottom: var(--spacing-200);
+  padding: var(--spacing-200);
 }
 
 .inputGroup {
@@ -182,12 +185,16 @@
   gap: var(--spacing-200);
   width: 100%;
   max-width: 800px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
 .nameInput,
 .emailInput {
   flex: 1;
   min-width: 0;
+  min-height: 48px;
 }
 
 .environmentSection {

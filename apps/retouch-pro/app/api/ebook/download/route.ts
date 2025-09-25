@@ -12,7 +12,12 @@ const isValidEmail = (email: string) => {
 };
 
 async function sendEbookEmail(name: string, email: string): Promise<void> {
-  const templatePath = path.join(process.cwd(), 'templates', 'ebook-free.hbs');
+  const templatePath = path.join(
+    process.cwd(),
+    'public',
+    'templates',
+    'ebook-free.hbs',
+  );
 
   await sendEmail(email, 'Your E-book Download - Retouch Pro', templatePath, {
     name,
