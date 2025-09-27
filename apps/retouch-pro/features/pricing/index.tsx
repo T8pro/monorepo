@@ -74,15 +74,17 @@ export const Pricing = ({ title = 'HOW PRICING WORKS' }: PricingProps = {}) => {
               Not confident in our product yet? Try it for free. Send us 1 image
               and test it now!
             </Text>
-            <Button
-              variant="1"
-              size="large"
-              iconLeft="image"
-              className={styles.freeTrialButton}
-              onClick={() => (window.location.href = '/upload-free')}
-            >
-              Test free 1 image
-            </Button>
+
+            <Link href="/upload-free">
+              <Button
+                variant="1"
+                size="large"
+                iconLeft="image"
+                className={styles.freeTrialButton}
+              >
+                Test free 1 image
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

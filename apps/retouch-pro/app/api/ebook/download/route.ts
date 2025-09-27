@@ -1,5 +1,5 @@
-import path from 'node:path';
 import { NextResponse } from 'next/server';
+import { ebookFreeTemplate } from '@/app/templates/ebook-free';
 import { sendEmail } from '@/lib/email';
 
 type DownloadRequest = {
@@ -12,18 +12,16 @@ const isValidEmail = (email: string) => {
 };
 
 async function sendEbookEmail(name: string, email: string): Promise<void> {
-  const templatePath = path.join(
-    process.cwd(),
-    'public',
-    'templates',
-    'ebook-free.hbs',
-  );
-
-  await sendEmail(email, 'Your E-book Download - Retouch Pro', templatePath, {
-    name,
+  await sendEmail(
     email,
-    domain: process.env.APP_URL || 'http://localhost:3000',
-  });
+    'Your E-book Download - Retouch Pro',
+    ebookFreeTemplate,
+    {
+      name,
+      email,
+      domain: process.env.APP_URL || 'http://localhost:3000',
+    },
+  );
 }
 
 export async function POST(request: Request) {

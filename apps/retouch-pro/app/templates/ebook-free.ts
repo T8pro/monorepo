@@ -1,3 +1,4 @@
+export const ebookFreeTemplate = `
 <html>
   <body
     style='font-family: Arial, sans-serif; padding: 20px; background-color: #f8f9fa;'
@@ -68,3 +69,10 @@
     </div>
   </body>
 </html>
+`;
+
+export type EbookFreeTemplateData = {
+  name: string;
+  email: string;
+  domain: string;
+};

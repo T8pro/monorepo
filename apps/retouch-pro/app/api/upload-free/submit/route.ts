@@ -1,5 +1,10 @@
 import { NextResponse } from 'next/server';
 import {
+  uploadFreeTemplate,
+  type UploadFreeTemplateData,
+} from '@/app/templates/upload-free';
+import { getTransporter } from '@/lib/email';
+import {
   getDriveClient,
   createFolder,
   uploadFile,
@@ -51,28 +56,10 @@ export async function POST(request: Request) {
     const folderLink = getFolderLink(folderId);
 
     // Send HTML email using handlebars template
-    const { getTransporter } = await import('@/lib/email');
     const transporter = getTransporter();
     const handlebars = await import('handlebars');
-    const fs = await import('node:fs');
-    const path = await import('node:path');
-    const templatePath = path.join(
-      process.cwd(),
-      'public',
-      'templates',
-      'upload-free.hbs',
-    );
-    const source = fs.readFileSync(templatePath, 'utf8');
-    const template = handlebars.compile<{
-      name: string;
-      email: string;
-      phone: string;
-      company: string;
-      fileName: string;
-      fileSizeKB: number;
-      submittedAt: string;
-      folderLink?: string;
-    }>(source);
+    const template =
+      handlebars.compile<UploadFreeTemplateData>(uploadFreeTemplate);
     const html = template({
       name,
       email,

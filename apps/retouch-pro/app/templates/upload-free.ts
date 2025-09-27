@@ -1,3 +1,4 @@
+export const uploadFreeTemplate = `
 <html>
   <body
     style='font-family: Arial, sans-serif; padding: 20px; background-color: #f8f9fa;'
@@ -47,3 +48,15 @@
     </div>
   </body>
 </html>
+`;
+
+export type UploadFreeTemplateData = {
+  name: string;
+  email: string;
+  phone: string;
+  company: string;
+  fileName: string;
+  fileSizeKB: number;
+  submittedAt: string;
+  folderLink?: string;
+};
